@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
-import getTs from '../../../../../util/getTs'
 
 export default function handler(req: Request, res: Response) {
 	return res.json({
-		retcode: 0,
-		message: "OK",
 		data: {
-			currency: "IDR",
-			country: "ID",
-			price_tier_version: getTs(),
+			code: 200,
+			device_fp: req.body?.data?.device_fp||null,
+			msg: "ok",
 		},
+		message: "OK",
+		retcode: 0,
 	});
 }

@@ -1,5 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const getTs_1 = __importDefault(require("../../../../../util/getTs"));
 //https://sg-public-api.hoyoverse.com/common/bh3_global/announcement/api/getAnnList?game=bh3&game_biz=bh3_global&lang=id&auth_appid=announcement&authkey_ver=1&bundle_id=bh3_os&channel_id=1&level=87&platform=pc&region=overseas01&sdk_presentation_style=fullscreen&sdk_screen_transparent=true&sign_type=2&uid=18686438
 function handler(req, res) {
     return res.json({
@@ -16,7 +20,7 @@ function handler(req, res) {
             alert: false,
             alert_id: 0,
             timezone: 8,
-            t: Math.round(new Date().getTime() / 1000).toString(),
+            t: (0, getTs_1.default)(),
             pic_list: [],
             pic_total: 0,
             pic_type_list: [],

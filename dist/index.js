@@ -38,11 +38,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const https_1 = __importDefault(require("https"));
 const fs_1 = __importDefault(require("fs"));
+const logger_1 = __importDefault(require("./util/logger"));
+const tls_1 = __importDefault(require("tls"));
+const config_1 = __importDefault(require("./config"));
 const app = (0, express_1.default)();
 app.disable('x-powered-by');
 app.use(express_1.default.json());
+app.all('/admin/mi18n/plat_oversea/*', (req, res) => {
+    return res.json({
+        version: 67
+    });
+});
 app.all('/*', (req, res) => {
     var _a;
+    (0, logger_1.default)(`${req.method} ${req.url.split('?')[0]}`, 'warn', 'HTTP');
     (_a = `./routes${req.url.split('?')[0]}`, Promise.resolve().then(() => __importStar(require(_a)))).then((r) => __awaiter(void 0, void 0, void 0, function* () {
         yield r.default(req, res);
     })).catch(err => {
@@ -51,10 +60,19 @@ app.all('/*', (req, res) => {
         });
         if (err.code === 'MODULE_NOT_FOUND')
             return;
-        console.error(err);
+        (0, logger_1.default)(err, 'danger');
     });
 });
-https_1.default.createServer({ key: fs_1.default.readFileSync('./certs/cert.key').toString(), cert: fs_1.default.readFileSync('./certs/cert.crt').toString() }, app).listen(443);
+const certConfig = { key: fs_1.default.readFileSync('./certs/localhost.key').toString(), cert: fs_1.default.readFileSync('./certs/localhost.crt').toString() };
+const gameServer = tls_1.default.createServer(certConfig);
+gameServer.listen(config_1.default.gameServerPort, config_1.default.serverHost, () => {
+    (0, logger_1.default)(`TCP server listening on port ${config_1.default.gameServerPort}`, '', 'TCP');
+});
+gameServer.on('connection', function (sock) {
+    (0, logger_1.default)(`${sock.remoteAddress}:${sock.remotePort} Connected`, 'warn', 'TCP');
+    console.log(sock);
+});
+https_1.default.createServer(certConfig, app).listen(443);
 app.listen(80, () => {
-    console.log(`Listening on port 80`);
+    (0, logger_1.default)('HTTP server listening on port 80 & 443', '', 'HTTP');
 });

@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import getTs from '../../../../../util/getTs'
 
 export default function handler(req: Request, res: Response) {
 	return res.json({
@@ -7,7 +8,7 @@ export default function handler(req: Request, res: Response) {
 		data: {
 			suggest_currency: "",
 			tiers: [],
-			price_tier_version: Math.round(new Date().getTime()/1000).toString(),
+			price_tier_version: getTs(),
 		},
 	});
 }
