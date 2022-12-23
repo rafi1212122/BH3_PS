@@ -36,7 +36,7 @@ gameServer.listen(config.gameServerPort, config.serverHost, () => {
 
 gameServer.on('connection', function(sock) {
     logger(`${sock.remoteAddress}:${sock.remotePort} Connected`, 'warn', 'TCP');
-    // console.log(sock);
+    console.log(sock);
     sock.on('data', (data) => {
         console.log(data)
     })
