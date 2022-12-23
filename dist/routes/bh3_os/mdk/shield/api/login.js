@@ -54,7 +54,7 @@ function handler(req, res) {
                     apple_name: "",
                     sony_name: "",
                     tap_name: "",
-                    country: "SG",
+                    country: "ID,,
                     reactivate_ticket: "",
                     area_code: "**",
                     device_grant_ticket: "",

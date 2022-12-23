@@ -39,7 +39,7 @@ const express_1 = __importDefault(require("express"));
 const https_1 = __importDefault(require("https"));
 const fs_1 = __importDefault(require("fs"));
 const logger_1 = __importDefault(require("./util/logger"));
-const tls_1 = __importDefault(require("tls"));
+const net_1 = __importDefault(require("net"));
 const config_1 = __importDefault(require("./config"));
 const app = (0, express_1.default)();
 app.disable('x-powered-by');
@@ -63,16 +63,18 @@ app.all('/*', (req, res) => {
         (0, logger_1.default)(err, 'danger');
     });
 });
-const certConfig = { key: fs_1.default.readFileSync('./certs/localhost.key').toString(), cert: fs_1.default.readFileSync('./certs/localhost.crt').toString() };
-const gameServer = tls_1.default.createServer(certConfig);
+const gameServer = net_1.default.createServer();
 gameServer.listen(config_1.default.gameServerPort, config_1.default.serverHost, () => {
     (0, logger_1.default)(`TCP server listening on port ${config_1.default.gameServerPort}`, '', 'TCP');
 });
 gameServer.on('connection', function (sock) {
     (0, logger_1.default)(`${sock.remoteAddress}:${sock.remotePort} Connected`, 'warn', 'TCP');
-    console.log(sock);
+    // console.log(sock);
+    sock.on('data', (data) => {
+        console.log(data);
+    });
 });
-https_1.default.createServer(certConfig, app).listen(443);
+https_1.default.createServer({ key: fs_1.default.readFileSync('./certs/localhost.key').toString(), cert: fs_1.default.readFileSync('./certs/localhost.crt').toString() }, app).listen(443);
 app.listen(80, () => {
     (0, logger_1.default)('HTTP server listening on port 80 & 443', '', 'HTTP');
 });

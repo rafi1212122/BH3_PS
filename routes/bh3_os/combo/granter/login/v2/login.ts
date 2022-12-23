@@ -10,9 +10,9 @@ export default function handler(req: Request, res: Response) {
             combo_id: "1",
             open_id: data.uid,
             combo_token: data.token,
-            data: {
+            data: JSON.stringify({
                 guest: data.guest
-            },
+            }),
             heartbeat: false,
             account_type: 1,
             fatigue_remind: null

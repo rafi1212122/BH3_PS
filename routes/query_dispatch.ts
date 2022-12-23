@@ -6,7 +6,7 @@ export default function handler(req: Request, res: Response) {
 		region_list: [
 			{
 				dispatch_url:
-					`https://hoyoverse.com/query_gateway`,
+					`https://${config.serverHost}/query_gateway`,
 				ext: {
 					ai_use_asset_boundle: "1",
 					apm_log_dest: "2",

@@ -7,7 +7,7 @@ export default function handler(req: Request, res: Response) {
 		data: {
 			protocol: true,
 			qr_enabled: false,
-			log_level: "INFO",
+			log_level: "DEBUG",
 			announce_url: "https://sdk.hoyoverse.com/bh3/announcement/index.html?sdk_presentation_style=fullscreen&sdk_screen_transparent=true&auth_appid=announcement&authkey_ver=1&sign_type=2&game_biz=bh3_global&game=bh3#/",
 			push_alias_type: 2,
 			disable_ysdk_guard: false,

@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express'
 import https from 'https'
 import fs from 'fs'
 import logger from './util/logger'
-import tls from 'tls'
+import net from 'net'
 import config from './config'
 
 const app = express();
@@ -29,19 +29,20 @@ app.all('/*', (req: Request, res: Response) => {
     });
 });
 
-const certConfig = { key: fs.readFileSync('./certs/localhost.key').toString(), cert: fs.readFileSync('./certs/localhost.crt').toString() }
-
-const gameServer = tls.createServer(certConfig)
+const gameServer = net.createServer()
 gameServer.listen(config.gameServerPort, config.serverHost, () => {
     logger(`TCP server listening on port ${config.gameServerPort}`, '', 'TCP')
 })
 
 gameServer.on('connection', function(sock) {
     logger(`${sock.remoteAddress}:${sock.remotePort} Connected`, 'warn', 'TCP');
-    console.log(sock);
+    // console.log(sock);
+    sock.on('data', (data) => {
+        console.log(data)
+    })
 });
 
-https.createServer(certConfig, app).listen(443);
+https.createServer({ key: fs.readFileSync('./certs/localhost.key').toString(), cert: fs.readFileSync('./certs/localhost.crt').toString() }, app).listen(443);
 app.listen(80, () => {
     logger('HTTP server listening on port 80 & 443', '', 'HTTP')
 });

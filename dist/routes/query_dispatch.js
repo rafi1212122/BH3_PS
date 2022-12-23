@@ -1,10 +1,14 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const config_1 = __importDefault(require("../config"));
 function handler(req, res) {
     return res.json({
         region_list: [
             {
-                dispatch_url: `https://hoyoverse.com/query_gateway`,
+                dispatch_url: `https://${config_1.default.serverHost}/query_gateway`,
                 ext: {
                     ai_use_asset_boundle: "1",
                     apm_log_dest: "2",
