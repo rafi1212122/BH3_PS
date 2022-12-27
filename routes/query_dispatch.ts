@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import config from "../config";
 
 export default function handler(req: Request, res: Response) {
-	return res.json({
+	return res.send(JSON.stringify({
 		region_list: [
 			{
 				dispatch_url:
@@ -33,11 +33,11 @@ export default function handler(req: Request, res: Response) {
 					update_streaming_asb: "0",
 					use_multy_cdn: "0",
 				},
-				name: "ps1",
+				name: "ps01",
 				retcode: 0,
 				title: "BH PS",
 			},
 		],
 		retcode: 0,
-	});
+	}));
 }

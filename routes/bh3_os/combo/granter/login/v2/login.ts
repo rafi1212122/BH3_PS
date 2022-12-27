@@ -7,7 +7,7 @@ export default function handler(req: Request, res: Response) {
         retcode: 0,
         message: "OK",
         data: {
-            combo_id: "1",
+            combo_id: "0",
             open_id: data.uid,
             combo_token: data.token,
             data: JSON.stringify({

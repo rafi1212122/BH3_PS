@@ -6,7 +6,7 @@ import { prisma } from "../../../../../util/prismaConnect";
 export default async function handler(req: Request, res: Response) {
 	const user = await prisma.user.findFirst({
 		where: {
-			uid: req.body.uid,
+			uid: parseInt(req.body.uid),
 		},
 	});
 	if (!user) {

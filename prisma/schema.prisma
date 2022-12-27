@@ -11,7 +11,8 @@ datasource db {
 }
 
 model User {
-  uid   String @id @default(cuid()) @map("id")
-  name  String
-  token String? @default("")
+  uid          Int     @id @default(autoincrement()) @map("id")
+  name         String
+  isFirstLogin Boolean @default(true)
+  token        String? @default("")
 }

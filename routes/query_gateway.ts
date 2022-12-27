@@ -3,7 +3,7 @@ import config from "../config";
 import getTs from "../util/getTs";
 
 export default function handler(req: Request, res: Response) {
-	return res.json({
+	return res.send(JSON.stringify({
 		account_url: `http://${config.serverHost}/account`,
 		account_url_backup: `http://${config.serverHost}/account`,
 		asset_bundle_url_list: [
@@ -52,7 +52,7 @@ export default function handler(req: Request, res: Response) {
 		is_data_ready: true,
 		msg: "",
 		oaserver_url: `http://${config.serverHost}/oaserver`,
-		region_name: "overseas01",
+		region_name: "ps01",
 		retcode: 0,
 		server_cur_time: getTs(),
 		server_cur_timezone: 8,
@@ -60,5 +60,5 @@ export default function handler(req: Request, res: Response) {
 			cdkey_url: "https://sg-public-api.hoyoverse.com/common/",
 			mihoyo_sdk_env: "2",
 		},
-	});
+	}));
 }

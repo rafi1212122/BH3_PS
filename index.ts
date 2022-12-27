@@ -2,8 +2,7 @@ import express, { Request, Response } from 'express'
 import https from 'https'
 import fs from 'fs'
 import logger from './util/logger'
-import net from 'net'
-import config from './config'
+import GameServer from './Server/GameServer'
 
 const app = express();
 
@@ -29,18 +28,7 @@ app.all('/*', (req: Request, res: Response) => {
     });
 });
 
-const gameServer = net.createServer()
-gameServer.listen(config.gameServerPort, config.serverHost, () => {
-    logger(`TCP server listening on port ${config.gameServerPort}`, '', 'TCP')
-})
-
-gameServer.on('connection', function(sock) {
-    logger(`${sock.remoteAddress}:${sock.remotePort} Connected`, 'warn', 'TCP');
-    console.log(sock);
-    sock.on('data', (data) => {
-        console.log(data)
-    })
-});
+GameServer.getInstance().start()
 
 https.createServer({ key: fs.readFileSync('./certs/localhost.key').toString(), cert: fs.readFileSync('./certs/localhost.crt').toString() }, app).listen(443);
 app.listen(80, () => {
