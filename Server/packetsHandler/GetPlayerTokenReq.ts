@@ -2,6 +2,7 @@ import net from "net"
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 import { prisma } from '../../util/prismaConnect'
+import GameServer from "../GameServer"
 
 export default async (socket: net.Socket, packet: GetPlayerTokenReq) => {
     let reply;
@@ -10,6 +11,10 @@ export default async (socket: net.Socket, packet: GetPlayerTokenReq) => {
             uid: parseInt(packet.account_uid||"0")
         }
     })
+    const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
+    if(session!==undefined&&user){
+        session.user = user
+    }
     if(!user||packet.account_token!==user.token){
         reply = Packet.getInstance().serialize(CmdId['GetPlayerTokenRsp'], {
             retcode: Retcode['ACCOUNT_VERIFY_ERROR'],

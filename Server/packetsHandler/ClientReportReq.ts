@@ -5,7 +5,7 @@ import Packet from "../Packet"
 import { Retcode } from "./GetPlayerTokenReq"
 
 export default (socket: net.Socket, packet: ClientReportReq) => {
-    logger(`${packet.report_type}: ${packet.report_value}`, 'warn')
+    logger(`${packet.report_type}: ${packet.report_value}`, 'warn', 'ClientReportReq')
     const reply = Packet.getInstance().serialize(CmdId['ClientReportRsp'], {
         retcode: Retcode['SUCC'],
     } as ClientReportRsp)
