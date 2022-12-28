@@ -43,6 +43,8 @@ export enum CmdId {
     SetClientDataRsp = 1589,
     GetWebActivityInfoReq = 1601,
     GetWebActivityInfoRsp = 1602,
+    GetChapterCompensationInfoReq = 1672,
+    GetChapterCompensationInfoRsp = 1673,
     GetRpgTaleReq = 2300,
     GetRpgTaleRsp = 2301,
     GetLoginActivityReq = 4192,

@@ -6,7 +6,7 @@ export default class Packet {
     private static instance: Packet
 
     private constructor() {
-        this.proto = new protobuf.Root().loadSync('./BengHuai.proto', { keepCase:true }).root
+        this.proto = new protobuf.Root().loadSync('./BengHuai.proto').root
     }
 
     public static getInstance(): Packet {
