@@ -1,9 +1,10 @@
 import net from "net"
+import logger from "../../util/logger"
 import { GetPlayerCardReq, GetPlayerCardRsp, GetPlayerCardRsp_Retcode, Medal, PlayerCardMsg, PlayerCardType } from "../../BengHuai"
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetPlayerCardReq) => {
+export default (socket: net.Socket, packet: GetPlayerCardReq, cmdId: number) => {
     const reply = Packet.getInstance().serialize(CmdId['GetPlayerCardRsp'], {
         retcode: GetPlayerCardRsp_Retcode.SUCC,
         type: PlayerCardType.CARD_ALL,
@@ -20,5 +21,8 @@ export default (socket: net.Socket, packet: GetPlayerCardReq) => {
         medalIdList: [] as number[],
         medalList: [] as Medal[]
     } as GetPlayerCardRsp)
-    socket.write(reply)
+    socket.write(reply, (err) => {
+        if(err) return console.log('socket.write error', err)
+        logger(`${CmdId[cmdId+1]} sent!`, 'warn', 'TCP')
+    })
 }

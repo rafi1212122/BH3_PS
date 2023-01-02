@@ -1,11 +1,12 @@
 import net from "net"
+import logger from "../../util/logger"
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 import { prisma } from '../../util/prismaConnect'
 import GameServer from "../GameServer"
 import { AccountType, GetPlayerTokenReq, GetPlayerTokenRsp_Retcode, GetPlayerTokenRsp } from "../../BengHuai"
 
-export default async (socket: net.Socket, packet: GetPlayerTokenReq) => {
+export default async (socket: net.Socket, packet: GetPlayerTokenReq, cmdId: number) => {
     let reply;
     const user = await prisma?.user.findFirst({
         where: {
@@ -28,10 +29,12 @@ export default async (socket: net.Socket, packet: GetPlayerTokenReq) => {
         token: user?.token,
         accountType: AccountType['ACCOUNT_HOYOLAB'],
         accountUid: packet.accountUid,
-        isBindAccess: false,
-        userType: 4,
+        userType: 3,
         hoyolabAccountUid: packet.accountUid
     } as GetPlayerTokenRsp)
-    socket.write(reply)
+    socket.write(reply, (err) => {
+        if(err) return console.log('socket.write error', err)
+        logger(`${CmdId[cmdId+1]} sent!`, 'warn', 'TCP')
+    })
     
 }

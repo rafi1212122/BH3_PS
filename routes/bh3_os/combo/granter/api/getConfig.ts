@@ -12,7 +12,7 @@ export default function handler(req: Request, res: Response) {
 			push_alias_type: 2,
 			disable_ysdk_guard: false,
 			enable_announce_pic_popup: false,
-			app_name: "崩坏3-东南亚",
+			app_name: "BH_PS01",
 			qr_enabled_apps: { bbs: false, cloud: false },
 			qr_app_icons: { app: "", bbs: "", cloud: "" },
 			qr_cloud_display_name: "",

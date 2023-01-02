@@ -55,6 +55,9 @@ export default class Packet {
         }
     }
 
+    // magic    pver cver time     userid   userip   sessid   cndid    unk  bodylen  body_start
+    // 01234567 0001 0000 00000000 0c410def 00000000 c4c08dc2 00000006 0000 0000000b 10003a02454e4200c80100 89abcdef
+    // from: https://discord.com/channels/1002339514259341382/1002339515022712955/1045649498363400232 (memetrollsXD#0001)
     public serialize(cmdId: CmdId, data: object): Buffer {
         const Message = this.proto?.lookupType(`bh3.${CmdId[cmdId]}`)
         const encodedProtobuf = Message.encode(Message.fromObject(data)).finish()

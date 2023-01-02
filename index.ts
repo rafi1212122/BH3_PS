@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express'
 import https from 'https'
 import fs from 'fs'
 import logger from './util/logger'
-import GameServer from './Server/GameServer'
+import GameServer from './server/GameServer'
 
 const app = express();
 

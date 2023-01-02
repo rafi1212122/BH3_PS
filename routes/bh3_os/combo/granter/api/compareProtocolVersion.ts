@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 
 export default function handler(req: Request, res: Response) {
-	// Test handler
 	res.json({
 		retcode: 0,
 		message: "OK",

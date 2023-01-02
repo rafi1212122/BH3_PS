@@ -12,12 +12,17 @@ export default async function handler(req: Request, res: Response) {
         }
     })
     if(!user){
-        user = await prisma.user.create({
-            data: {
-                name: req.body?.account,
-				token: cuid()
-            }
-        })
+		try {
+			user = await prisma.user.create({
+				data: {
+					name: req.body?.account,
+					token: cuid()
+				}
+			})
+		} catch (error) {
+			console.log(error)
+			return res.status(404).json({ code: 0 })
+		}
     }
 
 	return res.json({

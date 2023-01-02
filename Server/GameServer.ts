@@ -22,9 +22,11 @@ export default class GameServer{
             logger(`TCP server listening on port ${config.gameServerPort}`, '', 'TCP')
         })
         
-        this.gameServer.on('connection', (sock: net.Socket) => {
-            logger(`${sock.remoteAddress}:${sock.remotePort} Connected`, 'warn', 'TCP');
-            this.sessions.set(`${sock.remoteAddress}:${sock.remotePort}`, new Session(`${sock.remoteAddress}:${sock.remotePort}`, sock))
-        });
+        this.gameServer.on('connection', this.onConnection.bind(this));
+    }
+
+    private onConnection(sock: net.Socket) {
+        logger(`${sock.remoteAddress}:${sock.remotePort} Connected`, 'warn', 'TCP');
+        this.sessions.set(`${sock.remoteAddress}:${sock.remotePort}`, new Session(`${sock.remoteAddress}:${sock.remotePort}`, sock))
     }
 }

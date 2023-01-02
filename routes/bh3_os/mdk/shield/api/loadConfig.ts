@@ -14,7 +14,7 @@ export default function handler(req: Request, res: Response) {
 					guest: false, // enabling guest can cause client to stuck
 					ignore_versions: "",
 					scene: "S_NORMAL",
-					name: "崩坏3rd-东南亚",
+					name: "BH_PS01",
 					disable_regist: true,
 					enable_email_captcha: false,
 					thirdparty: [],

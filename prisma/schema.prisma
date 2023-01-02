@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   uid          Int     @id @default(autoincrement()) @map("id")
-  name         String
+  name         String  @unique
   isFirstLogin Boolean @default(true)
   token        String? @default("")
 }
