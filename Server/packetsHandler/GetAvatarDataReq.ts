@@ -1,11 +1,11 @@
 import net from "net"
 import logger from "../../util/logger"
-import { GetAvatarDataReq, GetAvatarDataRsp, GetAvatarDataRsp_Retcode } from "../../BengHuai"
+import { GetAvatarDataReq, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode } from "../../BengHuai"
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
 export default (socket: net.Socket, packet: GetAvatarDataReq, cmdId: number) => {
-    const reply = Packet.getInstance().serialize(CmdId['GetAvatarDataRsp'], {
+    Packet.getInstance().serializeAndSend(socket, GetAvatarDataRsp_CmdId.CMD_ID, {
         retcode: GetAvatarDataRsp_Retcode.SUCC,
         avatarList: [
             {
@@ -55,8 +55,4 @@ export default (socket: net.Socket, packet: GetAvatarDataReq, cmdId: number) => 
         ],
         isAll: true
     } as GetAvatarDataRsp)
-    socket.write(reply, (err) => {
-        if(err) return console.log('socket.write error', err)
-        logger(`${CmdId[cmdId+1]} sent!`, 'warn', 'TCP')
-    })
 }

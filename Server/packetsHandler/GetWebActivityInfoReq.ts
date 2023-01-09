@@ -1,11 +1,11 @@
 import net from "net"
 import logger from "../../util/logger"
-import { GetWebActivityInfoReq, GetWebActivityInfoRsp, GetWebActivityInfoRsp_Retcode } from "../../BengHuai"
+import { GetWebActivityInfoReq, GetWebActivityInfoRsp, GetWebActivityInfoRsp_CmdId, GetWebActivityInfoRsp_Retcode } from "../../BengHuai"
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
 export default (socket: net.Socket, packet: GetWebActivityInfoReq, cmdId: number) => {
-    const reply = Packet.getInstance().serialize(CmdId['GetWebActivityInfoRsp'], {
+    Packet.getInstance().serializeAndSend(socket, GetWebActivityInfoRsp_CmdId.CMD_ID, {
         retcode: GetWebActivityInfoRsp_Retcode.SUCC,
         webActivityList: [
             {
@@ -14,8 +14,4 @@ export default (socket: net.Socket, packet: GetWebActivityInfoReq, cmdId: number
             }
         ]
     } as GetWebActivityInfoRsp)
-    socket.write(reply, (err) => {
-        if(err) return console.log('socket.write error', err)
-        logger(`${CmdId[cmdId+1]} sent!`, 'warn', 'TCP')
-    })
 }

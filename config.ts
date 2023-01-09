@@ -1,6 +1,6 @@
 export default {
-    serverHost: "192.168.1.6",
-    gameServerPort: 22100
+    serverHost: "192.168.100.121",
+    gameServerPort: 16100
 } as configInterface
 
 interface configInterface{

@@ -1,16 +1,13 @@
 import net from "net"
 import logger from "../../util/logger"
-import { GetMissionDataReq, GetMissionDataRsp, GetMissionDataRsp_Retcode } from "../../BengHuai"
+import { GetMissionDataReq, GetMissionDataRsp, GetMissionDataRsp_CmdId, GetMissionDataRsp_Retcode, Mission } from "../../BengHuai"
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
 export default (socket: net.Socket, packet: GetMissionDataReq, cmdId: number) => {
-    const reply = Packet.getInstance().serialize(CmdId['GetMissionDataRsp'], {
+    Packet.getInstance().serializeAndSend(socket, GetMissionDataRsp_CmdId.CMD_ID, {
         retcode: GetMissionDataRsp_Retcode.SUCC,
+        missionList: [] as Mission[],
         isAll: true,
     } as GetMissionDataRsp)
-    socket.write(reply, (err) => {
-        if(err) return console.log('socket.write error', err)
-        logger(`${CmdId[cmdId+1]} sent!`, 'warn', 'TCP')
-    })
 }

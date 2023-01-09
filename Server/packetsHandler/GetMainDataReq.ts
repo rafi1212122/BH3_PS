@@ -1,8 +1,5 @@
 import net from "net"
-import logger from "../../util/logger"
-import { GetMainDataReq, GetMainDataRsp, GetMainDataRsp_Retcode } from "../../BengHuai"
-import { CmdId } from "../../util/CmdId"
-import getTs from "../../util/getTs"
+import { GetMainDataReq, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode } from "../../BengHuai"
 import GameServer from "../GameServer"
 import Packet from "../Packet"
 
@@ -10,60 +7,47 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
     let reply;
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
-    if(!user){
-        reply = Packet.getInstance().serialize(CmdId['PlayerLoginRsp'], {
-            retcode: GetMainDataRsp_Retcode['FAIL'],
-        } as GetMainDataRsp)
-        return socket.write(reply, (err) => {
-        if(err) return console.log('socket.write error', err)
-        logger(`${CmdId[cmdId+1]} sent!`, 'warn', 'TCP')
-    })
-    }
-    reply = Packet.getInstance().serialize(CmdId['GetMainDataRsp'], {
-        retcode: GetMainDataRsp_Retcode.SUCC,
-        nickname: user.name,
+    // if(!user){
+    //     return Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
+    //         retcode: GetMainDataRsp_Retcode['FAIL'],
+    //     } as GetMainDataRsp)
+    // }
+    Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
+        retcode: GetMainDataRsp_Retcode['SUCC'],
+        nickname: "",
         level: 1,
         exp: 0,
-        hcoin: 700,
-        scoin: 900000,
-        stamina: 200,
+        hcoin: 0,
+        scoin: 0,
+        stamina: 80,
         staminaRecoverLeftTime: 0,
         staminaRecoverConfigTime: 360,
-        equipmentSizeLimit: 2000,
+        equipmentSizeLimit: 1000,
         selfDesc: "",
-        payHcoin: 100,
-        freeHcoin: 600,
-        assistantAvatarId: 110,
-        isAllowCostSeniorEquipOnCurDevice: true,
-        birthday: 2903,
+        payHcoin: 0,
+        freeHcoin: 0,
+        assistantAvatarId: 0,
+        isAllowCostSeniorEquipOnCurDevice: false,
+        birthday: 0,
         monthRechargePrice: 0,
         waitDelHcoin: 0,
         todayRechargePrice: 0,
-        useFrameId: 200006,
+        useFrameId: 200001,
         isAll: true,
         mcoin: 0,
-        openPanelActivityList: [ 2, 6 ],
-        onPhonePendantId: 350053,
-        levelLockId: 2,
-        chatworldActivityInfo: {
-            isHasNpcRedEnvelope: true,
-        },
+        openPanelActivityList: [
+            2
+        ],
+        onPhonePendantId: 350005,
+        chatworldActivityInfo: {},
+        levelLockId: 1,
         warshipAvatar: {
-            warshipFirstAvatarId: 101,
+            warshipFirstAvatarId: 0,
             warshipSecondAvatarId: 0
         },
-        totalLoginDays: 0,
-        registerTime: parseInt(getTs())-100000,
-        warshipTheme: {
-            warshipId: 400004
-        },
-        onMedal: {
-            id: 101031,
-            endTime: parseInt(getTs())+100000
-        }
-    } as GetMainDataRsp)
-    socket.write(reply, (err) => {
-        if(err) return console.log('socket.write error', err)
-        logger(`${CmdId[cmdId+1]} sent!`, 'warn', 'TCP')
-    })
+        customHeadId: 161001,
+        totalLoginDays: 1,
+        registerTime: 1673232737,
+        warshipTheme: {}
+    } as Partial<GetMainDataRsp>)
 }
