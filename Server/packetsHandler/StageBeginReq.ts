@@ -9,7 +9,7 @@ export default (socket: net.Socket, packet: StageBeginReq, cmdId: number) => {
         retcode: StageBeginRsp_Retcode.SUCC,
         stageId: packet.stageId,
         progress: 0,
-        signKey: '1824058972',
+        signKey: stageKeys.find((val)=>val.stageId===packet.stageId)?.key,
         isCollectCheatData: false,
         dropItemList: [
             {
@@ -39,3 +39,14 @@ export default (socket: net.Socket, packet: StageBeginReq, cmdId: number) => {
         ]
     } as StageBeginRsp)
 }
+
+const stageKeys = [
+    {
+        stageId: 10101,
+        key: '1824058972'
+    },
+    {
+        stageId: 10102,
+        key: '574083224'
+    },
+]

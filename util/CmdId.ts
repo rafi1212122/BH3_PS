@@ -15,6 +15,8 @@ export enum CmdId {
     GetStageDataRsp = 42,
     StageBeginReq = 43,
     StageBeginRsp = 44,
+    StageEndReq = 45,
+    StageEndRsp = 46,
     GetAvatarTeamDataReq = 47,
     GetAvatarTeamDataRsp = 48,
     GetConfigReq = 110,
