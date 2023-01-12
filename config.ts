@@ -1,7 +1,7 @@
 export default {
-    serverHost: "192.168.1.9",
+    serverHost: "18.142.242.150",
     gameServerPort: 16100,
-    regionName: "BH3_PS01"
+    regionName: "BH_PS_AWS"
 } as configInterface
 
 interface configInterface{
