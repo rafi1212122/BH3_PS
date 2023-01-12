@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import config from "../../../../../config";
 
 export default function handler(req: Request, res: Response) {
 	switch (req.query.client) {
@@ -14,7 +15,7 @@ export default function handler(req: Request, res: Response) {
 					guest: false, // enabling guest can cause client to stuck
 					ignore_versions: "",
 					scene: "S_NORMAL",
-					name: "BH_PS01",
+					name: config.regionName,
 					disable_regist: true,
 					enable_email_captcha: false,
 					thirdparty: [],

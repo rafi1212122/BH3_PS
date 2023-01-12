@@ -52,7 +52,7 @@ export default function handler(req: Request, res: Response) {
 		is_data_ready: true,
 		msg: "",
 		oaserver_url: `http://${config.serverHost}/oaserver`,
-		region_name: "BH_PS01",
+		region_name: config.regionName,
 		retcode: 0,
 		server_cur_time: getTs(),
 		server_cur_timezone: 8,

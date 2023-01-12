@@ -33,7 +33,7 @@ export default function handler(req: Request, res: Response) {
 					update_streaming_asb: "0",
 					use_multy_cdn: "0",
 				},
-				name: "BH_PS01",
+				name: config.regionName,
 				retcode: 0,
 				title: "BH PS",
 			},

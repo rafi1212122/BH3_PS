@@ -1,0 +1,17 @@
+] <ERROR> CmdId 125 NOT IMPLEMENTED!
+[1] [08:21:19] <TCP> 192.168.1.9:55633 GetConfigReq
+[1] [08:21:19] <TCP> GetConfigRsp sent!
+[1] [08:21:19] <TCP> 192.168.1.9:55633 GetMainDataReq
+[1] [08:21:19] <TCP> GetMainDataRsp sent!
+[1] [08:21:19] <TCP> 192.168.1.9:55633 GetCustomHeadDataReq
+[1] [08:21:19] <TCP> GetCustomHeadDataRsp sent!
+[1] [08:21:19] <TCP> 192.168.1.9:55633 GetRpgTaleReq
+[1] [08:21:19] <TCP> GetRpgTaleRsp sent!
+[1] [08:21:19] <TCP> 192.168.1.9:55633 GetBuffEffectReq
+[1] [08:21:19] <TCP> GetBuffEffectRsp sent!
+[1] [08:21:19] <TCP> 192.168.1.9:55633 GetEquipmentDataReq
+[1] [08:21:19] <TCP> GetEquipmentDataRsp sent!
+[1] [08:21:19] <TCP> 192.168.1.9:55633 GetAvatarTeamDataReq
+[1] [08:21:19] <TCP> GetAvatarTeamDataRsp sent!
+[1] [08:21:19] <TCP> 192.168.1.9:55633 undefined
+[1] [08:21:19] <ERROR> CmdId 3800 NOT IMPLEMENTED!

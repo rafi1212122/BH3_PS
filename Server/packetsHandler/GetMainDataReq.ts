@@ -4,20 +4,19 @@ import GameServer from "../GameServer"
 import Packet from "../Packet"
 
 export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
-    let reply;
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
-    // if(!user){
-    //     return Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
-    //         retcode: GetMainDataRsp_Retcode['FAIL'],
-    //     } as GetMainDataRsp)
-    // }
+    if(!user){
+        return Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
+            retcode: GetMainDataRsp_Retcode['FAIL'],
+        } as GetMainDataRsp)
+    }
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode['SUCC'],
-        nickname: "",
+        nickname: user.nick||"",
         level: 1,
         exp: 0,
-        hcoin: 0,
+        hcoin: 69,
         scoin: 0,
         stamina: 80,
         staminaRecoverLeftTime: 0,
@@ -25,7 +24,7 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
         equipmentSizeLimit: 1000,
         selfDesc: "",
         payHcoin: 0,
-        freeHcoin: 0,
+        freeHcoin: 69,
         assistantAvatarId: 0,
         isAllowCostSeniorEquipOnCurDevice: false,
         birthday: 0,
@@ -42,12 +41,14 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
         chatworldActivityInfo: {},
         levelLockId: 1,
         warshipAvatar: {
-            warshipFirstAvatarId: 0,
+            warshipFirstAvatarId: user.warshipFirstAvatarId,
             warshipSecondAvatarId: 0
         },
         customHeadId: 161001,
         totalLoginDays: 1,
         registerTime: 1673232737,
-        warshipTheme: {}
+        warshipTheme: user.warshipId?{
+            warshipId: user.warshipId
+        }:{}
     } as Partial<GetMainDataRsp>)
 }

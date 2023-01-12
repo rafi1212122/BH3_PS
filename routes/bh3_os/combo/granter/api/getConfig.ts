@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import config from "../../../../../config";
 
 export default function handler(req: Request, res: Response) {
 	return res.json({
@@ -12,7 +13,7 @@ export default function handler(req: Request, res: Response) {
 			push_alias_type: 2,
 			disable_ysdk_guard: false,
 			enable_announce_pic_popup: false,
-			app_name: "BH_PS01",
+			app_name: config.regionName,
 			qr_enabled_apps: { bbs: false, cloud: false },
 			qr_app_icons: { app: "", bbs: "", cloud: "" },
 			qr_cloud_display_name: "",

@@ -5,6 +5,7 @@ import Packet from "../Packet"
 import { prisma } from '../../util/prismaConnect'
 import GameServer from "../GameServer"
 import { AccountType, CGType, GetMpDataRsp, GetMpDataRsp_CmdId, GetMpDataRsp_OpType, GetMpDataRsp_Retcode, MpDataType, PlayerLoginReq, PlayerLoginRsp, PlayerLoginRsp_CmdId, PlayerLoginRsp_Retcode } from "../../BengHuai"
+import config from "../../config"
 
 export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number) => {
     let reply;
@@ -19,7 +20,7 @@ export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number)
     Packet.getInstance().serializeAndSend(socket, PlayerLoginRsp_CmdId.CMD_ID, {
         retcode: PlayerLoginRsp_Retcode['SUCC'],
         isFirstLogin: user.isFirstLogin,
-        regionName: "BH_PS01",
+        regionName: config.regionName,
         cgType: user?.isFirstLogin?CGType.CG_START:CGType.CG_SEVEN_CHAPTER,
         regionId: 248,
         accountType: AccountType.ACCOUNT_HOYOLAB,
@@ -28,14 +29,14 @@ export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number)
         lastClientPacketId: 0
     } as PlayerLoginRsp)
     
-    // await prisma.user.update({
-    //     where: {
-    //         uid: user.uid
-    //     },
-    //     data: {
-    //         isFirstLogin: false
-    //     }
-    // })
+    session.user = await prisma.user.update({
+        where: {
+            uid: user.uid
+        },
+        data: {
+            isFirstLogin: false
+        }
+    })
     
     Packet.getInstance().serializeAndSend(socket, GetMpDataRsp_CmdId.CMD_ID, {
         retcode: GetMpDataRsp_Retcode.SUCC,

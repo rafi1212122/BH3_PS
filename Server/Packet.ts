@@ -104,6 +104,18 @@ export default class Packet {
         cmdId>7?Buffer.from("08c1943110acab88e9032a020800", 'hex').copy(buf, 34):cmdId===7&&Buffer.from("08c1943110acab88e90320acab88c1022a020800", 'hex').copy(buf, 34)
         Buffer.from(encodedProtobuf).copy(buf, cmdId>7?34+14:cmdId===7?34+20:34)
         buf.writeUInt32BE(0x89abcdef, 34+encodedProtobuf.length+(cmdId>7?14:cmdId===7?20:0))
+
+        if(buf.length>1412){
+            // this is so cringe
+            for (let index = 0; index < Math.ceil(buf.length/1412); index++) {
+                let currentBuffer = buf.slice(index*1412, index==Math.ceil(buf.length/1412)-1?buf.length:(index+1)*1412)
+                socket.write(currentBuffer, (err) => {
+                    if(err) return console.log('socket.write error', err)
+                    logger(`${CmdId[cmdId]} Part ${index} sent! - ${currentBuffer.length}`, 'warn', 'TCP')
+                })
+            }
+            return
+        }
         
         socket.write(buf, (err) => {
             if(err) return console.log('socket.write error', err)

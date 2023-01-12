@@ -11,8 +11,24 @@ datasource db {
 }
 
 model User {
-  uid          Int     @id @default(autoincrement()) @map("id")
-  name         String  @unique
-  isFirstLogin Boolean @default(true)
-  token        String? @default("")
+  uid                  Int          @id @default(autoincrement()) @map("id")
+  name                 String       @unique
+  nick                 String?
+  isFirstLogin         Boolean      @default(true)
+  token                String?      @default("")
+  warshipId            Int          @default(0)
+  warshipFirstAvatarId Int          @default(101)
+  clientData           ClientData[]
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+}
+
+model ClientData {
+  id           String   @id @default(cuid())
+  clientDataId Int
+  data         String
+  user         User     @relation(fields: [userUid], references: [uid])
+  userUid      Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
