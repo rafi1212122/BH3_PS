@@ -13,11 +13,17 @@ __________________________
 
 ``` cp .env.example .env ```
 
+If your mysql cridential is not the default you may change it in .env
+
 - Create New Database In MySQL named BH3 (Can be changed in schema.prisma)
 
 - Migrate Database
 
 ``` npx prisma migrate dev ```
+
+If you have any issue with this just run
+
+``` npx prisma db push ```
 
 - Run npm install
 
