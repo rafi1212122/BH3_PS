@@ -1,6 +1,4 @@
 import net from "net"
-import logger from "../../util/logger"
-import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 import { prisma } from '../../util/prismaConnect'
 import GameServer from "../GameServer"
@@ -9,6 +7,9 @@ import { AccountType, GetPlayerTokenReq, GetPlayerTokenRsp_Retcode, GetPlayerTok
 export default async (socket: net.Socket, packet: GetPlayerTokenReq, cmdId: number) => {
     let reply;
     const user = await prisma?.user.findFirst({
+        include: {
+            avatars: true,
+        },
         where: {
             uid: parseInt(packet.accountUid||"0")
         }

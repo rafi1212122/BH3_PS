@@ -5,7 +5,7 @@ import Packet from "../Packet"
 export default (socket: net.Socket, packet: GetClientMailDataReq, cmdId: number) => {
     Packet.getInstance().serializeAndSend(socket, GetClientMailDataRsp_CmdId.CMD_ID, {
         retcode: GetClientMailDataRsp_Retcode.SUCC,
-        isEnd: false,
+        isEnd: true,
         mailList: [
             {
                 key: {
@@ -30,6 +30,17 @@ export default (socket: net.Socket, packet: GetClientMailDataReq, cmdId: number)
                 mailStyle: 0,
                 imgPath: ""
             }
-        ]
+        ],
+        start: 0,
+        clientMailInfo: {
+            totalNum: 1,
+            canFastDeleteNum: 0,
+            mailStyleInfoList: [
+                {
+                    mailStyle: 0,
+                    untakenNum: 1
+                }
+            ]
+        }
     } as GetClientMailDataRsp)
 }

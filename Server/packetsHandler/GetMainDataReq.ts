@@ -1,5 +1,5 @@
 import net from "net"
-import { GetMainDataReq, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode } from "../../BengHuai"
+import { GetMainDataReq, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, RoomMode, SyncRoomDataNotify, SyncRoomDataNotify_CmdId } from "../../BengHuai"
 import GameServer from "../GameServer"
 import Packet from "../Packet"
 
@@ -14,17 +14,17 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode['SUCC'],
         nickname: user.nick||"",
-        level: 1,
-        exp: 0,
-        hcoin: 69,
-        scoin: 0,
-        stamina: 80,
+        level: 16,
+        exp: 164,
+        hcoin: 1550,
+        scoin: 320186,
+        stamina: 96,
         staminaRecoverLeftTime: 0,
         staminaRecoverConfigTime: 360,
         equipmentSizeLimit: 1000,
         selfDesc: "",
         payHcoin: 0,
-        freeHcoin: 69,
+        freeHcoin: 1550,
         assistantAvatarId: 0,
         isAllowCostSeniorEquipOnCurDevice: false,
         birthday: 0,
@@ -41,14 +41,22 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
         chatworldActivityInfo: {},
         levelLockId: 1,
         warshipAvatar: {
-            warshipFirstAvatarId: user.warshipFirstAvatarId,
+            warshipFirstAvatarId: 101,
             warshipSecondAvatarId: 0
         },
         customHeadId: 161001,
-        totalLoginDays: 1,
+        totalLoginDays: 2,
         registerTime: 1673232737,
         warshipTheme: user.warshipId?{
             warshipId: user.warshipId
         }:{}
     } as Partial<GetMainDataRsp>)
+    
+    Packet.getInstance().serializeAndSend(socket, SyncRoomDataNotify_CmdId.CMD_ID, {
+        playerRoomStatus: {
+            roomMode: RoomMode.ROOM_MODE_INVALID,
+            roomId: 0
+        },
+        roomInfo: {}
+    } as SyncRoomDataNotify)
 }

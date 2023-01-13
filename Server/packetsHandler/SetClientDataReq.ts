@@ -18,9 +18,13 @@ export default async (socket: net.Socket, packet: SetClientDataReq, cmdId: numbe
                 }))?.id
             },
             create: {
-                userUid: user.uid,
                 clientDataId: packet.clientData.id,
                 data: String(packet.clientData.data),
+                user: {
+                    connect: {
+                        uid: user.uid
+                    }
+                }
             },
             update: {
                 data: String(packet.clientData.data)
@@ -31,6 +35,6 @@ export default async (socket: net.Socket, packet: SetClientDataReq, cmdId: numbe
     Packet.getInstance().serializeAndSend(socket, SetClientDataRsp_CmdId.CMD_ID, {
         retcode: SetClientDataRsp_Retcode.SUCC,
         type: packet.clientData?.type,
-        id: packet.clientData?.id
+        id: packet.clientData?.id||0
     } as SetClientDataRsp)
 }

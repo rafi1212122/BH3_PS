@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -18,6 +18,8 @@ model User {
   token                String?      @default("")
   warshipId            Int          @default(0)
   warshipFirstAvatarId Int          @default(101)
+  birthDate            Int?
+  avatars              Avatar[]
   clientData           ClientData[]
   createdAt            DateTime     @default(now())
   updatedAt            DateTime     @updatedAt
@@ -27,8 +29,27 @@ model ClientData {
   id           String   @id @default(cuid())
   clientDataId Int
   data         String
-  user         User     @relation(fields: [userUid], references: [uid])
+  user         User     @relation(fields: [userUid], references: [uid], onDelete: Cascade)
   userUid      Int
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+model Avatar {
+  avatarId          Int
+  level             Int  @default(1)
+  star              Int
+  stigmataUniqueId1 Int  @default(0)
+  stigmataUniqueId2 Int  @default(0)
+  stigmataUniqueId3 Int  @default(0)
+  exp               Int  @default(0)
+  fragment          Int  @default(0)
+  weaponUniqueId    Int
+  skillList         Json
+  dressList         Json
+  dressId           Int
+  user              User @relation(fields: [userUid], references: [uid], onDelete: Cascade)
+  userUid           Int
+
+  @@id([avatarId, userUid])
 }

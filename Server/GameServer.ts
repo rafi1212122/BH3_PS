@@ -18,7 +18,7 @@ export default class GameServer{
     }
 
     public start() {
-        this.gameServer.listen(config.gameServerPort, config.serverHost, () => {
+        this.gameServer.listen(config.gameServerPort, () => {
             logger(`TCP server listening on port ${config.gameServerPort}`, '', 'TCP')
         })
         

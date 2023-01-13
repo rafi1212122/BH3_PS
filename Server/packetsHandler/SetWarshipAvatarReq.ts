@@ -1,5 +1,5 @@
 import net from "net"
-import { SetWarshipAvatarReq, SetWarshipAvatarRsp, SetWarshipAvatarRsp_CmdId, SetWarshipAvatarRsp_Retcode } from "../../BengHuai"
+import { GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, SetWarshipAvatarReq, SetWarshipAvatarRsp, SetWarshipAvatarRsp_CmdId, SetWarshipAvatarRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 import { prisma } from '../../util/prismaConnect'
 import GameServer from "../GameServer"
@@ -13,6 +13,9 @@ export default async (socket: net.Socket, packet: SetWarshipAvatarReq, cmdId: nu
         } as SetWarshipAvatarRsp)
     }
     session.user = await prisma.user.update({
+        include: {
+          avatars: true,
+        },
         where: {
             uid: user.uid,
         },
@@ -20,6 +23,14 @@ export default async (socket: net.Socket, packet: SetWarshipAvatarReq, cmdId: nu
             warshipFirstAvatarId: packet.firstAvatarId
         }
     })
+    Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
+        retcode: GetMainDataRsp_Retcode.SUCC,
+        warshipAvatar:{
+            warshipFirstAvatarId: session.user.warshipFirstAvatarId,
+            warshipSecondAvatarId: 0
+        }
+    } as GetMainDataRsp)
+    
     Packet.getInstance().serializeAndSend(socket, SetWarshipAvatarRsp_CmdId.CMD_ID, {
         retcode: SetWarshipAvatarRsp_Retcode.SUCC,
     } as SetWarshipAvatarRsp)
