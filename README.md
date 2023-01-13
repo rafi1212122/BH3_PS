@@ -13,7 +13,7 @@ __________________________
 
 ``` cp .env.example .env ```
 
-If your mysql cridential is not the default you may change it in .env
+If your mysql credentials is not the default you may change it in .env
 
 - Create New Database In MySQL named BH3 (Can be changed in schema.prisma)
 
