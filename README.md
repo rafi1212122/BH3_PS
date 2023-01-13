@@ -9,6 +9,10 @@ __________________________
 
 ``` git clone https://github.com/rafi1212122/BH3_PS.git ```
 
+- Copy Environment Variables
+
+``` cp .env.example .env ```
+
 - Run npm install
 
 ``` npm install ```
