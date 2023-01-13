@@ -13,6 +13,10 @@ __________________________
 
 ``` cp .env.example .env ```
 
+- Migrate Database
+
+``` npx prisma migrate dev ```
+
 - Run npm install
 
 ``` npm install ```
