@@ -114,6 +114,129 @@ export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number)
                 ],
                 dressId: 59201,
                 userUid: user.uid
+            },
+            {
+                avatarId: 105,
+                star: 3,
+                level: 80,
+                exp: 3696,
+                fragment: 5,
+                weaponUniqueId: 514,
+                stigmataUniqueId1: 308,
+                stigmataUniqueId2: 295,
+                stigmataUniqueId3: 333,
+                skillList: [
+                    {
+                        skillId: 641,
+                        subSkillList: [
+                            {
+                                subSkillId: 6413,
+                                level: 10,
+                                isMask: false
+                            },
+                            {
+                                subSkillId: 6415,
+                                level: 10,
+                                isMask: false
+                            }
+                        ]
+                    },
+                    {
+                        skillId: 642,
+                        subSkillList: [
+                            {
+                                subSkillId: 6403,
+                                level: 6,
+                                isMask: false
+                            },
+                            {
+                                subSkillId: 6411,
+                                level: 6,
+                                isMask: false
+                            }
+                        ]
+                    },
+                    {
+                        skillId: 643,
+                        subSkillList: [
+                            {
+                                subSkillId: 6404,
+                                level: 1,
+                                isMask: false
+                            },
+                            {
+                                subSkillId: 6405,
+                                level: 10,
+                                isMask: false
+                            },
+                            {
+                                subSkillId: 6416,
+                                level: 6,
+                                isMask: false
+                            }
+                        ]
+                    },
+                    {
+                        skillId: 644,
+                        subSkillList: [
+                            {
+                                subSkillId: 6407,
+                                level: 3,
+                                isMask: false
+                            },
+                            {
+                                subSkillId: 6408,
+                                level: 6,
+                                isMask: false
+                            }
+                        ]
+                    },
+                    {
+                        skillId: 645
+                    },
+                    {
+                        skillId: 646,
+                        subSkillList: [
+                            {
+                                subSkillId: 6410,
+                                level: 3,
+                                isMask: false
+                            },
+                            {
+                                subSkillId: 6412,
+                                level: 6,
+                                isMask: false
+                            },
+                            {
+                                subSkillId: 6414,
+                                level: 4,
+                                isMask: false
+                            }
+                        ]
+                    }
+                ],
+                dressList: [
+                    59105
+                ],
+                dressId: 59105,
+                userUid: user.uid
+            },
+            {
+                avatarId: 317,
+                star: 2,
+                level: 32,
+                exp: 2670,
+                fragment: 11,
+                weaponUniqueId: 383,
+                stigmataUniqueId1: 0,
+                stigmataUniqueId2: 0,
+                stigmataUniqueId3: 0,
+                skillList: [],
+                dressList: [
+                    59317
+                ],
+                dressId: 59317,
+                userUid: user.uid
             }]
         })
     }

@@ -47,7 +47,15 @@ export default (socket: net.Socket, packet: GetEquipmentDataReq, cmdId: number) 
                 exp: 0,
                 isProtected: false,
                 isExtracted: false
-            }
+            },
+            {
+                uniqueId: 383,
+                id: 21053,
+                level: 45,
+                exp: 0,
+                isProtected: true,
+                isExtracted: false
+            },
         ],
         stigmataList: [
             {
