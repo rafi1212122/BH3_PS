@@ -13,6 +13,8 @@ __________________________
 
 ``` cp .env.example .env ```
 
+- Create New Database In MySQL named BH3 (Can be changed in schema.prisma)
+
 - Migrate Database
 
 ``` npx prisma migrate dev ```
