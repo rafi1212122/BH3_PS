@@ -13,17 +13,7 @@ __________________________
 
 ``` cp .env.example .env ```
 
-If your mysql credentials is not the default you may change it in .env
-
-- Create New Database In MySQL named BH3 (Can be changed in schema.prisma)
-
-- Migrate Database
-
-``` npx prisma migrate dev ```
-
-If you have any issue with this just run
-
-``` npx prisma db push ```
+- Make sure you have MongoDB server running
 
 - Run npm install
 
