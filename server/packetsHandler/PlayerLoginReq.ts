@@ -32,7 +32,9 @@ export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number)
         punishEndTime: 0
     } as GetMpDataRsp)
 
-    if(user.isFirstLogin){
+    if(user.isFirstLogin&&!(await Avatar.find({
+        userUid: user.uid
+    }).toArray()).length){
         await Avatar.insertMany([{
             avatarId: 101,
             star: 1,

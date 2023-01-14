@@ -145,6 +145,8 @@ export enum CmdId {
     GetArmadaStageRsp = 2668,
     ArmadaMatrixGetScheduleReq = 2734,
     ArmadaMatrixGetScheduleRsp = 2735,
+    GetArmadaStageScoreActivityReq = 2821,
+    GetArmadaStageScoreActivityRsp = 2822,
     GetRoomDataReq = 3150,
     GetRoomDataRsp = 3151,
     GetTvtActivityReq = 3300,

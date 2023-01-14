@@ -31,7 +31,7 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
         monthRechargePrice: 0,
         waitDelHcoin: 0,
         todayRechargePrice: 0,
-        useFrameId: 200001,
+        useFrameId: 200006,
         isAll: true,
         mcoin: 0,
         openPanelActivityList: [
