@@ -1,13 +1,11 @@
 import { Request, Response } from "express";
-import { prisma } from "../../../../../util/prismaConnect";
+import User from "../../../../../mongodb/Model/User";
 // Example request:
 // {"uid":"63884253","token":"ZQmgMdXA1StL9A3aPBUedr8yoiuoLrmV"}
 
 export default async function handler(req: Request, res: Response) {
-	const user = await prisma.user.findFirst({
-		where: {
-			uid: parseInt(req.body.uid),
-		},
+	const user = await User.findOne({
+		uid: parseInt(req.body.uid),
 	});
 	if (!user) {
 		return res.json({

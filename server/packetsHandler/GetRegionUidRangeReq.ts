@@ -10,8 +10,8 @@ export default (socket: net.Socket, packet: GetRegionUidRangeReq, cmdId: number)
         regionUidRangeList: [
             {
                 regionName: config.regionName,
-                startUid: 1,
-                endUid: 50000000
+                startUid: 10000000,
+                endUid: 99999999
             }
         ]
     } as GetRegionUidRangeRsp)

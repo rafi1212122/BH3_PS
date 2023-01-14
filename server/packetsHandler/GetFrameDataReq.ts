@@ -9,18 +9,6 @@ export default (socket: net.Socket, packet: GetFrameDataReq, cmdId: number) => {
         frameList: [
             {
                 "id": 200001
-            },
-            {
-                "id": 200006
-            },
-            {
-                "id": 200049
-            },
-            {
-                "id": 200052
-            },
-            {
-                "id": 200055
             }
         ]
     } as GetFrameDataRsp)

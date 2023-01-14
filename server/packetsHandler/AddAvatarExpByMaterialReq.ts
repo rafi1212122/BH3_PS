@@ -1,8 +1,8 @@
 import net from "net"
 import { AddAvatarExpByMaterialReq, AddAvatarExpByMaterialRsp, AddAvatarExpByMaterialRsp_CmdId, AddAvatarExpByMaterialRsp_Retcode, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
-import { prisma } from '../../util/prismaConnect'
 import GameServer from "../GameServer"
+import Avatar from "../../mongodb/Model/Avatar"
 
 export default async (socket: net.Socket, packet: AddAvatarExpByMaterialReq, cmdId: number) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -13,17 +13,12 @@ export default async (socket: net.Socket, packet: AddAvatarExpByMaterialReq, cmd
         } as AddAvatarExpByMaterialRsp)
 
     }
-    const updatedAvatar = await prisma.avatar.update({
-        where: {
-            avatarId_userUid: {
-                avatarId: packet.avatarId,
-                userUid: user.uid
-            }
-        },
-        data: {
-            level: 80,
-        }
-    })
+    const updatedAvatar = (await Avatar.findOneAndUpdate({
+        avatarId: packet.avatarId,
+        userUid: user.uid,
+    }, {
+        $set: { level: 80 }
+    })).value
 
     if(!updatedAvatar){
         return Packet.getInstance().serializeAndSend(socket, AddAvatarExpByMaterialRsp_CmdId.CMD_ID, {
@@ -48,7 +43,7 @@ export default async (socket: net.Socket, packet: AddAvatarExpByMaterialReq, cmd
                 stigmataUniqueId1: updatedAvatar.stigmataUniqueId1,
                 stigmataUniqueId2: updatedAvatar.stigmataUniqueId2,
                 stigmataUniqueId3: updatedAvatar.stigmataUniqueId3,
-                skillList: Array.isArray(updatedAvatar.skillList)&&[...updatedAvatar.skillList] as unknown,
+                skillList: updatedAvatar.skillList,
                 touchGoodfeel: 0,
                 todayHasAddGoodfeel: 0,
                 dressList: [

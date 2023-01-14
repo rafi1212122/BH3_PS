@@ -1,18 +1,13 @@
 import net from "net"
 import Packet from "../Packet"
-import { prisma } from '../../util/prismaConnect'
 import GameServer from "../GameServer"
 import { AccountType, GetPlayerTokenReq, GetPlayerTokenRsp_Retcode, GetPlayerTokenRsp, GetPlayerTokenRsp_CmdId } from "../../BengHuai"
+import User from "../../mongodb/Model/User"
 
 export default async (socket: net.Socket, packet: GetPlayerTokenReq, cmdId: number) => {
     let reply;
-    const user = await prisma?.user.findFirst({
-        include: {
-            avatars: true,
-        },
-        where: {
-            uid: parseInt(packet.accountUid||"0")
-        }
+    const user = await User.findOne({
+        uid: parseInt(packet.accountUid||"0")
     })
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     if(session&&user){

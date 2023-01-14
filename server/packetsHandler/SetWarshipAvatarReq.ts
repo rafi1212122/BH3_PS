@@ -1,8 +1,8 @@
 import net from "net"
 import { GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, SetWarshipAvatarReq, SetWarshipAvatarRsp, SetWarshipAvatarRsp_CmdId, SetWarshipAvatarRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
-import { prisma } from '../../util/prismaConnect'
 import GameServer from "../GameServer"
+import User from "../../mongodb/Model/User"
 
 export default async (socket: net.Socket, packet: SetWarshipAvatarReq, cmdId: number) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -12,21 +12,19 @@ export default async (socket: net.Socket, packet: SetWarshipAvatarReq, cmdId: nu
             retcode: SetWarshipAvatarRsp_Retcode['FAIL'],
         } as SetWarshipAvatarRsp)
     }
-    session.user = await prisma.user.update({
-        include: {
-          avatars: true,
-        },
-        where: {
+    const updateUser = await User.findOneAndUpdate({
             uid: user.uid,
-        },
-        data: {
-            warshipFirstAvatarId: packet.firstAvatarId
-        }
+        }, {
+            $set: { warshipFirstAvatarId: packet.firstAvatarId }
     })
+    if(!updateUser.value)return Packet.getInstance().serializeAndSend(socket, SetWarshipAvatarRsp_CmdId.CMD_ID, {
+        retcode: SetWarshipAvatarRsp_Retcode['FAIL'],
+    } as SetWarshipAvatarRsp)
+    session.user = updateUser.value
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode.SUCC,
         warshipAvatar:{
-            warshipFirstAvatarId: session.user.warshipFirstAvatarId,
+            warshipFirstAvatarId: updateUser.value.warshipFirstAvatarId,
             warshipSecondAvatarId: 0
         }
     } as GetMainDataRsp)

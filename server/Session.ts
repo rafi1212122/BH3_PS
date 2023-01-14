@@ -2,21 +2,27 @@ import net from "net";
 import { CmdId } from "../util/CmdId";
 import Packet from "./Packet";
 import logger from '../util/logger'
-import { Avatar, User } from "@prisma/client";
+import { User } from "../mongodb/Model/User";
+import { Avatar } from "../mongodb/Model/Avatar";
 
 export default class Session {
-    private currentUser!: User & {
-        avatars: Avatar[];
-    };
+    private currentUser!: User
+    private currentAvatars!: Avatar[]
 
-    set user(user: User & {
-        avatars: Avatar[];
-    }) {
+    set user(user: User) {
         this.currentUser = user
+    }
+
+    set avatars(avatars: Avatar[]) {
+        this.currentAvatars = avatars
     }
 
     get user() {
         return this.currentUser
+    }
+
+    get avatars() {
+        return this.currentAvatars
     }
 
     public constructor(id: string, socket: net.Socket) {

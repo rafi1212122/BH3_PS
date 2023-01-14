@@ -13,7 +13,7 @@ export default (socket: net.Socket, packet: GetAvatarDataReq, cmdId: number) => 
     }
     Packet.getInstance().serializeAndSend(socket, GetAvatarDataRsp_CmdId.CMD_ID, {
         retcode: GetAvatarDataRsp_Retcode.SUCC,
-        avatarList: user.avatars.map((avatar)=>{
+        avatarList: session.avatars.map((avatar)=>{
             return{
                 avatarId: avatar.avatarId,
                 star: avatar.star,
@@ -24,14 +24,14 @@ export default (socket: net.Socket, packet: GetAvatarDataReq, cmdId: number) => 
                 stigmataUniqueId1: avatar.stigmataUniqueId1,
                 stigmataUniqueId2: avatar.stigmataUniqueId2,
                 stigmataUniqueId3: avatar.stigmataUniqueId3,
-                skillList: Array.isArray(avatar.skillList)&&[...avatar.skillList] as unknown,
+                skillList: avatar.skillList,
                 touchGoodfeel: 0,
                 todayHasAddGoodfeel: 0,
-                dressList: [
+                dressList: avatar.dressList||[
                     59101
                 ],
-                dressId: 59101,
-                subStar: 0
+                dressId: avatar.dressId||59101,
+                subStar: avatar.subStar||0
             }
         }),
         isAll: true

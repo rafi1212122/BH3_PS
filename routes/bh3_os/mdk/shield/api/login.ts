@@ -1,24 +1,22 @@
 import cuid from "cuid";
 import { Request, Response } from "express";
-import { prisma } from "../../../../../util/prismaConnect";
+import User, { createUser } from "../../../../../mongodb/Model/User";
 
 export default async function handler(req: Request, res: Response) {
     if(!req.body.account) return res.status(404).json({ code: 0 })
 
     let user
-    user = await prisma.user.findFirst({
-        where: {
-            name: req.body?.account
-        }
+    user = await User.findOne({
+		name: req.body.account
     })
     if(!user){
 		try {
-			user = await prisma.user.create({
-				data: {
-					name: req.body?.account,
-					token: cuid()
-				}
+			user = await User.findOne({
+				_id: (await createUser(req.body.account)).insertedId
 			})
+			if(!user){
+				throw user
+			}
 		} catch (error) {
 			console.log(error)
 			return res.status(404).json({ code: 0 })

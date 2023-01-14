@@ -25,9 +25,9 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
         selfDesc: "",
         payHcoin: 0,
         freeHcoin: 1550,
-        assistantAvatarId: 0,
+        assistantAvatarId: user.assistantAvatarId,
         isAllowCostSeniorEquipOnCurDevice: false,
-        birthday: 0,
+        birthday: user.birthDate||0,
         monthRechargePrice: 0,
         waitDelHcoin: 0,
         todayRechargePrice: 0,
@@ -41,7 +41,7 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
         chatworldActivityInfo: {},
         levelLockId: 1,
         warshipAvatar: {
-            warshipFirstAvatarId: 101,
+            warshipFirstAvatarId: user.warshipFirstAvatarId,
             warshipSecondAvatarId: 0
         },
         customHeadId: 161001,
