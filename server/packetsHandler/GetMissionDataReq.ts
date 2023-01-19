@@ -4,7 +4,7 @@ import { GetMissionDataReq, GetMissionDataRsp, GetMissionDataRsp_CmdId, GetMissi
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetMissionDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetMissionDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetMissionDataRsp_CmdId.CMD_ID, {
         retcode: GetMissionDataRsp_Retcode.SUCC,
         missionList: [

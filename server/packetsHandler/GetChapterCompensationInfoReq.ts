@@ -4,7 +4,7 @@ import { GetChapterCompensationInfoReq, GetChapterCompensationInfoRsp, GetChapte
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetChapterCompensationInfoReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetChapterCompensationInfoReq) => {
     Packet.getInstance().serializeAndSend(socket, GetChapterCompensationInfoRsp_CmdId.CMD_ID, {
         retcode: GetChapterCompensationInfoRsp_Retcode.SUCC,
         isAll: true,

@@ -4,7 +4,7 @@ import { GetGobackReq, GetGobackRsp, GetGobackRsp_CmdId, GetGobackRsp_Retcode } 
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetGobackReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetGobackReq) => {
     Packet.getInstance().serializeAndSend(socket, GetGobackRsp_CmdId.CMD_ID, {
         retcode: GetGobackRsp_Retcode.SUCC,
         gobackEndTime: 0

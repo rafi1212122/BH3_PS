@@ -2,7 +2,7 @@ import net from "net"
 import { GetWeekDayActivityDataReq, GetWeekDayActivityDataRsp, GetWeekDayActivityDataRsp_CmdId, GetWeekDayActivityDataRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetWeekDayActivityDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetWeekDayActivityDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetWeekDayActivityDataRsp_CmdId.CMD_ID, {
         retcode: GetWeekDayActivityDataRsp_Retcode.SUCC,
         // activityList: [

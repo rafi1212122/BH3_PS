@@ -4,7 +4,7 @@ import { StageInnerDataReportReq, StageInnerDataReportRsp, StageInnerDataReportR
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: StageInnerDataReportReq, cmdId: number) => {
+export default (socket: net.Socket, packet: StageInnerDataReportReq) => {
     Packet.getInstance().serializeAndSend(socket, StageInnerDataReportRsp_CmdId.CMD_ID, {
         retcode: StageInnerDataReportRsp_Retcode['SUCC'],
     } as StageInnerDataReportRsp)

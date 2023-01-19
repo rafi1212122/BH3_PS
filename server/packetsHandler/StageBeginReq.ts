@@ -4,7 +4,7 @@ import { StageBeginReq, StageBeginRsp, StageBeginRsp_CmdId, StageBeginRsp_Retcod
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: StageBeginReq, cmdId: number) => {
+export default (socket: net.Socket, packet: StageBeginReq) => {
     Packet.getInstance().serializeAndSend(socket, StageBeginRsp_CmdId.CMD_ID, {
         retcode: StageBeginRsp_Retcode.SUCC,
         stageId: packet.stageId,
@@ -48,5 +48,9 @@ const stageKeys = [
     {
         stageId: 10102,
         key: '574083224'
+    },
+    {
+        stageId: 10105,
+        key: '15744598'
     },
 ]

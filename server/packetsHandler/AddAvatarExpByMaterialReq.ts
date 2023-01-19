@@ -4,7 +4,7 @@ import Packet from "../Packet"
 import GameServer from "../GameServer"
 import Avatar from "../../mongodb/Model/Avatar"
 
-export default async (socket: net.Socket, packet: AddAvatarExpByMaterialReq, cmdId: number) => {
+export default async (socket: net.Socket, packet: AddAvatarExpByMaterialReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(!user){
@@ -44,8 +44,8 @@ export default async (socket: net.Socket, packet: AddAvatarExpByMaterialReq, cmd
                 stigmataUniqueId2: updatedAvatar.stigmataUniqueId2,
                 stigmataUniqueId3: updatedAvatar.stigmataUniqueId3,
                 skillList: updatedAvatar.skillList,
-                touchGoodfeel: 0,
-                todayHasAddGoodfeel: 0,
+                touchGoodfeel: updatedAvatar.touchGoodfeel,
+                todayHasAddGoodfeel: updatedAvatar.touchGoodfeel,
                 dressList: [
                     59101
                 ],

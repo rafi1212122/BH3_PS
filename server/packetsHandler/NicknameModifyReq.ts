@@ -4,7 +4,7 @@ import Packet from "../Packet"
 import GameServer from "../GameServer"
 import User from "../../mongodb/Model/User"
 
-export default async (socket: net.Socket, packet: NicknameModifyReq, cmdId: number) => {
+export default async (socket: net.Socket, packet: NicknameModifyReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(!user){

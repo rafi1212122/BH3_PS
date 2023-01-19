@@ -4,11 +4,11 @@ import { GetPlayerCardReq, GetPlayerCardRsp, GetPlayerCardRsp_CmdId, GetPlayerCa
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetPlayerCardReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetPlayerCardReq) => {
     Packet.getInstance().serializeAndSend(socket, GetPlayerCardRsp_CmdId.CMD_ID, {
         retcode: GetPlayerCardRsp_Retcode.SUCC,
         type: PlayerCardType.CARD_ALL,
-        avatarIdList: [] as number[],
+        avatarIdList: [105],
         msgConfig: 0,
         msgData: {
             msgList: [] as PlayerCardMsg[],

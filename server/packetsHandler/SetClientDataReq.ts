@@ -3,7 +3,7 @@ import { SetClientDataReq, SetClientDataRsp, SetClientDataRsp_CmdId, SetClientDa
 import Packet from "../Packet"
 import GameServer from "../GameServer"
 
-export default async (socket: net.Socket, packet: SetClientDataReq, cmdId: number) => {
+export default async (socket: net.Socket, packet: SetClientDataReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     Packet.getInstance().serializeAndSend(socket, SetClientDataRsp_CmdId.CMD_ID, {

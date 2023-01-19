@@ -9,6 +9,12 @@ export const createUser = async (name: string) => {
   return database.collection<User>("user").insertOne({
     uid: crypto.randomInt(10000000, 99999999),
     name: name,
+    level: 1,
+    exp: 0,
+    hcoin: 0,
+    scoin: 0,
+    stamina: 80,
+    selfDesc: "",
     isFirstLogin: true,
     token: cuid(),
     warshipId: 0,
@@ -21,6 +27,12 @@ export interface User {
   uid: number
   name: string
   nick?: string
+  level: number
+  exp: number
+  hcoin: number
+  scoin: number
+  stamina: number
+  selfDesc: string
   isFirstLogin: boolean
   token?: string
   warshipId: number

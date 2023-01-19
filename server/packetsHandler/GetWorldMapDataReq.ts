@@ -2,7 +2,7 @@ import net from "net"
 import { GetWorldMapDataReq, GetWorldMapDataRsp, GetWorldMapDataRsp_CmdId, GetWorldMapDataRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetWorldMapDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetWorldMapDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetWorldMapDataRsp_CmdId.CMD_ID, {
         retcode: GetWorldMapDataRsp_Retcode.SUCC,
         worldMapList: [

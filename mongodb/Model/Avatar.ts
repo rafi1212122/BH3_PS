@@ -20,10 +20,12 @@ export const assignAvatar = async (avatarId: number, uid: number) => {
         parseInt(`59${avatarId}`)
     ],
     dressId: parseInt(`59${avatarId}`),
+    touchGoodfeel: 0,
     userUid: uid
   })
 }
 
 export interface Avatar extends Partial<BHAvatar> {
     userUid: number
+    touchGoodfeel: number
 }

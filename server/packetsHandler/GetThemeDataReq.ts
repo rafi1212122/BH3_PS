@@ -2,7 +2,7 @@ import net from "net"
 import { GetThemeDataReq, GetThemeDataRsp, GetThemeDataRsp_CmdId, GetThemeDataRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetThemeDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetThemeDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetThemeDataRsp_CmdId.CMD_ID, {
         retcode: GetThemeDataRsp_Retcode.SUCC,
         themeList: [

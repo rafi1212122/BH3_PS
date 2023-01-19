@@ -4,7 +4,7 @@ import GameServer from "../GameServer"
 import { AccountType, GetPlayerTokenReq, GetPlayerTokenRsp_Retcode, GetPlayerTokenRsp, GetPlayerTokenRsp_CmdId } from "../../BengHuai"
 import User from "../../mongodb/Model/User"
 
-export default async (socket: net.Socket, packet: GetPlayerTokenReq, cmdId: number) => {
+export default async (socket: net.Socket, packet: GetPlayerTokenReq) => {
     let reply;
     const user = await User.findOne({
         uid: parseInt(packet.accountUid||"0")

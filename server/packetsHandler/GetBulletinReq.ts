@@ -4,7 +4,7 @@ import { GetBulletinReq, GetBulletinRsp, GetBulletinRsp_CmdId, GetBulletinRsp_Re
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetBulletinReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetBulletinReq) => {
     Packet.getInstance().serializeAndSend(socket, GetBulletinRsp_CmdId.CMD_ID, {
         retcode: GetBulletinRsp_Retcode.SUCC,
         bulletinList: [],

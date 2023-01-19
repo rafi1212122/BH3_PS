@@ -3,7 +3,7 @@ import { GetGalInteractTriggerEventReq, GetGalInteractTriggerEventRsp, GetGalInt
 import Packet from "../Packet"
 import crypto from 'crypto'
 
-export default (socket: net.Socket, packet: GetGalInteractTriggerEventReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetGalInteractTriggerEventReq) => {
     Packet.getInstance().serializeAndSend(socket, GetGalInteractTriggerEventRsp_CmdId.CMD_ID, {
         retcode: GetGalInteractTriggerEventRsp_Retcode.SUCC,
         avatarId: packet.avatarId,

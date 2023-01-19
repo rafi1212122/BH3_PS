@@ -3,7 +3,7 @@ import { GetRegionUidRangeReq, GetRegionUidRangeRsp, GetRegionUidRangeRsp_CmdId,
 import config from "../../config"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetRegionUidRangeReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetRegionUidRangeReq) => {
     Packet.getInstance().serializeAndSend(socket, GetRegionUidRangeRsp_CmdId.CMD_ID, {
         retcode: GetRegionUidRangeRsp_Retcode.SUCC,
         localRegionName: config.regionName,

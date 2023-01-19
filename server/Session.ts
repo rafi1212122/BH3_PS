@@ -34,7 +34,7 @@ export default class Session {
                 return logger(`CmdId ${packet.cmdId} NOT IMPLEMENTED!`, 'danger')
             }
             await import(`./packetsHandler/${CmdId[packet.cmdId]}`).then(async r => {
-                await r.default(socket, packet?.body, packet.cmdId);
+                await r.default(socket, packet?.body);
             }).catch(err => {
                 if (err.code === 'MODULE_NOT_FOUND') {
                     socket.write(Buffer.from(`0123456700010000000001d9011d21e60000000000000000${Buffer.alloc(4).writeInt32BE(packet.cmdId+1).toString()}000e0000000208c1943110acab88e9032a020800080089abcdef`))

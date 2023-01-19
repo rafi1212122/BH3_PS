@@ -2,7 +2,7 @@ import net from "net"
 import { GeneralActivityGetScheduleReq, GeneralActivityGetScheduleRsp, GeneralActivityGetScheduleRsp_CmdId, GeneralActivityGetScheduleRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GeneralActivityGetScheduleReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GeneralActivityGetScheduleReq) => {
     Packet.getInstance().serializeAndSend(socket, GeneralActivityGetScheduleRsp_CmdId.CMD_ID, {
         retcode: GeneralActivityGetScheduleRsp_Retcode.SUCC,
         scheduleList: [

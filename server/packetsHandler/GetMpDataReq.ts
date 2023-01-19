@@ -2,7 +2,7 @@ import net from "net"
 import { GetMpDataReq, GetMpDataRsp, GetMpDataRsp_CmdId, GetMpDataRsp_OpType, GetMpDataRsp_Retcode, MpDataType } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetMpDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetMpDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetMpDataRsp_CmdId.CMD_ID, {
         retcode: GetMpDataRsp_Retcode.SUCC,
         dataType: MpDataType.MP_DATA_ALL,

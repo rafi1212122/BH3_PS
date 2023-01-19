@@ -4,7 +4,7 @@ import { GetClearStageActivityReq, GetClearStageActivityRsp, GetClearStageActivi
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetClearStageActivityReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetClearStageActivityReq) => {
     Packet.getInstance().serializeAndSend(socket, GetClearStageActivityRsp_CmdId.CMD_ID, {
         retcode: GetClearStageActivityRsp_Retcode.SUCC,
         activity: {

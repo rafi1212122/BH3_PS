@@ -5,7 +5,7 @@ import { CmdId } from "../../util/CmdId"
 import getTs from "../../util/getTs"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetConfigReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetConfigReq) => {
     Packet.getInstance().serializeAndSend(socket, GetConfigRsp_CmdId.CMD_ID, {
         retcode: GetConfigRsp_Retcode.SUCC,
         staminaRecoverConfigTime: 360,

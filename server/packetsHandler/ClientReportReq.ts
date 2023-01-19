@@ -4,7 +4,7 @@ import { ClientReportReq, ClientReportRsp, ClientReportRsp_CmdId, ClientReportRs
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: ClientReportReq, cmdId: number) => {
+export default (socket: net.Socket, packet: ClientReportReq) => {
     logger(`${packet.reportType}: ${packet.reportValue}`, 'warn', 'ClientReport')
     Packet.getInstance().serializeAndSend(socket, ClientReportRsp_CmdId.CMD_ID, {
         retcode: ClientReportRsp_Retcode['SUCC'],

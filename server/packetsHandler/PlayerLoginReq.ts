@@ -6,7 +6,7 @@ import config from "../../config"
 import Avatar from "../../mongodb/Model/Avatar"
 import User from "../../mongodb/Model/User"
 
-export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number) => {
+export default async (socket: net.Socket, packet: PlayerLoginReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(!user){
@@ -15,22 +15,6 @@ export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number)
             msg: 'Login failed try restating the game'
         } as PlayerLoginRsp)
     }
-    Packet.getInstance().serializeAndSend(socket, PlayerLoginRsp_CmdId.CMD_ID, {
-        retcode: PlayerLoginRsp_Retcode['SUCC'],
-        regionName: config.regionName,
-        cgType: user.isFirstLogin?CGType.CG_START:CGType.CG_SEVEN_CHAPTER,
-        regionId: 248,
-        loginSessionToken: GameServer.getInstance().sessions.size,
-        lastLogoutTime: 0,
-        lastClientPacketId: 0
-    } as PlayerLoginRsp)
-    
-    Packet.getInstance().serializeAndSend(socket, GetMpDataRsp_CmdId.CMD_ID, {
-        retcode: GetMpDataRsp_Retcode.SUCC,
-        dataType: MpDataType.MP_DATA_PUNISH_TIME,
-        opType: GetMpDataRsp_OpType.UPDATE_DATA,
-        punishEndTime: 0
-    } as GetMpDataRsp)
 
     if(user.isFirstLogin&&!(await Avatar.find({
         userUid: user.uid
@@ -78,6 +62,7 @@ export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number)
                 59101
             ],
             dressId: 59101,
+            touchGoodfeel: 0,
             userUid: user.uid
         },
         {
@@ -122,6 +107,7 @@ export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number)
                 59201
             ],
             dressId: 59201,
+            touchGoodfeel: 0,
             userUid: user.uid
         },
         {
@@ -229,6 +215,7 @@ export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number)
                 59105
             ],
             dressId: 59105,
+            touchGoodfeel: 0,
             userUid: user.uid
         },
         {
@@ -246,10 +233,38 @@ export default async (socket: net.Socket, packet: PlayerLoginReq, cmdId: number)
                 59317
             ],
             dressId: 59317,
+            touchGoodfeel: 0,
             userUid: user.uid
         }]) 
     }
+
     session.avatars = await Avatar.find({
         userUid: user.uid
     }).toArray()
+
+    Packet.getInstance().serializeAndSend(socket, PlayerLoginRsp_CmdId.CMD_ID, {
+        retcode: PlayerLoginRsp_Retcode['SUCC'],
+        regionName: config.regionName,
+        cgType: user.isFirstLogin?CGType.CG_START:CGType.CG_SEVEN_CHAPTER,
+        regionId: 248,
+        isFirstLogin: user.isFirstLogin,
+        loginSessionToken: GameServer.getInstance().sessions.size,
+        lastLogoutTime: 0,
+        lastClientPacketId: 0
+    } as PlayerLoginRsp)
+    
+    Packet.getInstance().serializeAndSend(socket, GetMpDataRsp_CmdId.CMD_ID, {
+        retcode: GetMpDataRsp_Retcode.SUCC,
+        dataType: MpDataType.MP_DATA_PUNISH_TIME,
+        opType: GetMpDataRsp_OpType.UPDATE_DATA,
+        punishEndTime: 0
+    } as GetMpDataRsp)
+    
+    await User.updateOne({
+        uid: user.uid
+    },{ 
+        $set: {
+            isFirstLogin: false
+        }
+    })
 }

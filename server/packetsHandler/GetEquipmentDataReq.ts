@@ -4,7 +4,7 @@ import { GetEquipmentDataReq, GetEquipmentDataRsp, GetEquipmentDataRsp_CmdId, Ge
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetEquipmentDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetEquipmentDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetEquipmentDataRsp_CmdId.CMD_ID, {
         retcode: GetEquipmentDataRsp_Retcode.SUCC,
         weaponList: [

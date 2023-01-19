@@ -2,7 +2,7 @@ import net from "net"
 import { ClientMailType, GetClientMailDataReq, GetClientMailDataRsp, GetClientMailDataRsp_CmdId, GetClientMailDataRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetClientMailDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetClientMailDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetClientMailDataRsp_CmdId.CMD_ID, {
         retcode: GetClientMailDataRsp_Retcode.SUCC,
         isEnd: true,

@@ -4,7 +4,7 @@ import { GetWebActivityInfoReq, GetWebActivityInfoRsp, GetWebActivityInfoRsp_Cmd
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetWebActivityInfoReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetWebActivityInfoReq) => {
     Packet.getInstance().serializeAndSend(socket, GetWebActivityInfoRsp_CmdId.CMD_ID, {
         retcode: GetWebActivityInfoRsp_Retcode.SUCC,
         webActivityList: [

@@ -3,7 +3,7 @@ import { AvatarSkill, GetAvatarDataReq, GetAvatarDataRsp, GetAvatarDataRsp_CmdId
 import Packet from "../Packet"
 import GameServer from "../GameServer"
 
-export default (socket: net.Socket, packet: GetAvatarDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetAvatarDataReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(!user){
@@ -25,8 +25,8 @@ export default (socket: net.Socket, packet: GetAvatarDataReq, cmdId: number) => 
                 stigmataUniqueId2: avatar.stigmataUniqueId2,
                 stigmataUniqueId3: avatar.stigmataUniqueId3,
                 skillList: avatar.skillList,
-                touchGoodfeel: 0,
-                todayHasAddGoodfeel: 0,
+                touchGoodfeel: avatar.touchGoodfeel,
+                todayHasAddGoodfeel: avatar.touchGoodfeel,
                 dressList: avatar.dressList||[
                     59101
                 ],

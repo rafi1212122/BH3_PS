@@ -2,7 +2,7 @@ import net from "net"
 import { GetAdventureGroupReq, GetAdventureGroupRsp, GetAdventureGroupRsp_CmdId, GetAdventureGroupRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetAdventureGroupReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetAdventureGroupReq) => {
     Packet.getInstance().serializeAndSend(socket, GetAdventureGroupRsp_CmdId.CMD_ID, {
         retcode: GetAdventureGroupRsp_Retcode.SUCC,
         level: 1,

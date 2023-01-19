@@ -4,7 +4,7 @@ import { GetRankScheduleDataReq, GetRankScheduleDataRsp, GetRankScheduleDataRsp_
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetRankScheduleDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetRankScheduleDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetRankScheduleDataRsp_CmdId.CMD_ID, {
         retcode: GetRankScheduleDataRsp_Retcode.SUCC
     } as GetRankScheduleDataRsp)

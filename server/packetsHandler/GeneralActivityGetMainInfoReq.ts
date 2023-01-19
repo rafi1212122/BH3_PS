@@ -2,7 +2,7 @@ import net from "net"
 import { GeneralActivityGetMainInfoReq, GeneralActivityGetMainInfoRsp, GeneralActivityGetMainInfoRsp_CmdId, GeneralActivityGetMainInfoRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GeneralActivityGetMainInfoReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GeneralActivityGetMainInfoReq) => {
     Packet.getInstance().serializeAndSend(socket, GeneralActivityGetMainInfoRsp_CmdId.CMD_ID, {
         retcode: GeneralActivityGetMainInfoRsp_Retcode.SUCC,
         activityList: [

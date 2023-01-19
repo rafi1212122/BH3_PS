@@ -3,7 +3,7 @@ import { GetMainDataReq, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Re
 import GameServer from "../GameServer"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetMainDataReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(!user){
@@ -14,17 +14,17 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode['SUCC'],
         nickname: user.nick||"",
-        level: 16,
-        exp: 164,
-        hcoin: 1550,
-        scoin: 320186,
-        stamina: 96,
+        level: user.level,
+        exp: user.exp,
+        hcoin: user.hcoin,
+        scoin: user.scoin,
+        stamina: user.stamina,
         staminaRecoverLeftTime: 0,
         staminaRecoverConfigTime: 360,
         equipmentSizeLimit: 1000,
-        selfDesc: "",
+        selfDesc: user.selfDesc,
         payHcoin: 0,
-        freeHcoin: 1550,
+        freeHcoin: user.hcoin,
         assistantAvatarId: user.assistantAvatarId,
         isAllowCostSeniorEquipOnCurDevice: false,
         birthday: user.birthDate||0,
@@ -35,7 +35,8 @@ export default (socket: net.Socket, packet: GetMainDataReq, cmdId: number) => {
         isAll: true,
         mcoin: 0,
         openPanelActivityList: [
-            2
+            2,
+            6
         ],
         onPhonePendantId: 350005,
         chatworldActivityInfo: {},

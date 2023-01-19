@@ -3,7 +3,7 @@ import { GetNewbieActivityReq, GetNewbieActivityRsp, GetNewbieActivityRsp_CmdId,
 import Packet from "../Packet"
 import getTs from '../../util/getTs'
 
-export default (socket: net.Socket, packet: GetNewbieActivityReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetNewbieActivityReq) => {
     Packet.getInstance().serializeAndSend(socket, GetNewbieActivityRsp_CmdId.CMD_ID, {
         retcode: GetNewbieActivityRsp_Retcode.SUCC,
         scheduleId: 129,

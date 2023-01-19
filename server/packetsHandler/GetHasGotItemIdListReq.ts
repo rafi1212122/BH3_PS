@@ -2,7 +2,7 @@ import net from "net"
 import { GetHasGotItemIdListReq, GetHasGotItemIdListRsp, GetHasGotItemIdListRsp_CmdId, GetHasGotItemIdListRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetHasGotItemIdListReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetHasGotItemIdListReq) => {
     Packet.getInstance().serializeAndSend(socket, GetHasGotItemIdListRsp_CmdId.CMD_ID, {
         retcode: GetHasGotItemIdListRsp_Retcode.SUCC,
         itemIdList: [

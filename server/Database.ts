@@ -1,9 +1,10 @@
 import logger from '../util/logger'
 import { MongoClient } from 'mongodb'
+import config from '../config'
 
 export default class Database{
     private static instance: Database
-    private readonly mongoInstance = new MongoClient('mongodb://127.0.0.1:27017/BH3')
+    private readonly mongoInstance = new MongoClient(config.mongodbUrl)
 
     get db(){
         return this.mongoInstance.db('BH3_PS')
@@ -16,6 +17,6 @@ export default class Database{
 
     public async initialize() {
         await this.mongoInstance.connect()
-        logger('Database connected successfully!', 'DB')
+        logger('Database connected successfully!', undefined, 'DB')
     }
 }

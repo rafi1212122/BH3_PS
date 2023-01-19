@@ -3,6 +3,7 @@ import https from 'https'
 import fs from 'fs'
 import logger from './util/logger'
 import GameServer from './server/GameServer'
+import Database from './server/Database'
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.all('/*', (req: Request, res: Response) => {
 });
 
 GameServer.getInstance().start()
+Database.getInstance().initialize()
 
 https.createServer({ key: fs.readFileSync('./certs/localhost.key').toString(), cert: fs.readFileSync('./certs/localhost.crt').toString() }, app).listen(443);
 app.listen(80, () => {

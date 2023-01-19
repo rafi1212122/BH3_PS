@@ -4,7 +4,7 @@ import { GetStageDataReq, GetStageDataRsp, GetStageDataRsp_CmdId, GetStageDataRs
 import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetStageDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetStageDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetStageDataRsp_CmdId.CMD_ID, {
         retcode: GetStageDataRsp_Retcode.SUCC,
         stageList: [

@@ -2,7 +2,7 @@ import net from "net"
 import { DormDataType, GetDormDataReq, GetDormDataRsp, GetDormDataRsp_CmdId, GetDormDataRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetDormDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetDormDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetDormDataRsp_CmdId.CMD_ID, {
         retcode: GetDormDataRsp_Retcode.SUCC,
         dataType: DormDataType.DORM_DATA_ALL,

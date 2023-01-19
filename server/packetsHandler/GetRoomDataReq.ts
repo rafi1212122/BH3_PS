@@ -2,7 +2,7 @@ import net from "net"
 import { GetRoomDataReq, GetRoomDataRsp, GetRoomDataRsp_CmdId, GetRoomDataRsp_Retcode, RoomMode, SyncRoomDataNotify, SyncRoomDataNotify_CmdId, SyncRoomMatchDataNotify, SyncRoomMatchDataNotify_CmdId } from "../../BengHuai"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetRoomDataReq, cmdId: number) => {
+export default (socket: net.Socket, packet: GetRoomDataReq) => {
     Packet.getInstance().serializeAndSend(socket, SyncRoomDataNotify_CmdId.CMD_ID, {
         playerRoomStatus: {
             roomMode: RoomMode.ROOM_MODE_INVALID,
