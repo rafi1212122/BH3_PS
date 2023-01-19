@@ -1,20 +1,35 @@
 # BH3_PS
 ### A PS for HI3 sea client
 #### Heavily inspired from CrepeSR
-__________________________
+--------------------------
 pls help my skill issue i can't keep myself stay sane
 __________________________
 ### Running the thing
-- Do Git Clone / Download as Zip
+1. Do Git Clone / Download as Zip
 
-``` git clone https://github.com/rafi1212122/BH3_PS.git ```
+```bash
+git clone https://github.com/rafi1212122/BH3_PS.git 
+```
 
-- Make sure you have MongoDB server running
+2. Copy Environment Variables
 
-- Run npm install
+```bash
+cp .env.example .env 
+```
 
-``` npm install ```
+3. Make sure you have MongoDB server running
 
-- Run npm run dev
+4. Install required packages
 
-``` npm run dev ```
+```bash
+npm install 
+```
+
+5. Start the server
+```bash
+npm run dev
+```
+
+
+
+
