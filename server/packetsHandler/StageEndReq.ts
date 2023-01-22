@@ -40,7 +40,7 @@ export default async (socket: net.Socket, packet: StageEndReq) => {
 
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode.SUCC,
-        stamina: updateUser.value.stamina,
+        stamina: session.user.stamina,
     } as GetMainDataRsp)
 
     GetConfigReq(socket, {})
@@ -48,16 +48,13 @@ export default async (socket: net.Socket, packet: StageEndReq) => {
 
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode.SUCC,
-        openPanelActivityList: [
-            2,
-            6
-        ],
-        level: updateUser.value.level
+        openPanelActivityList: [ 2, 6 ],
+        level: session.user.level
     } as GetMainDataRsp)
 
     Packet.getInstance().serializeAndSend(socket, PlayerLevelUpNotify_CmdId.CMD_ID, {
-        newLevel: updateUser.value.level,
-        oldLevel: updateUser.value.level-1,
+        newLevel: session.user.level,
+        oldLevel: session.user.level-1,
         rewardData: {
             exp: 0
         }
