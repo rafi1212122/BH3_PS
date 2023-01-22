@@ -15,11 +15,12 @@ export default async (socket: net.Socket, packet: StageEndReq) => {
         } as StageEndRsp)
     }
     const updateUser = await User.findOneAndUpdate({
-            uid: user.uid,
-        }, {
-            $inc: { scoin: 750, exp: 7, level: 1, stamina: -6 }
-        }
-    )
+        uid: user.uid,
+    }, {
+        $inc: { scoin: 750, exp: 7, level: 1, stamina: -6 }
+    }, {
+        returnDocument: 'after'
+    })
     if(!updateUser.value)return Packet.getInstance().serializeAndSend(socket, StageEndRsp_CmdId.CMD_ID, {
         retcode: StageEndRsp_Retcode.FAIL,
     } as StageEndRsp)

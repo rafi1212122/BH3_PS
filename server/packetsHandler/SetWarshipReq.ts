@@ -16,6 +16,8 @@ export default async (socket: net.Socket, packet: SetWarshipReq) => {
             uid: user.uid,
         }, {
             $set: { warshipId: packet.warshipId||0 }
+        }, {
+            returnDocument: 'after'
         }
     )
     if(!updateUser.value)return Packet.getInstance().serializeAndSend(socket, SetWarshipRsp_CmdId.CMD_ID, {

@@ -1,5 +1,5 @@
 export default {
-    serverHost: "192.168.100.31",
+    serverHost: "192.168.100.130",
     gameServerPort: 16100,
     regionName: "BH3_PS",
     mongodbUrl: "mongodb://localhost:27017"

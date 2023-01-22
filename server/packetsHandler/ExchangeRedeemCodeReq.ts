@@ -16,6 +16,8 @@ export default async (socket: net.Socket, packet: ExchangeRedeemCodeReq) => {
             uid: user.uid,
         }, {
             $set: { hcoin: user.hcoin+200 }
+    },{ 
+        returnDocument: 'after'
     })
     if(!updateUser.value)return Packet.getInstance().serializeAndSend(socket, ExchangeRedeemCodeRsp_CmdId.CMD_ID, {
         retcode: ExchangeRedeemCodeRsp_Retcode.FAIL,

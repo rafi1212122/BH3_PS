@@ -1,7 +1,8 @@
 import net from "net"
-import { AvatarSkill, GetAvatarDataReq, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode } from "../../BengHuai"
+import { GetAvatarDataReq, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 import GameServer from "../GameServer"
+import GetAvatarTeamDataReq from "./GetAvatarTeamDataReq"
 
 export default (socket: net.Socket, packet: GetAvatarDataReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -36,4 +37,7 @@ export default (socket: net.Socket, packet: GetAvatarDataReq) => {
         }),
         isAll: true
     } as GetAvatarDataRsp)
+
+    //making sure teamdict created
+    GetAvatarTeamDataReq(socket, {})
 }

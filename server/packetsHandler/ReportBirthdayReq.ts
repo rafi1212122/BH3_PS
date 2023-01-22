@@ -16,6 +16,8 @@ export default async (socket: net.Socket, packet: ReportBirthdayReq) => {
         uid: user.uid
     }, {
         $set: { birthDate: packet.birthday }
+    }, {
+        returnDocument: "after"
     })
 
     if(!updateUser.value) return Packet.getInstance().serializeAndSend(socket, ReportBirthdayRsp_CmdId.CMD_ID, {

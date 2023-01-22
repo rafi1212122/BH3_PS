@@ -16,6 +16,8 @@ export default async (socket: net.Socket, packet: NicknameModifyReq) => {
             uid: user.uid,
         }, {
             $set: { nick: packet.nickname }
+    }, {
+        returnDocument: "after"
     })
     if(!updateUser.value)return Packet.getInstance().serializeAndSend(socket, NicknameModifyRsp_CmdId.CMD_ID, {
         retcode: NicknameModifyRsp_Retcode['FAIL'],

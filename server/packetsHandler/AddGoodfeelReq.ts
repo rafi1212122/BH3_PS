@@ -25,7 +25,7 @@ export default async (socket: net.Socket, packet: AddGoodfeelReq) => {
         $inc: {
             touchGoodfeel: packet.addGoodfeel
         }
-    })).value
+    }, { returnDocument: 'after' } )).value
 
     if(!updatedAvatar){
         return Packet.getInstance().serializeAndSend(socket, AddGoodfeelRsp_CmdId.CMD_ID, {

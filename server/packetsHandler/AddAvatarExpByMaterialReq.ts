@@ -18,7 +18,7 @@ export default async (socket: net.Socket, packet: AddAvatarExpByMaterialReq) => 
         userUid: user.uid,
     }, {
         $set: { level: 80 }
-    })).value
+    }, { returnDocument: 'after' })).value
 
     if(!updatedAvatar){
         return Packet.getInstance().serializeAndSend(socket, AddAvatarExpByMaterialRsp_CmdId.CMD_ID, {

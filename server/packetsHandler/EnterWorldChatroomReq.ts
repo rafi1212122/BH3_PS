@@ -1,9 +1,44 @@
 import net from "net"
-import { EndlessType, EnterWorldChatroomReq, EnterWorldChatroomRsp, EnterWorldChatroomRsp_CmdId, EnterWorldChatroomRsp_Retcode } from "../../BengHuai"
+import { ActivityWorldChatroomType, ChatMsg_MsgChannel, EndlessType, EnterWorldChatroomReq, EnterWorldChatroomRsp, EnterWorldChatroomRsp_CmdId, EnterWorldChatroomRsp_Retcode, MasterPupilType, RecvChatMsgNotify, RecvChatMsgNotify_CmdId } from "../../BengHuai"
 import Packet from "../Packet"
+import getTs from '../../util/getTs'
+import config from "../../config"
 
 export default (socket: net.Socket, packet: EnterWorldChatroomReq) => {
     Packet.getInstance().serializeAndSend(socket, EnterWorldChatroomRsp_CmdId.CMD_ID, {
-        retcode: EnterWorldChatroomRsp_Retcode.FEATURE_CLOSED,
+        retcode: EnterWorldChatroomRsp_Retcode.SUCC,
+        chatroomId: packet.chatroomId,
+        activityType: ActivityWorldChatroomType.ACTIVITY_WORLD_CHATROOM_TYPE_NONE,
+        playerNum: 2
     } as EnterWorldChatroomRsp)
+
+    Packet.getInstance().serializeAndSend(socket, RecvChatMsgNotify_CmdId.CMD_ID, {
+        chatMsgList: [{
+            uid: 0,
+            nickname: "Ai-Chan",
+            avatarId: 2401,
+            dressId: 50153,
+            channel: ChatMsg_MsgChannel.WORLD,
+            frameId: 200001,
+            time: parseInt(getTs()),
+            msg: `Welcome to ${config.regionName}`,
+            content: {
+                items: [
+                    {
+                        msgStr: `Welcome to ${config.regionName}`
+                    }
+                ]
+            },
+            isGoback: false,
+            customHeadId: 162188,
+            masterPupilTag: MasterPupilType.MASTER_PUPIL_NONE_TYPE,
+            isArmadaLeader: false,
+            isTeamLeader: false,
+            checkResult: {
+                shieldType: 0,
+                numberCheck: 0,
+                rewriteText: `Welcome to ${config.regionName}`
+            }
+        }]
+    } as RecvChatMsgNotify)
 }

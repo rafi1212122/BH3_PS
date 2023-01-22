@@ -259,12 +259,4 @@ export default async (socket: net.Socket, packet: PlayerLoginReq) => {
         opType: GetMpDataRsp_OpType.UPDATE_DATA,
         punishEndTime: 0
     } as GetMpDataRsp)
-    
-    await User.updateOne({
-        uid: user.uid
-    },{ 
-        $set: {
-            isFirstLogin: false
-        }
-    })
 }

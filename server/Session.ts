@@ -30,15 +30,13 @@ export default class Session {
             const packet = Packet.getInstance().deserialize(data)
             logger(`${socket.remoteAddress}:${socket.remotePort} ${CmdId[packet.cmdId]}`, 'warn', 'TCP')
             if(!packet.body) {
-                socket.write(Buffer.from(`0123456700010000000001d9011d21e60000000000000000${Buffer.alloc(4).writeInt32BE(packet.cmdId+1).toString()}000e0000000208c1943110acab88e9032a020800080089abcdef`))
-                return logger(`CmdId ${packet.cmdId} NOT IMPLEMENTED!`, 'danger')
+                return logger(`CmdId ${packet.cmdId} NOT RECOGNIZED!`, 'danger')
             }
             await import(`./packetsHandler/${CmdId[packet.cmdId]}`).then(async r => {
                 await r.default(socket, packet?.body);
             }).catch(err => {
                 if (err.code === 'MODULE_NOT_FOUND') {
-                    socket.write(Buffer.from(`0123456700010000000001d9011d21e60000000000000000${Buffer.alloc(4).writeInt32BE(packet.cmdId+1).toString()}000e0000000208c1943110acab88e9032a020800080089abcdef`))
-                    return logger(`CMD ${CmdId[packet.cmdId]} NOT REGISTERED!`, 'danger');
+                    return logger(`CMD ${CmdId[packet.cmdId]} NOT HANDLED!`, 'danger');
                 }
                 logger(err, 'danger');
             });

@@ -1,212 +1,228 @@
 import net from "net"
-import logger from "../../util/logger"
 import { GetConfigReq, GetConfigRsp, GetConfigRsp_CmdId, GetConfigRsp_Retcode } from "../../BengHuai"
-import { CmdId } from "../../util/CmdId"
+import config from "../../config"
 import getTs from "../../util/getTs"
 import Packet from "../Packet"
 
 export default (socket: net.Socket, packet: GetConfigReq) => {
     Packet.getInstance().serializeAndSend(socket, GetConfigRsp_CmdId.CMD_ID, {
-        retcode: GetConfigRsp_Retcode.SUCC,
-        staminaRecoverConfigTime: 360,
-        avatarReviveHcoinCost: 60,
-        sameTypePowerUpRate: 120,
-        dayTimeOffset: 14400,
-        serverCurTime: 1673232737,
-        powerUpScoinCostRate: 50,
-        maxFriendNum: 148,
-        avatarMaxAddGoodfeel: 1000,
-        disjoinEquipmentBackExpPercent: 25,
-        gachaTicketList: [
+        "retcode": GetConfigRsp_Retcode.SUCC,
+        "staminaRecoverConfigTime": 360,
+        "avatarReviveHcoinCost": 60,
+        "sameTypePowerUpRate": 120,
+        "dayTimeOffset": 14400,
+        "serverCurTime": parseInt(getTs()),
+        "powerUpScoinCostRate": 50,
+        "maxFriendNum": 148,
+        "avatarMaxAddGoodfeel": 1000,
+        "disjoinEquipmentBackExpPercent": 25,
+        "gachaTicketList": [
             {
-                materialId: 916,
-                hcoinCost: 10
+                "materialId": 916,
+                "hcoinCost": 10
             },
             {
-                materialId: 1102,
-                hcoinCost: 280
+                "materialId": 1102,
+                "hcoinCost": 280
             },
             {
-                materialId: 1103,
-                hcoinCost: 280
+                "materialId": 1103,
+                "hcoinCost": 280
             },
             {
-                materialId: 1104,
-                hcoinCost: 280
+                "materialId": 1104,
+                "hcoinCost": 280
             },
             {
-                materialId: 1106,
-                hcoinCost: 60
+                "materialId": 1106,
+                "hcoinCost": 60
             },
             {
-                materialId: 1108,
-                hcoinCost: 280
+                "materialId": 1108,
+                "hcoinCost": 280
             },
             {
-                materialId: 1109,
-                hcoinCost: 150
+                "materialId": 1109,
+                "hcoinCost": 150
             },
             {
-                materialId: 1110,
-                hcoinCost: 200
+                "materialId": 1110,
+                "hcoinCost": 200
             },
             {
-                materialId: 1111,
-                hcoinCost: 200
+                "materialId": 1111,
+                "hcoinCost": 200
             },
             {
-                materialId: 1112,
-                hcoinCost: 120
+                "materialId": 1112,
+                "hcoinCost": 120
             },
             {
-                materialId: 1115,
-                hcoinCost: 280
+                "materialId": 1115,
+                "hcoinCost": 280
             },
             {
-                materialId: 7335,
-                hcoinCost: 100
+                "materialId": 7335,
+                "hcoinCost": 100
             },
             {
-                materialId: 7454,
-                hcoinCost: 10
+                "materialId": 7454,
+                "hcoinCost": 10
             },
             {
-                materialId: 7848,
-                hcoinCost: 10
+                "materialId": 7848,
+                "hcoinCost": 10
             },
             {
-                materialId: 114045,
-                hcoinCost: 200
+                "materialId": 114045,
+                "hcoinCost": 200
             },
             {
-                materialId: 114076,
-                hcoinCost: 8
+                "materialId": 114076,
+                "hcoinCost": 8
             },
             {
-                materialId: 114214,
-                hcoinCost: 10
+                "materialId": 114214,
+                "hcoinCost": 10
             },
             {
-                materialId: 114312,
-                hcoinCost: 10
+                "materialId": 114312,
+                "hcoinCost": 10
             },
             {
-                materialId: 114328,
-                hcoinCost: 8
+                "materialId": 114328,
+                "hcoinCost": 8
             },
             {
-                materialId: 114663,
-                hcoinCost: 10
+                "materialId": 114663,
+                "hcoinCost": 10
             },
             {
-                materialId: 114667,
-                hcoinCost: 8
+                "materialId": 114667,
+                "hcoinCost": 8
             },
             {
-                materialId: 114689,
-                hcoinCost: 10
+                "materialId": 114689,
+                "hcoinCost": 10
             },
             {
-                materialId: 115108,
-                hcoinCost: 10
+                "materialId": 115108,
+                "hcoinCost": 10
             },
             {
-                materialId: 115113,
-                hcoinCost: 10
+                "materialId": 115113,
+                "hcoinCost": 10
             },
             {
-                materialId: 115130,
-                hcoinCost: 10
+                "materialId": 115130,
+                "hcoinCost": 10
             },
             {
-                materialId: 115167,
-                hcoinCost: 8
+                "materialId": 115167,
+                "hcoinCost": 8
             },
             {
-                materialId: 115170,
-                hcoinCost: 8
+                "materialId": 115170,
+                "hcoinCost": 8
             },
             {
-                materialId: 116124,
-                hcoinCost: 10
+                "materialId": 116124,
+                "hcoinCost": 10
             },
             {
-                materialId: 119108,
-                hcoinCost: 8
+                "materialId": 119108,
+                "hcoinCost": 8
             },
             {
-                materialId: 121033,
-                hcoinCost: 10
+                "materialId": 121033,
+                "hcoinCost": 10
             },
             {
-                materialId: 121041,
-                hcoinCost: 10
+                "materialId": 121041,
+                "hcoinCost": 10
             },
             {
-                materialId: 121042,
-                hcoinCost: 10
+                "materialId": 121042,
+                "hcoinCost": 10
             },
             {
-                materialId: 121294,
-                hcoinCost: 10
+                "materialId": 121294,
+                "hcoinCost": 10
             },
             {
-                materialId: 121298,
-                hcoinCost: 10
+                "materialId": 121298,
+                "hcoinCost": 10
             },
             {
-                materialId: 125202,
-                hcoinCost: 10
+                "materialId": 125202,
+                "hcoinCost": 10
             },
             {
-                materialId: 1061660,
-                hcoinCost: 100
+                "materialId": 1061660,
+                "hcoinCost": 100
             }
         ],
-        regionName: "overseas01",
-        minInviteLevel: 26,
-        islandEventRefreshInterval: 120,
-        spaceshipBeginTime: 1599184800,
-        spaceshipEndTime: 1599444000,
-        spaceshipId: 2,
-        scoinLimit: 999999999,
-        friendsPointLimit: 500000000,
-        weekDayActivityCoinItemId: 7034,
-        islandVisitMaxHelpNum: 5,
-        costSeniorEquipAfterCancelProtectMinTimeDiff: 86400,
-        rogueStageCostItemId: 9008,
-        rogueStageMaxProgress: 999,
-        bulletinActivityList: [
+        "regionName": config.regionName,
+        "minInviteLevel": 26,
+        "discountScheduleConfigList": [
             {
-                activityId: 4378,
-                activityType: 2,
-                beginTime: 1574842500,
-                endTime: 2079764100,
-                bulletinId: 0,
-                typeParamList: [
-                    24
-                ],
-                typeParamStr: "0",
-                minPlayerLevel: 15,
-                maxPlayerLevel: 99,
-                titleName: "DLC_Boxgacha_Title",
-                titleImage: "SpriteOutput/ShopTabIcons/IconShopGacha",
-                imagePath: "event/Immediately/ActivityPage/3.5SPhuntinggacha_banner_truecolor",
-                linkButton: "",
-                description: "3.5SPhuntinggacha_Des",
-                weight: 334,
-                backgroundPath: "event/Immediately/ActivityPage/3.5SPhunting_bg_truecolor",
-                textImagePath: "event/Immediately/ActivityPage/3.5SPhuntinggacha_title_truecolor",
-                unlockParamStr: ""
+                "type": 2,
+                "discount": 80,
+                "beginTime": 1673467200,
+                "endTime": 1675396800,
+                "paraIntList": [
+                    317
+                ]
             },
             {
-                activityId: 5167,
-                activityType: 46,
-                beginTime: 1641866400,
-                endTime: 2274379199,
-                bulletinId: 0,
-                typeParamStr: "0",
-                minPlayerLevel: 80,
+                "type": 4,
+                "discount": 600,
+                "beginTime": 1673467200,
+                "endTime": 1675396800
+            }
+        ],
+        "islandEventRefreshInterval": 120,
+        "spaceshipBeginTime": 1599184800,
+        "spaceshipEndTime": 1599444000,
+        "spaceshipId": 2,
+        "scoinLimit": 999999999,
+        "friendsPointLimit": 500000000,
+        "weekDayActivityCoinItemId": 7034,
+        "islandVisitMaxHelpNum": 5,
+        "costSeniorEquipAfterCancelProtectMinTimeDiff": 86400,
+        "rogueStageCostItemId": 9008,
+        "rogueStageMaxProgress": 999,
+        "bulletinActivityList": [
+            {
+                "activityId": 4378,
+                "activityType": 2,
+                "beginTime": 1574842500,
+                "endTime": 2079764100,
+                "bulletinId": 0,
+                "typeParamList": [
+                    24
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 15,
+                "maxPlayerLevel": 99,
+                "titleName": "DLC_Boxgacha_Title",
+                "titleImage": "SpriteOutput/ShopTabIcons/IconShopGacha",
+                "imagePath": "event/Immediately/ActivityPage/3.5SPhuntinggacha_banner_truecolor",
+                "linkButton": "",
+                "description": "3.5SPhuntinggacha_Des",
+                "weight": 334,
+                "backgroundPath": "event/Immediately/ActivityPage/3.5SPhunting_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/3.5SPhuntinggacha_title_truecolor",
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5167,
+                "activityType": 46,
+                "beginTime": 1641866400,
+                "endTime": 2274379199,
+                "bulletinId": 0,
+                "typeParamStr": "0",
+                "minPlayerLevel": 80,
                 "maxPlayerLevel": 99,
                 "titleName": "5.6TUPO_title",
                 "titleImage": "SpriteOutput/BP/5.6_TuPo_Tab",
@@ -219,16 +235,16 @@ export default (socket: net.Socket, packet: GetConfigReq) => {
                 "unlockParamStr": ""
             },
             {
-                activityId: 5175,
-                activityType: 2,
-                beginTime: 1642032000,
-                endTime: 2053540799,
-                bulletinId: 0,
-                typeParamList: [
+                "activityId": 5175,
+                "activityType": 2,
+                "beginTime": 1642032000,
+                "endTime": 2053540799,
+                "bulletinId": 0,
+                "typeParamList": [
                     35
                 ],
-                typeParamStr: "0",
-                minPlayerLevel: 25,
+                "typeParamStr": "0",
+                "minPlayerLevel": 25,
                 "maxPlayerLevel": 99,
                 "titleName": "5.4dlcgacha_title",
                 "titleImage": "SpriteOutput/ShopTabIcons/IconShopGacha",
@@ -241,302 +257,587 @@ export default (socket: net.Socket, packet: GetConfigReq) => {
                 "unlockParamStr": ""
             },
             {
-                activityId: 5401,
-                activityType: 3,
-                beginTime: 1670788800,
-                endTime: 1673812799,
-                bulletinId: 0,
-                typeParamList: [
+                "activityId": 5431,
+                "activityType": 3,
+                "beginTime": 1673812800,
+                "endTime": 1676836799,
+                "bulletinId": 0,
+                "typeParamList": [
                     57
                 ],
-                typeParamStr: "0",
-                minPlayerLevel: 10,
+                "typeParamStr": "0",
+                "minPlayerLevel": 10,
                 "maxPlayerLevel": 99,
                 "titleName": "5.6BPShop_Title",
                 "titleImage": "event/Immediately/BP/const_ShopTab04_truecolor",
-                "imagePath": "event/Immediately/BP/Shop/const_62_ShopBanner",
+                "imagePath": "event/Immediately/BP/Shop/const_63_ShopBanner",
                 "linkButton": "",
                 "description": "",
                 "weight": 1226,
-                "backgroundPath": "event/Immediately/BP/Shop/const_62_ShopBG",
-                "textImagePath": "event/Immediately/BP/Shop/const_62_ShopTitle",
+                "backgroundPath": "event/Immediately/BP/Shop/const_63_ShopBG",
+                "textImagePath": "SpriteOutput/BP/BP_Banner_Touming",
                 "currencyList": [
                     973971
                 ],
                 "unlockParamStr": ""
             },
             {
-                activityId: 5404,
-                activityType: 44,
-                beginTime: 1670443200,
-                endTime: 1673467199,
-                bulletinId: 0,
-                typeParamList: [
-                    85226,
-                    85227,
-                    85228,
-                    85229,
-                    85230
+                "activityId": 5433,
+                "activityType": 4,
+                "beginTime": 1673467200,
+                "endTime": 1675396799,
+                "bulletinId": 0,
+                "typeParamList": [
+                    87805,
+                    87806,
+                    87807,
+                    87808,
+                    87809,
+                    87810,
+                    87811,
+                    87812,
+                    1063830,
+                    87803,
+                    87804
                 ],
-                typeParamStr: "98",
-                minPlayerLevel: 20,
+                "typeParamStr": "0",
+                "minPlayerLevel": 30,
                 "maxPlayerLevel": 99,
-                "titleName": "6.2DataSet_title",
-                "titleImage": "event/Immediately/ActivityPage/6.2_MainGift_tab_truecolor",
-                "imagePath": "",
-                "linkButton": "",
-                "description": "6.2DataSet_Des",
-                "weight": 1500,
-                "backgroundPath": "event/Immediately/ActivityPage/6.2_MainGift_bg_truecolor",
-                "textImagePath": "event/Immediately/ActivityPage/6.2_MainGift_title_truecolor",
-                "currencyList": [
-                    114750
-                ],
+                "titleName": "6.3_Character_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_CharacterShow_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_Character_banner_truecolor",
+                "linkButton": "<type=\"63|40000176\" text=\"GO\" />",
+                "description": "6.3_Character_des",
+                "weight": 1200,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_Character_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_Character_title_truecolor",
                 "unlockParamStr": ""
             },
             {
-                activityId: 5406,
-                activityType: 4,
-                beginTime: 1670443200,
-                endTime: 1673467199,
-                bulletinId: 0,
-                typeParamList: [
-                    672751,
-                    672752,
-                    672753,
-                    672756,
-                    672757,
-                    672758,
-                    672759,
-                    672760,
-                    672761,
-                    672762,
-                    672763,
-                    672764,
-                    672765,
-                    672766,
-                    672767,
-                    672768,
-                    672769,
-                    672770,
-                    672771,
-                    672772,
-                    672773,
-                    672774,
-                    672775,
-                    672776,
-                    672777,
-                    672778,
-                    672779,
-                    672754,
-                    672755
+                "activityId": 5435,
+                "activityType": 4,
+                "beginTime": 1673467200,
+                "endTime": 1675396799,
+                "bulletinId": 0,
+                "typeParamList": [
+                    87820,
+                    87821,
+                    87822,
+                    87823,
+                    87824,
+                    87825
                 ],
-                typeParamStr: "0",
-                minPlayerLevel: 25,
+                "typeParamStr": "0",
+                "minPlayerLevel": 50,
                 "maxPlayerLevel": 99,
-                "titleName": "6.2_AiCyber_Title",
-                "titleImage": "event/Immediately/ActivityPage/6.2_AiCyber_tab_truecolor",
-                "imagePath": "event/Immediately/ActivityPage/6.2_AiCyber_banner_truecolor",
-                "linkButton": "<type=\"143\" text=\"GO\"/>",
-                "description": "6.2_AiCyber_Des",
-                "weight": 1700,
-                "backgroundPath": "event/Immediately/ActivityPage/6.2_AiCyber_bg_truecolor",
-                "textImagePath": "event/Immediately/ActivityPage/6.2_AiCyber_title_truecolor",
+                "titleName": "6.3_EXWeapon_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_EXWeapon_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_EXWeapon_banner_truecolor",
+                "linkButton": "<type=\"63|40000176\" text=\"GO\" />",
+                "description": "6.3_EXWeapon_Des",
+                "weight": 1100,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_EXWeapon_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_EXWeapon_titile_truecolor",
                 "unlockParamStr": ""
             },
             {
-                activityId: 5407,
-                activityType: 3,
-                beginTime: 1670443200,
-                endTime: 1674071999,
-                bulletinId: 0,
-                typeParamList: [
-                    51
+                "activityId": 5438,
+                "activityType": 4,
+                "beginTime": 1675303200,
+                "endTime": 1676491199,
+                "bulletinId": 0,
+                "typeParamList": [
+                    676007,
+                    676008,
+                    676009,
+                    676010,
+                    676012,
+                    676013,
+                    676014,
+                    676015,
+                    676016,
+                    676017,
+                    676018,
+                    676019,
+                    676020,
+                    676021,
+                    676022,
+                    676023
                 ],
-                typeParamStr: "0",
-                minPlayerLevel: 25,
+                "typeParamStr": "0",
+                "minPlayerLevel": 50,
                 "maxPlayerLevel": 99,
-                "titleName": "6.2_AiCybershop_title",
-                "titleImage": "event/Immediately/ActivityPage/6.2_AiCybershop_tab_truecolor",
-                "imagePath": "event/Immediately/ActivityPage/6.2_AiCybershop_banner_truecolor",
-                "linkButton": "<type=\"143\" text=\"GO\"/>",
-                "description": "6.2_AiCybershop_Des",
-                "weight": 1699,
-                "backgroundPath": "event/Immediately/ActivityPage/6.2_AiCybershop_bg_truecolor",
-                "textImagePath": "event/Immediately/ActivityPage/6.2_AiCybershop_title_truecolor",
-                "currencyList": [
-                    121522
-                ],
-                "unlockParamStr": ""
-            },
-            {
-                activityId: 5417,
-                activityType: 4,
-                beginTime: 1671415200,
-                endTime: 1673467199,
-                bulletinId: 0,
-                typeParamList: [
-                    672804,
-                    672805,
-                    672806,
-                    672807,
-                    672808,
-                    672809,
-                    672810,
-                    672811,
-                    672812,
-                    672813,
-                    672814,
-                    672815,
-                    672816,
-                    672817
-                ],
-                typeParamStr: "0",
-                minPlayerLevel: 30,
-                "maxPlayerLevel": 99,
-                "titleName": "6.2_MainOW_title",
-                "titleImage": "event/Immediately/ActivityPage/6.2_MainOW_tab_truecolor",
-                "imagePath": "event/Immediately/ActivityPage/6.2_MainOW_banner_truecolor",
-                "linkButton": "<type=\"1076|1001\" text=\"GO\"/>",
-                "description": "6.2_MainOW_Des",
+                "titleName": "6.3_WaveRush_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_WaveRush_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_WaveRush_banner_truecolor",
+                "linkButton": "<type=\"142|0\" text=\"GO\"/>",
+                "description": "6.3_WaveRush_Des",
                 "weight": 1900,
-                "backgroundPath": "event/Immediately/ActivityPage/6.2_MainOW_bg_truecolor",
-                "textImagePath": "event/Immediately/ActivityPage/6.2_MainOW_title_truecolor",
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_WaveRush_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_WaveRush_title_truecolor",
                 "unlockParamStr": ""
             },
             {
-                activityId: 5420,
-                activityType: 4,
-                beginTime: 1672279200,
-                endTime: 1673467199,
-                bulletinId: 0,
-                typeParamList: [
-                    672820
+                "activityId": 5440,
+                "activityType": 21,
+                "beginTime": 1674100800,
+                "endTime": 1675396799,
+                "bulletinId": 0,
+                "typeParamList": [
+                    99840,
+                    99841
                 ],
-                typeParamStr: "1",
-                minPlayerLevel: 30,
+                "typeParamStr": "0",
+                "minPlayerLevel": 20,
                 "maxPlayerLevel": 99,
-                "titleName": "6.2_MainOW1_title",
-                "titleImage": "event/Immediately/ActivityPage/6.2_MainOW3_tab_truecolor",
-                "imagePath": "event/Immediately/ActivityPage/6.2_MainOW3_banner_truecolor",
-                "linkButton": "<type=\"1076|1001\" text=\"GO\"/>",
-                "description": "6.2_MainOW1_Des",
-                "weight": 1901,
-                "backgroundPath": "event/Immediately/ActivityPage/6.2_MainOW3_bg_truecolor",
-                "textImagePath": "event/Immediately/ActivityPage/6.2_MainOW3_title_truecolor",
+                "titleName": "5.8_shoppingdays_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_Scratch_Tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_Scratch_Image_truecolor",
+                "linkButton": "<type=\"91|1\" text=\"GO\"/>",
+                "description": "3.6shoppingdays_Des",
+                "weight": 1400,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_Scratch_BG_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_Scratch_Text_truecolor",
                 "unlockParamStr": ""
             },
             {
-                activityId: 5424,
-                activityType: 49,
-                beginTime: 1672624800,
-                endTime: 1673467199,
-                bulletinId: 0,
-                typeParamList: [
-                    1
+                "activityId": 5441,
+                "activityType": 3,
+                "beginTime": 1674100800,
+                "endTime": 1675396799,
+                "bulletinId": 0,
+                "typeParamList": [
+                    32
                 ],
-                typeParamStr: "0",
-                minPlayerLevel: 25,
+                "typeParamStr": "0",
+                "minPlayerLevel": 20,
                 "maxPlayerLevel": 99,
-                "titleName": "6.2_MiniMonopoly_Title",
-                "titleImage": "event/Immediately/ActivityPage/6.2_MiniMonopoly_tab_truecolor",
-                "imagePath": "",
-                "linkButton": "",
-                "description": "6.2_MiniMonopoly_Des",
-                "weight": 2000,
-                "backgroundPath": "event/Immediately/ActivityPage/6.2_MiniMonopoly_bg_truecolor",
-                "textImagePath": "",
-                "unlockParamStr": ""
-            },
-            {
-                activityId: 5429,
-                activityType: 4,
-                beginTime: 1672624800,
-                endTime: 1673467199,
-                bulletinId: 0,
-                typeParamList: [
-                    672735,
-                    672734,
-                    672736,
-                    672737,
-                    672748,
-                    672747,
-                    672746,
-                    672745,
-                    672744,
-                    672743,
-                    672749,
-                    672738,
-                    672739,
-                    672740,
-                    672741,
-                    672742
-                ],
-                typeParamStr: "0",
-                minPlayerLevel: 25,
-                "maxPlayerLevel": 99,
-                "titleName": "6.2_MiniMonopolyMission_Title",
-                "titleImage": "event/Immediately/ActivityPage/6.2_MiniMonopolyMission_tab_truecolor",
-                "imagePath": "event/Immediately/ActivityPage/6.2_MiniMonopolyMission_banner_truecolor",
-                "linkButton": "<type=\"64|5424\" text=\"GO\"/>",
-                "description": "6.2_MiniMonopolyMission_Des",
-                "weight": 1999,
-                "backgroundPath": "event/Immediately/ActivityPage/6.2_MiniMonopolyMission_bg_truecolor",
-                "textImagePath": "event/Immediately/ActivityPage/6.2_MiniMonopolyMission_title_truecolor",
-                "unlockParamStr": ""
-            },
-            {
-                activityId: 5456,
-                activityType: 4,
-                beginTime: 1672977600,
-                endTime: 1673812799,
-                bulletinId: 0,
-                typeParamList: [
-                    86287
-                ],
-                typeParamStr: "5",
-                minPlayerLevel: 20,
-                "maxPlayerLevel": 99,
-                "titleName": "6.2_ShowPage_title",
-                "titleImage": "event/Immediately/ActivityPage/6.2_6.3_ShowPage_tab_truecolor",
-                "imagePath": "event/Immediately/ActivityPage/6.2_6.3_ShowPage_banner_truecolor",
-                "linkButton": "<type=\"webview\" text=\"GO\" href=\"https://act.hoyoverse.com/puzzle/bh3/e20230106preview_687/index.html?game_biz=bh3_os&sign_type=2&authkey_ver=1&auth_appid=e20230106preview&win_mode=fullscreen\"/>",
-                "description": "6.2_ShowPage_Des",
-                "weight": 900,
-                "backgroundPath": "event/Immediately/ActivityPage/6.2_6.3_ShowPage_bg_truecolor",
-                "textImagePath": "event/Immediately/ActivityPage/6.2_6.3_ShowPage_title_truecolor",
-                "unlockParamStr": ""
-            },
-            {
-                activityId: 16286,
-                activityType: 41,
-                beginTime: 1670464800,
-                endTime: 1673492400,
-                bulletinId: 0,
-                typeParamList: [
-                    1063750,
-                    1063751,
-                    1063752,
-                    1063753,
-                    1063754,
-                    1063755,
-                    1063756
-                ],
-                typeParamStr: "0",
-                minPlayerLevel: 15,
-                "maxPlayerLevel": 99,
-                "titleName": "5.1Recharge_title",
-                "titleImage": "event/Immediately/ActivityPage/6.2_Recharge_tab_truecolor",
-                "imagePath": "event/Immediately/ActivityPage/6.2_recharge_banner_truecolor",
-                "linkButton": "",
-                "description": "5.0Recharge_Des",
-                "weight": 1600,
-                "backgroundPath": "event/Immediately/ActivityPage/6.2_Recharge_BG_truecolor",
-                "textImagePath": "event/Immediately/ActivityPage/6.2_Recharge_title_truecolor",
+                "titleName": "3.3timeshop_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_TimeShop_Tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_TimeShop_Banner_truecolor",
+                "linkButton": "<type=\"91|5\" text=\"GO\"/>",
+                "description": "3.3timeshop_Des",
+                "weight": 1300,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_TimeShop_BG_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_TimeShop_Title_truecolor",
                 "currencyList": [
-                    3,
-                    6
+                    5,
+                    7471,
+                    7156
                 ],
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5442,
+                "activityType": 4,
+                "beginTime": 1673467200,
+                "endTime": 1676491200,
+                "bulletinId": 0,
+                "typeParamList": [
+                    676042,
+                    676043,
+                    676044,
+                    676045,
+                    676046,
+                    676047,
+                    676048,
+                    676049,
+                    676050,
+                    676051,
+                    676052,
+                    676053,
+                    676054,
+                    676055,
+                    676056,
+                    676057,
+                    676058,
+                    676059,
+                    676060,
+                    676061
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 25,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3welfare_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_welfaremission_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_welfaremission_banner_truecolor2048",
+                "linkButton": "<type=\"64|5443\" text=\"GO\"/>",
+                "description": "6.3welfare_des",
+                "weight": 1499,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_welfaremission_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_welfaremission_title_truecolor",
+                "currencyList": [
+                    125240
+                ],
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5443,
+                "activityType": 3,
+                "beginTime": 1673467200,
+                "endTime": 1677096000,
+                "bulletinId": 0,
+                "typeParamList": [
+                    308
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 25,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3welfareshop_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_welfaremission_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_welfareshop_banner_truecolor",
+                "linkButton": "<type=\"64|5442\" text=\"GO\"/>",
+                "description": "6.3welfareshop_des",
+                "weight": 1500,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_welfareshop_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_welfareshop_title_truecolor",
+                "currencyList": [
+                    125240
+                ],
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5447,
+                "activityType": 4,
+                "beginTime": 1673467200,
+                "endTime": 1680724799,
+                "bulletinId": 0,
+                "typeParamList": [
+                    676070,
+                    676071,
+                    676072,
+                    676073,
+                    676074,
+                    676075,
+                    676076,
+                    676077,
+                    676078,
+                    676079,
+                    676080,
+                    676081,
+                    676082,
+                    676083,
+                    676087,
+                    676088,
+                    676089,
+                    676090,
+                    676091,
+                    676092,
+                    676148
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_MainOW_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_MainStage_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_MainStage_banner_truecolor",
+                "linkButton": "<type=\"94|34\" text=\"GO\"/>",
+                "description": "6.3_MainStage_Des",
+                "weight": 1600,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_MainStage_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_MainStage_title_truecolor",
+                "currencyList": [
+                    122701
+                ],
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5449,
+                "activityType": 4,
+                "beginTime": 1673834400,
+                "endTime": 1674439199,
+                "bulletinId": 0,
+                "typeParamList": [
+                    676094
+                ],
+                "typeParamStr": "1",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_MainOW1_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_MainStage2_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_MainStage2_banner_truecolor",
+                "linkButton": "<type=\"94|34\" text=\"GO\"/>",
+                "description": "6.3_MainStage1_Des",
+                "weight": 1601,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_MainStage2_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_MainStage2_title_truecolor",
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5450,
+                "activityType": 4,
+                "beginTime": 1674439200,
+                "endTime": 1676491199,
+                "bulletinId": 0,
+                "typeParamList": [
+                    676095
+                ],
+                "typeParamStr": "1",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_MainOW1_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_MainStage3_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_MainStage3_banner_truecolor",
+                "linkButton": "<type=\"94|34\" text=\"GO\"/>",
+                "description": "6.3_MainStage1_Des",
+                "weight": 1601,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_MainStage3_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_MainStage3_title_truecolor",
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5451,
+                "activityType": 3,
+                "beginTime": 1673467200,
+                "endTime": 1681329599,
+                "bulletinId": 0,
+                "typeParamList": [
+                    52
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_MainOWshop_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_MainStageshop_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_MainStageshop_banner_truecolor",
+                "linkButton": "<type=\"94|34\" text=\"GO\"/>",
+                "description": "6.3_MainStageshop_Des",
+                "weight": 300,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_MainStageshop_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_MainStageshop_title_truecolor",
+                "currencyList": [
+                    122701
+                ],
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5453,
+                "activityType": 4,
+                "beginTime": 1674698400,
+                "endTime": 1675627199,
+                "bulletinId": 0,
+                "typeParamList": [
+                    676103,
+                    676104,
+                    676105,
+                    676106,
+                    676107,
+                    676108,
+                    676111,
+                    676112,
+                    676113,
+                    676114,
+                    676115,
+                    676116,
+                    676117,
+                    676118,
+                    676119,
+                    676120,
+                    676121,
+                    676122,
+                    676123,
+                    676124,
+                    676125,
+                    676126,
+                    676131,
+                    676132,
+                    676133,
+                    676134,
+                    676135,
+                    676109,
+                    676110
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_GlobalExplore_Title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_GlobalExplore_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_GlobalExplore_banner_truecolor",
+                "linkButton": "<type=\"81|6300\" text=\"GO\"/>",
+                "description": "6.3_GlobalExplore_Des",
+                "weight": 1800,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_GlobalExplore_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_GlobalExplore_title_truecolor",
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5454,
+                "activityType": 3,
+                "beginTime": 1674698400,
+                "endTime": 1676491199,
+                "bulletinId": 0,
+                "typeParamList": [
+                    65
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_GlobalExploreshop_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_GlobalExploreshop_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_GlobalExploreshop_banner_truecolor",
+                "linkButton": "<type=\"81|6300\" text=\"GO\"/>",
+                "description": "6.3_GlobalExploreshop_Des",
+                "weight": 1799,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_GlobalExploreshop_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_GlobalExploreshop_title_truecolor",
+                "currencyList": [
+                    121529
+                ],
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5457,
+                "activityType": 4,
+                "beginTime": 1674821100,
+                "endTime": 1676491199,
+                "bulletinId": 0,
+                "typeParamList": [
+                    676179,
+                    1063831
+                ],
+                "typeParamStr": "1",
+                "minPlayerLevel": 15,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_KianaVision_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_KianaVision_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_KianaVision_banner_truecolor",
+                "linkButton": "",
+                "description": "6.3_KianaVision_Des",
+                "weight": 900,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_KianaVision_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_KianaVision_title_truecolor",
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 5474,
+                "activityType": 14,
+                "beginTime": 1675656000,
+                "endTime": 1676491199,
+                "bulletinId": 0,
+                "typeParamStr": "0",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3idolevent_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_idolwebevent_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.1_AWeb_banner_truecolor",
+                "linkButton": "<type=\"webview\" text=\"GO\" href=\"https://webstatic.mihoyo.com/bh3/event/e20230109idol-aa465e/index.html?game_biz=bh3_cn&sign_type=2&auth_appid=e20230109idol&authkey_ver=1\"/>",
+                "description": "6.1_anniversarywebevent_Des",
+                "weight": 2000,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_idolwebevent_BG_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.1_Aweb_title_truecolor",
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 16290,
+                "activityType": 4,
+                "beginTime": 1674093600,
+                "endTime": 1675281599,
+                "bulletinId": 0,
+                "typeParamList": [
+                    1063800,
+                    1063801,
+                    1063802,
+                    1063803,
+                    1063804,
+                    1063805,
+                    1063806,
+                    1063807,
+                    1063808,
+                    1063809,
+                    1063810,
+                    1063811,
+                    1063812
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 88,
+                "titleName": "6.3winterkitchen_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_Winterkitchen_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_Winterkitchen_banner_truecolor",
+                "linkButton": "<type=\"84|0\" text=\"GO\"/>",
+                "description": "6.3winterkitchen_Des",
+                "weight": 1600,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_Winterkitchen_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_Winterkitchen_title_truecolor",
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 16291,
+                "activityType": 4,
+                "beginTime": 1675303200,
+                "endTime": 1676491199,
+                "bulletinId": 0,
+                "typeParamList": [
+                    1063813,
+                    1063814,
+                    1063815,
+                    1063816,
+                    1063817,
+                    1063818,
+                    1063819,
+                    1063820,
+                    1063821,
+                    1063822
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_PictureMission_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_PictureMission_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_PictureMission_banner_truecolor",
+                "linkButton": "<type=\"64|16292\" text=\"GO\" />",
+                "description": "6.3_PictureMission_des",
+                "weight": 900,
+                "backgroundPath": "event/Immediately/ActivityPage/6.3_PictureMission_BG_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_PictureMission_title_truecolor",
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 16292,
+                "activityType": 24,
+                "beginTime": 1675303200,
+                "endTime": 1676491199,
+                "bulletinId": 0,
+                "typeParamList": [
+                    120005,
+                    120006,
+                    120007,
+                    120008,
+                    120009
+                ],
+                "typeParamStr": "0",
+                "minPlayerLevel": 30,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_Picture_title",
+                "titleImage": "event/Immediately/ActivityPage/6.3_Picture_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/6.3_Picture_banner_truecolor",
+                "linkButton": "",
+                "description": "6.3_Picture_Des",
+                "weight": 899,
+                "backgroundPath": "event/Immediately/Picture/6.3_Picture_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/6.3_Picture_title_truecolor",
+                "unlockParamStr": ""
+            },
+            {
+                "activityId": 16295,
+                "activityType": 4,
+                "beginTime": 1674014400,
+                "endTime": 1705521599,
+                "bulletinId": 0,
+                "typeParamList": [
+                    1063835
+                ],
+                "typeParamStr": "1",
+                "minPlayerLevel": 15,
+                "maxPlayerLevel": 99,
+                "titleName": "6.3_MediaJW_title",
+                "titleImage": "event/Immediately/ActivityPage/const_MediaJW_tab_truecolor",
+                "imagePath": "event/Immediately/ActivityPage/const_MediaJW_banner_truecolor",
+                "linkButton": "<type=\"browser\" text=\"GO\" href=\"https://hoyo.link/01XoBBAd\"/>",
+                "description": "6.3_MediaJW_Des",
+                "weight": 300,
+                "backgroundPath": "event/Immediately/ActivityPage/const_MediaJW_bg_truecolor",
+                "textImagePath": "event/Immediately/ActivityPage/const_MediaJW_title_truecolor",
                 "unlockParamStr": ""
             }
         ],
@@ -617,18 +918,18 @@ export default (socket: net.Socket, packet: GetConfigReq) => {
                 "extraMpAddFriendsPoint": 10
             }
         ],
-        mpPunishMpExpReduceRate: 75,
-        friendAssistantAddBond: 5,
-        armadaManageMailLength: 100,
-        armadaContactLength: 20,
-        armadaManageMailCd: 3600,
-        armadaBulletinLength: 140,
-        trialAvatarPlayerMinLevel: 10,
-        disjoinEquipmentMaxBatchNum: 50,
-        equipDisjointUnlockLevel: 25,
-        armadaBossStageOpenLevel: 30,
-        antiCheatStageCheckConfig: {
-            checkStageIdList: [
+        "mpPunishMpExpReduceRate": 75,
+        "friendAssistantAddBond": 5,
+        "armadaManageMailLength": 100,
+        "armadaContactLength": 20,
+        "armadaManageMailCd": 3600,
+        "armadaBulletinLength": 140,
+        "trialAvatarPlayerMinLevel": 10,
+        "disjoinEquipmentMaxBatchNum": 50,
+        "equipDisjointUnlockLevel": 25,
+        "armadaBossStageOpenLevel": 30,
+        "antiCheatStageCheckConfig": {
+            "checkStageIdList": [
                 146001,
                 146002,
                 146003,
@@ -726,6 +1027,13 @@ export default (socket: net.Socket, packet: GetConfigReq) => {
                 146095,
                 146096,
                 146097,
+                146098,
+                146099,
+                146100,
+                146201,
+                146202,
+                146203,
+                146204,
                 153001,
                 153002,
                 153003,
@@ -816,17 +1124,46 @@ export default (socket: net.Socket, packet: GetConfigReq) => {
                 175653,
                 175654,
                 175655,
-                10302004,
-                10302008,
-                10302012,
-                10302016,
-                10302017,
-                10302018,
-                10302019,
-                10302020,
-                10302021,
-                10302022,
-                10302023
+                10302204,
+                10302208,
+                10302212,
+                10302216,
+                10302221,
+                10302222,
+                10302223,
+                10302224,
+                10302225,
+                10302226,
+                10302227,
+                10400104,
+                10400204,
+                10400304,
+                151301,
+                151302,
+                151303,
+                151304,
+                151305,
+                151320,
+                151321,
+                151322,
+                151323,
+                151324,
+                151325,
+                151326,
+                151327,
+                151328,
+                151329,
+                151330,
+                151331,
+                151332,
+                151333,
+                151334,
+                151335,
+                151336,
+                151337,
+                151338,
+                151339,
+                151340
             ],
             "checkStageTypeList": [
                 4,
@@ -846,7 +1183,7 @@ export default (socket: net.Socket, packet: GetConfigReq) => {
         },
         "isCanGalTouch": true,
         "isResistanceOpen": true,
-        "nextDayBeginTime": 1673294400
+        "nextDayBeginTime": parseInt(getTs())+100000
     } as GetConfigRsp)
 }
 

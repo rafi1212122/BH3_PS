@@ -13,9 +13,11 @@ export default async (socket: net.Socket, packet: UpdateAssistantAvatarIdReq) =>
         } as UpdateAssistantAvatarIdRsp)
     }
     const updateUser = await User.findOneAndUpdate({
-            uid: user.uid,
-        }, {
-            $set: { assistantAvatarId: packet.avatarId }
+        uid: user.uid,
+    }, {
+        $set: { assistantAvatarId: packet.avatarId }
+    }, {
+        returnDocument: 'after'
     })
     if(!updateUser.value)return Packet.getInstance().serializeAndSend(socket, UpdateAssistantAvatarIdRsp_CmdId.CMD_ID, {
         retcode: UpdateAssistantAvatarIdRsp_Retcode['FAIL'],

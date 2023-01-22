@@ -13,7 +13,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
     }
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode['SUCC'],
-        nickname: user.nick||"",
+        nickname: user.nick,
         level: user.level,
         exp: user.exp,
         hcoin: user.hcoin,
@@ -31,7 +31,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
         monthRechargePrice: 0,
         waitDelHcoin: 0,
         todayRechargePrice: 0,
-        useFrameId: 200006,
+        useFrameId: 200001,
         isAll: true,
         mcoin: 0,
         openPanelActivityList: [
