@@ -11,25 +11,15 @@ __________________________
 git clone https://github.com/rafi1212122/BH3_PS.git 
 ```
 
-2. Copy Environment Variables
+2. Make sure you have MongoDB server running
 
-```bash
-cp .env.example .env 
-```
-
-3. Make sure you have MongoDB server running
-
-4. Install required packages
+3. Install required packages
 
 ```bash
 npm install 
 ```
 
-5. Start the server
+4. Start the server
 ```bash
 npm run dev
 ```
-
-
-
-
