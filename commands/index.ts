@@ -4,13 +4,13 @@ import Packet from "../server/Packet";
 import getTs from '../util/getTs'
 
 export default async (args: string[], socket: Socket) => {
-    await import(`./${args[0]}`).then(async r => {
+    await import(`./${args[0].toLowerCase()}`).then(async r => {
         await r.default(socket, args);
     }).catch(() => {
         Packet.getInstance().serializeAndSend(socket, RecvChatMsgNotify_CmdId.CMD_ID, {
             chatMsgList: [{
                 uid: 0,
-                nickname: "Ai-Chan",
+                nickname: "Ai-chan",
                 avatarId: 2401,
                 dressId: 50153,
                 channel: ChatMsg_MsgChannel.WORLD,

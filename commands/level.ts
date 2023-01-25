@@ -10,13 +10,17 @@ export default async (socket: Socket, args: string[]) => {
     if(!user) return
     if(isNaN(parseInt(args[1]))) return
 
-    await User.updateOne({
+    const updatedUser = (await User.findOneAndUpdate({
         uid: user.uid
     }, {
         $set: {
             level: parseInt(args[1])
         }
-    })
+    }, {
+        returnDocument: 'after'
+    }))
+
+    if(!updatedUser.value) return
 
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode.SUCC,
@@ -26,9 +30,11 @@ export default async (socket: Socket, args: string[]) => {
 
     Packet.getInstance().serializeAndSend(socket, PlayerLevelUpNotify_CmdId.CMD_ID, {
         newLevel: parseInt(args[1]),
-        oldLevel: session.user.level-1,
+        oldLevel: session.user.level,
         rewardData: {
             exp: 0,
         }
     } as PlayerLevelUpNotify)
+
+    session.user = updatedUser.value
 }

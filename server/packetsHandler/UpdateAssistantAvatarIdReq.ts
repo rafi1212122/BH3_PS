@@ -25,7 +25,7 @@ export default async (socket: net.Socket, packet: UpdateAssistantAvatarIdReq) =>
     session.user = updateUser.value
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode.SUCC,
-        assistantAvatarId: updateUser.value.assistantAvatarId
+        assistantAvatarId: packet.avatarId
     } as GetMainDataRsp)
     
     Packet.getInstance().serializeAndSend(socket, UpdateAssistantAvatarIdRsp_CmdId.CMD_ID, {

@@ -1,9 +1,9 @@
 import net from "net"
-import { GetMainDataReq, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, RoomMode, SyncRoomDataNotify, SyncRoomDataNotify_CmdId } from "../../BengHuai"
+import { GetMainDataReq, GetMainDataReq_DataType, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, RoomMode, SyncRoomDataNotify, SyncRoomDataNotify_CmdId } from "../../BengHuai"
 import GameServer from "../GameServer"
 import Packet from "../Packet"
 
-export default (socket: net.Socket, packet: GetMainDataReq) => {
+export default (socket: net.Socket, packet: GetMainDataReq&{typeList: string[]}) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(!user){
@@ -11,6 +11,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
             retcode: GetMainDataRsp_Retcode['FAIL'],
         } as GetMainDataRsp)
     }
+    
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode['SUCC'],
         nickname: user.nick,
@@ -19,7 +20,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
         hcoin: user.hcoin,
         scoin: user.scoin,
         stamina: user.stamina,
-        staminaRecoverLeftTime: 0,
+        staminaRecoverLeftTime: 360,
         staminaRecoverConfigTime: 360,
         equipmentSizeLimit: 1000,
         selfDesc: user.selfDesc,
@@ -51,7 +52,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
         warshipTheme: user.warshipId?{
             warshipId: user.warshipId
         }:{}
-    } as Partial<GetMainDataRsp>)
+    } as GetMainDataRsp)
     
     Packet.getInstance().serializeAndSend(socket, SyncRoomDataNotify_CmdId.CMD_ID, {
         playerRoomStatus: {

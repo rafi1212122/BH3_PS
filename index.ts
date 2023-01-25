@@ -4,6 +4,7 @@ import fs from 'fs'
 import logger from './util/logger'
 import GameServer from './server/GameServer'
 import Database from './server/Database'
+import Interface from './commands/Interface'
 
 const app = express();
 
@@ -29,10 +30,11 @@ app.all('/*', (req: Request, res: Response) => {
     });
 });
 
-GameServer.getInstance().start()
-Database.getInstance().initialize()
-
 https.createServer({ key: fs.readFileSync('./certs/localhost.key').toString(), cert: fs.readFileSync('./certs/localhost.crt').toString() }, app).listen(443);
 app.listen(80, () => {
     logger('HTTP server listening on port 80 & 443', '', 'HTTP')
 });
+
+Interface.getInstance().start()
+GameServer.getInstance().start()
+Database.getInstance().initialize()

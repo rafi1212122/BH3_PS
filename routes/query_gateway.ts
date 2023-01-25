@@ -18,7 +18,7 @@ export default function handler(req: Request, res: Response) {
 		ext: {
 			ai_use_asset_boundle: "1",
 			apm_log_dest: "2",
-			apm_log_level: "0",
+			apm_log_level: "4",
 			apm_switch: "1",
 			apm_switch_crash: "1",
 			apm_switch_game_log: "1",

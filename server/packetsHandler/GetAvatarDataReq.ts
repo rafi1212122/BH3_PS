@@ -29,9 +29,9 @@ export default (socket: net.Socket, packet: GetAvatarDataReq) => {
                 touchGoodfeel: avatar.touchGoodfeel,
                 todayHasAddGoodfeel: avatar.touchGoodfeel,
                 dressList: avatar.dressList||[
-                    59101
+                    parseInt(`59${avatar.avatarId}`)
                 ],
-                dressId: avatar.dressId||59101,
+                dressId: avatar.dressId||parseInt(`59${avatar.avatarId}`),
                 subStar: avatar.subStar||0
             }
         }),
