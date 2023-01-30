@@ -7,7 +7,6 @@ import { getClientData } from "../../mongodb/Model/ClientData"
 export default async (socket: net.Socket, packet: GetClientDataReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
-    console.log(packet.type)
     if(!user?.uid){
         return Packet.getInstance().serializeAndSend(socket, GetClientDataRsp_CmdId.CMD_ID, {
             retcode: GetClientDataRsp_Retcode.FAIL,

@@ -1,5 +1,5 @@
 import net from "net"
-import { GetMainDataReq, GetMainDataReq_DataType, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, RoomMode, SyncRoomDataNotify, SyncRoomDataNotify_CmdId } from "../../BengHuai"
+import { GetMainDataReq, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, RoomMode, SyncRoomDataNotify, SyncRoomDataNotify_CmdId } from "../../BengHuai"
 import GameServer from "../GameServer"
 import Packet from "../Packet"
 

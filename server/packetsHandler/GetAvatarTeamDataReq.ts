@@ -10,8 +10,6 @@ export default (socket: net.Socket, packet: GetAvatarTeamDataReq) => {
                 stageType: 1,
                 avatarIdList: [
                     101,
-                    105,
-                    317
                 ]
             }
         ],
