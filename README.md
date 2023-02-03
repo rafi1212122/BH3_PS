@@ -1,4 +1,4 @@
-# BH3_PS
+# BH3_PS (Not actually usable)
 ### A PS for HI3 sea client
 #### Heavily inspired from CrepeSR
 --------------------------
