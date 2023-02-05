@@ -11,7 +11,6 @@ export default class Session {
     private currentAvatars!: Avatar[]
     public chatroom: number = 0
     public packetSentCount: number = 0
-    public readonly socket: net.Socket
 
     set user(user: User) {
         this.currentUser = user
@@ -29,30 +28,38 @@ export default class Session {
         return this.currentAvatars
     }
 
-    public constructor(id: string, socket: net.Socket) {
-        this.socket = socket
-        socket.on('data', async (data: Buffer) => {
-            const packet = Packet.getInstance().deserialize(data)
-            logger(`${socket.remoteAddress}:${socket.remotePort} ${CmdId[packet.cmdId]}`, 'warn', 'TCP')
-            if(!packet.body) {
-                return logger(`CmdId ${packet.cmdId} NOT RECOGNIZED!`, 'danger')
+    public constructor(public id: string, public readonly socket: net.Socket) {
+        this.socket.on('close', (hasError) => {
+            logger(`${this.socket.remoteAddress}:${this.socket.remotePort} Disconnected${hasError&&' Abruptly'}!`, 'warn', 'TCP')
+            this.removeSession()
+        })
+        this.socket.on('error', (err) => {
+            logger(`${this.socket.remoteAddress}:${this.socket.remotePort} socket error ${err}!`, 'danger', 'TCP')
+            this.removeSession()
+        })
+        this.socket.on('data', this.onData.bind(this))
+    }
+
+    private onData(data: Buffer){
+        const packet = Packet.getInstance().deserialize(data)
+        logger(`${this.socket.remoteAddress}:${this.socket.remotePort} ${CmdId[packet.cmdId]}`, 'warn', 'TCP')
+        if(!packet.body) {
+            logger(`CmdId ${packet.cmdId} NOT RECOGNIZED!`, 'danger')
+            return
+        }
+        import(`./packetsHandler/${CmdId[packet.cmdId]}`).then(async r => {
+            await r.default(this.socket, packet?.body);
+            this.packetSentCount++
+        }).catch(err => {
+            if (err.code === 'MODULE_NOT_FOUND') {
+                return logger(`CMD ${CmdId[packet.cmdId]} NOT HANDLED!`, 'danger');
             }
-            await import(`./packetsHandler/${CmdId[packet.cmdId]}`).then(async r => {
-                await r.default(socket, packet?.body);
-            }).catch(err => {
-                if (err.code === 'MODULE_NOT_FOUND') {
-                    return logger(`CMD ${CmdId[packet.cmdId]} NOT HANDLED!`, 'danger');
-                }
-                logger(err, 'danger');
-            });
-        })
-        socket.on('close', (hasError) => {
-            logger(`${socket.remoteAddress}:${socket.remotePort} Disconnected${hasError&&' Abruptly'}!`, 'warn', 'TCP')
-            GameServer.getInstance().sessions.delete(id)
-        })
-        socket.on('error', (err) => {
-            logger(`${socket.remoteAddress}:${socket.remotePort} socket error ${err}!`, 'danger', 'TCP')
-            GameServer.getInstance().sessions.delete(id)
+            logger(err, 'danger');
         })
     }
+
+    private removeSession(){
+        GameServer.getInstance().sessions.delete(this.id)
+    }
 }
+

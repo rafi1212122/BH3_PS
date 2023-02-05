@@ -5,7 +5,6 @@ import { AccountType, GetPlayerTokenReq, GetPlayerTokenRsp_Retcode, GetPlayerTok
 import User from "../../mongodb/Model/User"
 
 export default async (socket: net.Socket, packet: GetPlayerTokenReq) => {
-    let reply;
     const user = await User.findOne({
         uid: parseInt(packet.accountUid||"0")
     })

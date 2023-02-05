@@ -1,5 +1,4 @@
 import net from "net"
-import logger from "../../util/logger"
 import { GetBulletinActivityMissionReq, GetBulletinActivityMissionRsp, GetBulletinActivityMissionRsp_CmdId, GetBulletinActivityMissionRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 

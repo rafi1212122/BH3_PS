@@ -3,7 +3,6 @@ import { CmdId } from '../util/CmdId'
 import logger from '../util/logger'
 import net from 'net'
 import GameServer from './GameServer'
-import type * as types from "../BengHuai";
 
 export default class Packet {
     private readonly proto: protobuf.Root
@@ -78,7 +77,7 @@ export default class Packet {
         buf.writeUInt16BE(0, 28)
         buf.writeUInt32BE(encodedProtobuf.length, 30)
         Buffer.from(encodedProtobuf).copy(buf, 34)
-        buf.writeUInt32BE(0x89abcdef ,34+encodedProtobuf.length)
+        buf.writeUInt32BE(0x89abcdef, 34+encodedProtobuf.length)
         return buf
     }
 
@@ -91,7 +90,7 @@ export default class Packet {
 
         const Message = this.proto?.lookupType(`bh3.${CmdId[cmdId]}`)
         const encodedProtobuf = Message.encode(Message.fromObject(data)).finish()
-        const buf = Buffer.alloc(34+encodedProtobuf.length+4+(cmdId>7?14:cmdId===7?20:0))
+        const buf = Buffer.alloc(34+encodedProtobuf.length+4)
         buf.writeUInt32BE(0x1234567)
         buf.writeUInt16BE(1, 4)
         buf.writeUInt16BE(0, 6)
@@ -100,15 +99,10 @@ export default class Packet {
         buf.writeUInt32BE(0, 16)
         buf.writeUInt32BE(0, 20)
         buf.writeUInt32BE(cmdId, 24)
-        buf.writeUInt16BE(cmdId>7?14:cmdId===7?20:0, 28)
+        buf.writeUInt16BE(0, 28)
         buf.writeUInt32BE(encodedProtobuf.length, 30)
-        cmdId>7?Buffer.from("0892a31d10acab88e1032a020800", 'hex').copy(buf, 34):cmdId===7&&Buffer.from("0892a31d10acab88e10320acab88c1022a020800", 'hex').copy(buf, 34)
-        Buffer.from(encodedProtobuf).copy(buf, cmdId>7?34+14:cmdId===7?34+20:34)
-        buf.writeUInt32BE(0x89abcdef, 34+encodedProtobuf.length+(cmdId>7?14:cmdId===7?20:0))
-        
-        if(session?.packetSentCount!==undefined) {
-            session.packetSentCount = session.packetSentCount+1
-        }
+        Buffer.from(encodedProtobuf).copy(buf, 34)
+        buf.writeUInt32BE(0x89abcdef, 34+encodedProtobuf.length)
 
         if(buf.length>1412){
             // this is so cringe

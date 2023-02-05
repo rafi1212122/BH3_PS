@@ -23,7 +23,6 @@ export default async (socket: net.Socket, packet: NicknameModifyReq) => {
         retcode: NicknameModifyRsp_Retcode['FAIL'],
     } as NicknameModifyRsp)
     session.user = updateUser.value
-    console.log(updateUser.value.nick)
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode.SUCC,
         nickname: updateUser.value.nick||""
