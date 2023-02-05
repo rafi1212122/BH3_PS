@@ -2,7 +2,7 @@
 ### A PS for HI3 sea client
 #### Heavily inspired from CrepeSR
 --------------------------
-pls help my skill issue i can't keep myself stay sane
+elp me fix some packet are not received by da serber
 __________________________
 ### Running the thing
 1. Do Git Clone / Download as Zip
@@ -23,3 +23,6 @@ npm install
 ```bash
 npm run dev
 ```
+
+### Contact
+```rfi#2668```
