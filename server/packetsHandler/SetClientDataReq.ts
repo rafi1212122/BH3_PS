@@ -4,7 +4,7 @@ import Packet from "../Packet"
 import GameServer from "../GameServer"
 import { SetClientData } from "../../mongodb/Model/ClientData"
 
-export default async (socket: net.Socket, packet: SetClientDataReq&{ clientData: { data: Uint8Array & string, type: ClientDataType, id: number } }) => {
+export default async (socket: net.Socket, packet: SetClientDataReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(user?.uid&&packet.clientData?.type&&packet.clientData?.data){
