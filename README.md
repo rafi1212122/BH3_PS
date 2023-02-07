@@ -4,6 +4,11 @@
 --------------------------
 elp me fix some packet are not received by da serber
 __________________________
+
+### What works
+- Login
+- Going to the warship / game home (harcoded packets)
+
 ### Running the thing
 1. Do Git Clone / Download as Zip
 
@@ -23,6 +28,8 @@ npm install
 ```bash
 npm run dev
 ```
+
+5. Start the game and login with any username, account will automatically created
 
 ### Contact
 ```

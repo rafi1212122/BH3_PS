@@ -280,6 +280,7 @@ export default async (socket: net.Socket, packet: PlayerLoginReq) => {
     } as GetMpDataRsp)
 
     setTimeout(()=> {
+        //disgusting but this works
         GetBulletinReq(socket, GetBulletinReqType.fromPartial({}))
         GetLoginActivityReq(socket, {})
         GetConfigReq(socket, {})

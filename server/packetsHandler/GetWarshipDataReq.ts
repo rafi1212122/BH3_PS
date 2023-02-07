@@ -8,6 +8,18 @@ export default (socket: net.Socket, packet: GetWarshipDataReq) => {
         warshipList: [
             {
                 warshipId: 400004,
+            },
+            {
+                warshipId: 401999,
+            },
+            {
+                warshipId: 401998,
+            },
+            {
+                warshipId: 401006,
+            },
+            {
+                warshipId: 401005,
             }
         ],
         isAll: true
