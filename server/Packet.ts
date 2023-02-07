@@ -1,8 +1,9 @@
 import protobuf from 'protobufjs'
-import { CmdId } from '../util/CmdId'
+import { CmdId, PacketName } from '../util/CmdId'
 import logger from '../util/logger'
 import net from 'net'
 import GameServer from './GameServer'
+import * as bh3 from '../BengHuai'
 
 export default class Packet {
     private readonly proto: protobuf.Root
@@ -18,9 +19,10 @@ export default class Packet {
     }
 
     public deserialize(buf: Buffer) {
-        let Message: protobuf.Type;
+        let cmdName: PacketName
         try {
-            Message = this.proto?.lookupType(`bh3.${CmdId[buf.readUInt32BE(24)]}`)
+            cmdName = CmdId[buf.readUInt32BE(24)] as PacketName
+            if(!cmdName) throw 'wtf!! unknown cmd id!!!!!'
         } catch (error) {
             return {
                 head: buf.subarray(0, 4),
@@ -38,7 +40,7 @@ export default class Packet {
         }
         let body;
         try {
-            body = Message?.decode(buf.subarray(34, buf.length - 4)).toJSON()
+            body = bh3[cmdName].decode(buf.subarray(34, buf.length - 4))
         } catch (error) {
             body = {}
         }

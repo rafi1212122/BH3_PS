@@ -7,7 +7,6 @@ import GameServer from "../GameServer"
 import { GetLoginActivityReq, GetLoginActivityRsp, GetLoginActivityRsp_CmdId, GetLoginActivityRsp_Retcode } from "../../BengHuai"
 
 export default async (socket: net.Socket, packet: GetLoginActivityReq) => {
-    let reply;
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(!user){

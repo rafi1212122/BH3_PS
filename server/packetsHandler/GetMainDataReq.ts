@@ -1,5 +1,5 @@
 import net from "net"
-import { GetMainDataReq, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, RoomMode, SyncRoomDataNotify, SyncRoomDataNotify_CmdId } from "../../BengHuai"
+import { GetMainDataReq, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode } from "../../BengHuai"
 import GameServer from "../GameServer"
 import Packet from "../Packet"
 
@@ -53,12 +53,4 @@ export default (socket: net.Socket, packet: GetMainDataReq&{typeList: string[]})
             warshipId: user.warshipId
         }:{}
     } as GetMainDataRsp)
-    
-    Packet.getInstance().serializeAndSend(socket, SyncRoomDataNotify_CmdId.CMD_ID, {
-        playerRoomStatus: {
-            roomMode: RoomMode.ROOM_MODE_INVALID,
-            roomId: 0
-        },
-        roomInfo: {}
-    } as SyncRoomDataNotify)
 }

@@ -27,6 +27,16 @@ export default (socket: net.Socket, packet: GetWorldMapDataReq) => {
                 id: 2
             },
             {
+                worldMapId: 3,
+                beginTime: 1300046400,
+                endTime: 2060107199,
+                highLightMinLevel: 25,
+                highLightMaxLevel: 30,
+                weight: 0,
+                advanceTime: 1300046400,
+                id: 3
+            },
+            {
                 worldMapId: 4,
                 beginTime: 1300046400,
                 endTime: 2060107199,
@@ -105,6 +115,16 @@ export default (socket: net.Socket, packet: GetWorldMapDataReq) => {
                 weight: 1,
                 advanceTime: 1300046400,
                 id: 49
+            },
+            {
+                worldMapId: 2221,
+                beginTime: 1611712800,
+                endTime: 2060107199,
+                highLightMinLevel: 15,
+                highLightMaxLevel: 88,
+                weight: 1,
+                advanceTime: 1611712800,
+                id: 307
             }
         ]
     } as GetWorldMapDataRsp)

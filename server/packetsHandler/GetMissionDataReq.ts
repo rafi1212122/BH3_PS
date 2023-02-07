@@ -1,7 +1,5 @@
 import net from "net"
-import logger from "../../util/logger"
-import { GetMissionDataReq, GetMissionDataRsp, GetMissionDataRsp_CmdId, GetMissionDataRsp_Retcode, Mission, MissionStatus } from "../../BengHuai"
-import { CmdId } from "../../util/CmdId"
+import { GetMissionDataReq, GetMissionDataRsp, GetMissionDataRsp_CmdId, GetMissionDataRsp_Retcode, MissionStatus } from "../../BengHuai"
 import Packet from "../Packet"
 
 export default (socket: net.Socket, packet: GetMissionDataReq) => {

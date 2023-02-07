@@ -1,2 +1,31 @@
 UpdateMissionProgressReq
 investigate maybe canbe used for mission tractking
+
+probably need to hardcode responses for proper login
+GetBulletinRsp
+GetLoginActivityRsp
+6722
+ReportClientDataVersionRsp
+GetConfigRsp
+GetWebActivityInfoRsp
+GetMainDataRsp
+GetGobackRsp
+GetPlayerCardRsp
+GetRankScheduleDataRsp
+GetClientSettingRsp
+GetMissionDataRsp
+GetRecommendMissionPanelListRsp
+GetChallengeStepCompensationInfoRsp
+GetMissionGroupMainInfoRsp
+GetExtraStoryDataRsp
+GetStageDataRsp
+GetWeekDayActivityDataRsp
+GetClearStageActivityRsp
+GetStageActDifficultyRsp
+GetStageChapterRsp
+ChapterGroupGetDataRsp
+GetChapterCompensationInfoRsp
+GetEquipmentDataRsp
+GetAvatarDataRsp
+GetAvatarTeamDataRsp
+GetTrialAvatarRsp

@@ -1,7 +1,5 @@
 import net from "net"
-import logger from "../../util/logger"
 import { GetEquipmentDataReq, GetEquipmentDataRsp, GetEquipmentDataRsp_CmdId, GetEquipmentDataRsp_Retcode, Material, Mecha, Stigmata } from "../../BengHuai"
-import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 
 export default (socket: net.Socket, packet: GetEquipmentDataReq) => {

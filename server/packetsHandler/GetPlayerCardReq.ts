@@ -7,7 +7,7 @@ import Packet from "../Packet"
 export default (socket: net.Socket, packet: GetPlayerCardReq) => {
     Packet.getInstance().serializeAndSend(socket, GetPlayerCardRsp_CmdId.CMD_ID, {
         retcode: GetPlayerCardRsp_Retcode.SUCC,
-        type: PlayerCardType.CARD_ALL,
+        type: packet.type||PlayerCardType.CARD_ALL,
         avatarIdList: [105],
         msgConfig: 0,
         msgData: {

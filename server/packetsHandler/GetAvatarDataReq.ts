@@ -39,5 +39,5 @@ export default (socket: net.Socket, packet: GetAvatarDataReq) => {
     } as GetAvatarDataRsp)
 
     //making sure teamdict created
-    GetAvatarTeamDataReq(socket, {})
+    // GetAvatarTeamDataReq(socket, {})
 }
