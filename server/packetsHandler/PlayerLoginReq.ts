@@ -24,6 +24,7 @@ import GetEquipmentDataReq from "./GetEquipmentDataReq"
 import GetAvatarDataReq from "./GetAvatarDataReq"
 import GetAvatarTeamDataReq from "./GetAvatarTeamDataReq"
 import GetTrialAvatarReq from "./GetTrialAvatarReq"
+import send from "../../commands/send"
 
 export default async (socket: net.Socket, packet: PlayerLoginReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -299,6 +300,6 @@ export default async (socket: net.Socket, packet: PlayerLoginReq) => {
         GetEquipmentDataReq(socket, { materialIdList: [0], mechaUniqueIdList: [0], stigmataUniqueIdList: [0], weaponUniqueIdList: [0] })
         GetAvatarDataReq(socket, { avatarIdList: [0] })
         GetAvatarTeamDataReq(socket, {})
-        GetTrialAvatarReq(socket, {})
+        GetTrialAvatarReq(socket, {})\
     }, 2000)
 }

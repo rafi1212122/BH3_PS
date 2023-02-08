@@ -19,11 +19,11 @@ export default async (socket: net.Socket, packet: GetClientDataReq) => {
             id: packet.id,
             type: packet.type,
             clientDataList: [{
-                data: data.data,
+                data: Buffer.from(data.data),
                 id: data.id,
                 type: data.type
             }]
-        } as GetClientDataRsp&{ clientDataList: { data: string, id: number, type: ClientDataType }[] })
+        } as GetClientDataRsp)
     }
     Packet.getInstance().serializeAndSend(socket, GetClientDataRsp_CmdId.CMD_ID, {
         retcode: GetClientDataRsp_Retcode.NOT_FOUND,

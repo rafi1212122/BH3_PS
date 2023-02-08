@@ -8,6 +8,10 @@ import GameServer from "../GameServer"
 export default (socket: net.Socket, packet: EnterWorldChatroomReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     if(!session) return
+    if(!packet.chatroomId) return Packet.getInstance().serializeAndSend(socket, EnterWorldChatroomRsp_CmdId.CMD_ID, {
+        retcode: EnterWorldChatroomRsp_Retcode.CHATROOM_ID_ERROR,
+        chatroomId: packet.chatroomId,
+    } as EnterWorldChatroomRsp)
     if(session?.chatroom===packet.chatroomId) return
     Packet.getInstance().serializeAndSend(socket, EnterWorldChatroomRsp_CmdId.CMD_ID, {
         retcode: EnterWorldChatroomRsp_Retcode.SUCC,

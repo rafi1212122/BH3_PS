@@ -1,6 +1,4 @@
 import net from "net"
-import logger from "../../util/logger"
-import { CmdId } from "../../util/CmdId"
 import Packet from "../Packet"
 import getTs from '../../util/getTs'
 import { SyncTimeReq, SyncTimeRsp, SyncTimeRsp_CmdId, SyncTimeRsp_Retcode } from "../../BengHuai"
