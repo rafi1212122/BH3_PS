@@ -300,6 +300,6 @@ export default async (socket: net.Socket, packet: PlayerLoginReq) => {
         GetEquipmentDataReq(socket, { materialIdList: [0], mechaUniqueIdList: [0], stigmataUniqueIdList: [0], weaponUniqueIdList: [0] })
         GetAvatarDataReq(socket, { avatarIdList: [0] })
         GetAvatarTeamDataReq(socket, {})
-        GetTrialAvatarReq(socket, {})\
+        GetTrialAvatarReq(socket, {})
     }, 2000)
 }
