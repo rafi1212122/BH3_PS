@@ -4,27 +4,6 @@ import GameServer from "../GameServer"
 import { AccountType, CGType, GetMpDataRsp, GetMpDataRsp_CmdId, GetMpDataRsp_OpType, GetMpDataRsp_Retcode, MpDataType, PlayerCardType, PlayerLoginReq, PlayerLoginRsp, PlayerLoginRsp_CmdId, PlayerLoginRsp_Retcode } from "../../BengHuai"
 import config from "../../config"
 import Avatar from "../../mongodb/Model/Avatar"
-import GetBulletinReq from "./GetBulletinReq"
-import GetLoginActivityReq from "./GetLoginActivityReq"
-import { GetBulletinReq as GetBulletinReqType } from "../../BengHuai"
-import GetConfigReq from "./GetConfigReq"
-import GetWebActivityInfoReq from "./GetWebActivityInfoReq"
-import GetMainDataReq from "./GetMainDataReq"
-import GetGobackReq from "./GetGobackReq"
-import GetPlayerCardReq from "./GetPlayerCardReq"
-import GetRankScheduleDataReq from "./GetRankScheduleDataReq"
-import GetMissionDataReq from "./GetMissionDataReq"
-import GetMissionGroupMainInfoReq from "./GetMissionGroupMainInfoReq"
-import GetStageDataReq from "./GetStageDataReq"
-import GetWeekDayActivityDataReq from "./GetWeekDayActivityDataReq"
-import GetStageChapterReq from "./GetStageChapterReq"
-import ChapterGroupGetDataReq from "./ChapterGroupGetDataReq"
-import GetChapterCompensationInfoReq from "./GetChapterCompensationInfoReq"
-import GetEquipmentDataReq from "./GetEquipmentDataReq"
-import GetAvatarDataReq from "./GetAvatarDataReq"
-import GetAvatarTeamDataReq from "./GetAvatarTeamDataReq"
-import GetTrialAvatarReq from "./GetTrialAvatarReq"
-import send from "../../commands/send"
 
 export default async (socket: net.Socket, packet: PlayerLoginReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -279,27 +258,4 @@ export default async (socket: net.Socket, packet: PlayerLoginReq) => {
         opType: GetMpDataRsp_OpType.UPDATE_DATA,
         punishEndTime: 0
     } as GetMpDataRsp)
-
-    setTimeout(()=> {
-        //disgusting but this works
-        GetBulletinReq(socket, GetBulletinReqType.fromPartial({}))
-        GetLoginActivityReq(socket, {})
-        GetConfigReq(socket, {})
-        GetWebActivityInfoReq(socket, {})
-        GetMainDataReq(socket, { typeList: [] })
-        GetGobackReq(socket, {})
-        GetPlayerCardReq(socket, { type: PlayerCardType.CARD_ALL })
-        GetRankScheduleDataReq(socket, {})
-        GetMissionDataReq(socket, {})
-        GetMissionGroupMainInfoReq(socket, {})
-        GetStageDataReq(socket, { stageIdList: [0] })
-        GetWeekDayActivityDataReq(socket, {})
-        GetStageChapterReq(socket, {})
-        ChapterGroupGetDataReq(socket, {})
-        GetChapterCompensationInfoReq(socket, { chapterId:0 })
-        GetEquipmentDataReq(socket, { materialIdList: [0], mechaUniqueIdList: [0], stigmataUniqueIdList: [0], weaponUniqueIdList: [0] })
-        GetAvatarDataReq(socket, { avatarIdList: [0] })
-        GetAvatarTeamDataReq(socket, {})
-        GetTrialAvatarReq(socket, {})
-    }, 2000)
 }

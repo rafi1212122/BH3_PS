@@ -40,7 +40,7 @@ export default class Packet {
         }
         let body;
         try {
-            body = bh3[cmdName].decode(buf.subarray(34, buf.length - 4))
+            body = bh3[cmdName].decode(buf.subarray(34, 34+buf.readUInt32BE(30)))
         } catch (error) {
             body = {}
         }
