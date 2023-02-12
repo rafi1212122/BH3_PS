@@ -7,7 +7,7 @@ __________________________
 
 ### What works
 - Login
-- Going to the warship / game home (harcoded packets)
+- Going to the warship / game home (game data not yet aavailable)
 
 ### Running the thing
 1. Do Git Clone / Download as Zip
