@@ -5,9 +5,7 @@ import logger from '../util/logger'
 import { User } from "../mongodb/Model/User";
 import { Avatar } from "../mongodb/Model/Avatar";
 import GameServer from "./GameServer";
-import { createWriteStream } from "fs";
-
-const c = new console.Console(createWriteStream('./log.txt'))
+import TxtLogger from "../util/TxtLogger";
 
 export default class Session {
     private currentUser!: User
@@ -70,7 +68,8 @@ export default class Session {
         }
 
         logger(`${this.socket.remoteAddress}:${this.socket.remotePort} ${CmdId[packet.cmdId]}`, 'warn', 'TCP')
-        c.log(`${CmdId[packet.cmdId]} | ${processedPacket}`)
+        TxtLogger.getInstance().log(`${CmdId[packet.cmdId]} | ${processedPacket}`, packet)
+        TxtLogger.getInstance().log(`---------------------------------------------------`)
 
         if(!packet.body) {
             logger(`CmdId ${packet.cmdId} NOT RECOGNIZED!`, 'danger')

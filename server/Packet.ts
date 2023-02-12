@@ -4,6 +4,7 @@ import logger from '../util/logger'
 import net from 'net'
 import GameServer from './GameServer'
 import * as bh3 from '../BengHuai'
+import TxtLogger from '../util/TxtLogger'
 
 export default class Packet {
     private readonly proto: protobuf.Root
@@ -117,6 +118,9 @@ export default class Packet {
             }
             return
         }
+
+        TxtLogger.getInstance().log(`${CmdId[cmdId]} | ${buf.toString('hex')}`, data)
+        TxtLogger.getInstance().log(`---------------------------------------------------`)
         
         socket.write(buf, (err) => {
             if(err) return console.log('socket.write error', err)
