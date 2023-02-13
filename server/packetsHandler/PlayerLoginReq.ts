@@ -251,11 +251,4 @@ export default async (socket: net.Socket, packet: PlayerLoginReq) => {
         lastLogoutTime: 0,
         lastClientPacketId: 0
     } as PlayerLoginRsp)
-    
-    Packet.getInstance().serializeAndSend(socket, GetMpDataRsp_CmdId.CMD_ID, {
-        retcode: GetMpDataRsp_Retcode.SUCC,
-        dataType: MpDataType.MP_DATA_PUNISH_TIME,
-        opType: GetMpDataRsp_OpType.UPDATE_DATA,
-        punishEndTime: 0
-    } as GetMpDataRsp)
 }

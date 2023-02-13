@@ -2,7 +2,7 @@ import { createWriteStream } from "fs";
 
 export default class TxtLogger {
     private static instance: TxtLogger
-    private static c = new console.Console(createWriteStream('./log.txt'))
+    private c = new console.Console(createWriteStream('./log.txt'))
 
     public static getInstance(): TxtLogger {
         if(!TxtLogger.instance) TxtLogger.instance = new TxtLogger()
@@ -10,6 +10,6 @@ export default class TxtLogger {
     }
 
     public log(...args: any[]) {
-        console.log(...args);
+        this.c.log(...args);
     }
 }
