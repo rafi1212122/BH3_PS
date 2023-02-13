@@ -1,8 +1,11 @@
 import net from "net"
 import { GetEquipmentDataReq, GetEquipmentDataRsp, GetEquipmentDataRsp_CmdId, GetEquipmentDataRsp_Retcode, Material, Mecha, Stigmata } from "../../BengHuai"
+import GameServer from "../GameServer"
 import Packet from "../Packet"
 
 export default (socket: net.Socket, packet: GetEquipmentDataReq) => {
+    const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
+    const user = session?.user
     Packet.getInstance().serializeAndSend(socket, GetEquipmentDataRsp_CmdId.CMD_ID, {
         retcode: GetEquipmentDataRsp_Retcode.SUCC,
         weaponList: [
@@ -148,7 +151,7 @@ export default (socket: net.Socket, packet: GetEquipmentDataReq) => {
             },
             {
                 id: 100, //should be scoin
-                num: 69420
+                num: user?.scoin
             },
             {
                 id: 803,

@@ -23,8 +23,7 @@ export default class Interface{
     public start(){
         this.rl.question("", async (cmd) => {
             if (!cmd) {
-                Interface.getInstance().start()
-                return
+                return Interface.getInstance().start()
             }
 
             const args = cmd.split(' ')
@@ -40,7 +39,8 @@ export default class Interface{
                     })
                     return Interface.getInstance().start()
                 }
-                this.target = GameServer.getInstance().sessions.get(args[1])
+                this.target = GameServer.getInstance().sessions.get(Array.from(GameServer.getInstance().sessions.keys()).map(key=>key.includes(args[1])?key:"")[0])
+                return Interface.getInstance().start()
             }
 
             if(!this.target){
@@ -55,7 +55,7 @@ export default class Interface{
             }).catch(() => {
                 logger('Invalid command!', 'danger', 'CMD')
             })
-            Interface.getInstance().start()
+            return Interface.getInstance().start()
         })
         this.rl.on('close', () => {
             console.log("Thanks for using!")
