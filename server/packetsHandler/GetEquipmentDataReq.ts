@@ -147,8 +147,8 @@ export default (socket: net.Socket, packet: GetEquipmentDataReq) => {
                 num: 900
             },
             {
-                id: 100,
-                num: 320186
+                id: 100, //should be scoin
+                num: 69420
             },
             {
                 id: 803,

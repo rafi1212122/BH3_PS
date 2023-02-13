@@ -1,5 +1,4 @@
 import net from "net"
-import logger from "../../util/logger"
 import { FinishGuideReportReq, FinishGuideReportRsp, FinishGuideReportRsp_CmdId, FinishGuideReportRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 

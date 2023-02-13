@@ -6,6 +6,7 @@ export default (socket: net.Socket, packet: GetWarshipDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetWarshipDataRsp_CmdId.CMD_ID, {
         retcode: GetWarshipDataRsp_Retcode.SUCC,
         warshipList: [
+            {},
             {
                 warshipId: 400004,
             },

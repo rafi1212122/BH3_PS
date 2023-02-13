@@ -5,6 +5,17 @@ import Packet from "../Packet"
 export default (socket: net.Socket, packet: GetStageDataReq) => {
     Packet.getInstance().serializeAndSend(socket, GetStageDataRsp_CmdId.CMD_ID, {
         retcode: GetStageDataRsp_Retcode.SUCC,
+        eventDataList: [
+            {
+                beginTime: 1673467200,
+                endTime: 1673467200*2,
+                chapterId: 34,
+                unlockLevel: 30
+            }
+        ],
+        finishedChapterList: [
+            1
+        ],
         stageList: [
             {
                 id: 101601
