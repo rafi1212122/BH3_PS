@@ -2,7 +2,7 @@
 ### A PS for HI3 sea client
 #### Heavily inspired from CrepeSR
 --------------------------
-elp me fix some packet are not received by da serber
+pls elp me on dumping protos 
 __________________________
 
 ### What works
