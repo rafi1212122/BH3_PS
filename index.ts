@@ -11,7 +11,7 @@ const app = express();
 app.disable('x-powered-by');
 app.use(express.json());
 
-app.all('/admin/mi18n/plat_oversea/*', (req: Request, res: Response) => {
+app.all('/admin/mi18n/*', (req: Request, res: Response) => {
     return res.json({
         version: 67
     })

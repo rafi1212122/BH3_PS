@@ -1,4 +1,3 @@
-package bh3;
 syntax = "proto2";
 
 message AccelerateRestaurantWorkReq {
@@ -15926,27 +15925,27 @@ message GetBurdenAlleviationRsp {
     }
 }
 
-message GetCardProductInfoReq {
+// message GetCardProductInfoReq {
 
-    enum CmdId {
-        CMD_ID = 1142;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 1142;
+//     }
+// }
 
 
-message GetCardProductInfoRsp {
-    optional Retcode retcode = 1;
-    repeated CardProductInfo card_product_info_list = 2;
+// message GetCardProductInfoRsp {
+//     optional Retcode retcode = 1;
+//     repeated CardProductInfo card_product_info_list = 2;
 
-    enum CmdId {
-        CMD_ID = 1143;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-        NOT_OPEN = 2;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 1143;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//         NOT_OPEN = 2;
+//     }
+// }
 
 message GetChallengeStepBonusReq {
     optional uint32 step_id = 1;
@@ -19702,31 +19701,31 @@ message GetPrivilegeInfoRsp {
     }
 }
 
-message GetProductListReq {
+// message GetProductListReq {
 
-    enum CmdId {
-        CMD_ID = 98;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 98;
+//     }
+// }
 
 
 
-message GetProductListRsp {
-    optional Retcode retcode = 1;
-    repeated Product product_list = 2;
-    optional uint32 next_random_box_product_refresh_time = 3;
-    optional uint32 next_limit_product_refresh_time = 4;
-    repeated FoundationData foundation_list = 5;
+// message GetProductListRsp {
+//     optional Retcode retcode = 1;
+//     repeated Product product_list = 2;
+//     optional uint32 next_random_box_product_refresh_time = 3;
+//     optional uint32 next_limit_product_refresh_time = 4;
+//     repeated FoundationData foundation_list = 5;
 
-    enum CmdId {
-        CMD_ID = 99;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-        DEVICE_ERROR = 2;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 99;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//         DEVICE_ERROR = 2;
+//     }
+// }
 
 message GetProductRecommendListReq {
 
@@ -20041,26 +20040,26 @@ message GetRecommendFriendListRsp {
     }
 }
 
-message GetRecommendGoodsReq {
+// message GetRecommendGoodsReq {
 
-    enum CmdId {
-        CMD_ID = 1275;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 1275;
+//     }
+// }
 
 
-message GetRecommendGoodsRsp {
-    optional Retcode retcode = 1;
-    repeated RecommendGoods recommend_goods_list = 2;
+// message GetRecommendGoodsRsp {
+//     optional Retcode retcode = 1;
+//     repeated RecommendGoods recommend_goods_list = 2;
 
-    enum CmdId {
-        CMD_ID = 1276;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 1276;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//     }
+// }
 
 
 
@@ -20534,50 +20533,50 @@ message GetSecurityPasswordRsp {
     }
 }
 
-message GetShopListReq {
+// message GetShopListReq {
 
-    enum CmdId {
-        CMD_ID = 201;
-    }
-}
-
-
-message GetShopListRsp {
-    optional Retcode retcode = 1;
-    repeated Shop shop_list = 2;
-    optional bool is_all = 3;
-
-    enum CmdId {
-        CMD_ID = 202;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-    }
-}
-
-message GetShoppingMallListReq {
-
-    enum CmdId {
-        CMD_ID = 1157;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 201;
+//     }
+// }
 
 
+// message GetShopListRsp {
+//     optional Retcode retcode = 1;
+//     repeated Shop shop_list = 2;
+//     optional bool is_all = 3;
 
-message GetShoppingMallListRsp {
-    optional Retcode retcode = 1;
-    repeated Shop shop_list = 2;
-    repeated EffectiveGiftGoodsData effective_gift_goods_list = 3;
+//     enum CmdId {
+//         CMD_ID = 202;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//     }
+// }
 
-    enum CmdId {
-        CMD_ID = 1158;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-    }
-}
+// message GetShoppingMallListReq {
+
+//     enum CmdId {
+//         CMD_ID = 1157;
+//     }
+// }
+
+
+
+// message GetShoppingMallListRsp {
+//     optional Retcode retcode = 1;
+//     repeated Shop shop_list = 2;
+//     repeated EffectiveGiftGoodsData effective_gift_goods_list = 3;
+
+//     enum CmdId {
+//         CMD_ID = 1158;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//     }
+// }
 
 message GetSignInRewardReq {
 
@@ -21170,32 +21169,32 @@ message GetTileMapRsp {
     }
 }
 
-message GetTimeLimitAddUpDataReq {
+// message GetTimeLimitAddUpDataReq {
 
-    enum CmdId {
-        CMD_ID = 255;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 255;
+//     }
+// }
 
 
 
-message GetTimeLimitAddUpDataRsp {
-    optional Retcode retcode = 1;
-    optional TimeLimitAddUpType type = 2;
-    optional uint32 begin_time = 3;
-    optional uint32 end_time = 4;
-    optional uint32 add_up_value = 5;
-    repeated TimeLimitAddUpReward reward_list = 6;
+// message GetTimeLimitAddUpDataRsp {
+//     optional Retcode retcode = 1;
+//     optional TimeLimitAddUpType type = 2;
+//     optional uint32 begin_time = 3;
+//     optional uint32 end_time = 4;
+//     optional uint32 add_up_value = 5;
+//     repeated TimeLimitAddUpReward reward_list = 6;
 
-    enum CmdId {
-        CMD_ID = 256;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-        NOT_OPEN = 2;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 256;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//         NOT_OPEN = 2;
+//     }
+// }
 
 message GetTowerRaidActivityReq {
 
@@ -21346,27 +21345,27 @@ message GetVersionActivityRsp {
     }
 }
 
-message GetVipRewardDataReq {
+// message GetVipRewardDataReq {
 
-    enum CmdId {
-        CMD_ID = 197;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 197;
+//     }
+// }
 
 
-message GetVipRewardDataRsp {
-    optional Retcode retcode = 1;
-    optional uint32 total_pay_hcoin = 2;
-    repeated VipReward vip_reward_list = 3;
+// message GetVipRewardDataRsp {
+//     optional Retcode retcode = 1;
+//     optional uint32 total_pay_hcoin = 2;
+//     repeated VipReward vip_reward_list = 3;
 
-    enum CmdId {
-        CMD_ID = 198;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 198;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//     }
+// }
 
 message GetVipRewardReq {
     repeated uint32 vip_level_list = 1;
@@ -44569,4 +44568,459 @@ message WorldMapData {
     optional uint32 weight = 6;
     optional uint32 advance_time = 7;
     optional uint32 id = 8;
+}
+//manual proto below
+
+message GetNewOpenworldReq {
+    repeated OpenworldDataType data_type = 1;
+    
+    enum CmdId {
+        CMD_ID = 4496;
+    }
+}
+
+message GetNewOpenworldRsp {
+    //TODO: field number may be wrong
+    optional Retcode retcode = 1;
+    repeated OpenworldDataType data_type = 2;
+    repeated OpenworldMapBriefData map_list = 3;
+    optional uint32 next_refresh_time = 4;
+    optional uint32 global_random_seed = 5;
+    optional uint32 close_time = 6;
+    repeated OpenworldCook cook_list = 7;
+    optional uint32 quest_theme_index = 8;
+    repeated OpenworldTechData tech = 9;
+    repeated OpenworldMechaPort mecha_port_list = 10;
+    optional uint32 quest_level = 11;
+    optional uint32 quest_star = 12;
+    optional uint32 max_quest_level = 13;
+
+    enum CmdId {
+        CMD_ID = 4497;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        CYCLE_NOT_OPEN = 2;
+    }
+}
+
+message OpenworldMechaPort {
+    optional MechaSlot slot = 1;
+    optional uint32 mecha_id = 2;
+}
+
+enum OpenworldDataType {
+    OPENWORLD_DATA_ALL = 0;
+    OPENWORLD_DATA_COOK = 1;
+    OPENWORLD_DATA_TECH = 2;
+    OPENWORLD_DATA_MECHA = 3;
+}
+
+message GetOpenworldStoryReq {
+    enum CmdId {
+        CMD_ID = 4500;
+    }
+}
+
+message GetOpenworldStoryRsp {
+    optional Retcode retcode = 1;
+    repeated uint32 finish_story_id_list = 2;
+    repeated OpenworldStory cur_story_list = 3;
+    repeated uint32 finish_story_id_add_list = 4;
+    repeated uint32 finish_story_id_del_list = 5;
+    optional bool is_all = 6;
+
+    enum CmdId {
+        CMD_ID = 4501;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message GachaReq {
+    optional GachaType type = 1;
+    optional uint32 num = 2;
+    optional bool is_use_hcoin = 3;
+    optional uint32 gacha_random = 4;
+    optional uint32 simulate_magic = 5;
+    optional bool is_use_free_gacha = 6;
+
+    enum CmdId {
+        CMD_ID = 4700;
+    }
+}
+
+message GachaRsp {
+    optional Retcode retcode = 1;
+    repeated GachaItem item_list = 2;
+    optional uint32 gacha_random = 3;
+    optional GetGachaDisplayRsp display = 4;
+    optional GachaExFragment ex_fragment = 5;
+    optional bool is_use_free_gacha = 6;
+
+    enum CmdId {
+        CMD_ID = 4701;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        FRIENDS_POINT_LACK = 2;
+        TICKET_LACK = 3;
+        EQUIPMENT_FULL = 4;
+        GACHA_CLOSED = 5;
+        HCOIN_LACK = 6;
+        EQUIPMENT_MATERIAL_LIMIT = 7;
+        EQUIPMENT_FRAGMENT_LIMIT = 8;
+        MAX_TIMES_LIMIT = 9;
+        GACHA_FINISHED = 10;
+        USE_HCOIN_FORBID = 11;
+        REQUIRE_SELECT = 12;
+        NOT_NEWBIE = 13;
+        FEATURE_CLOSED = 14;
+        DAILY_TIMES_LIMIT = 15;
+        NOT_GOBACK = 16;
+        FREE_TYPE_MISMATCH = 17;
+    }
+}
+
+message GachaExFragment {
+    //TODO: field number may be wrong
+    optional uint32 ex_id = 1; 
+    optional uint32 ex_energy = 2;
+    optional uint32 ex_num = 3;
+    optional uint32 ex_energy_add = 4; 
+    optional uint32 fragment_add = 5;
+    optional uint32 ex_energy_add_orig = 6;
+    optional uint32 ex_energy_add_bonus = 7;
+    optional uint32 avatar_id = 8;
+}
+
+message GetGachaDisplayReq {
+    optional bool is_all = 1;
+    optional GachaType type = 2;
+
+    enum CmdId {
+        CMD_ID = 4702;
+    }
+}
+
+message GetGachaDisplayRsp {
+    //TODO: field number may be wrong
+    optional Retcode retcode = 1;
+    optional bool is_all = 2;
+    optional GachaType type = 3;
+    optional uint32 pray_gacha_id = 4;
+    optional uint32 gacha_random = 5;
+    repeated GachaDisplayInfo gacha_display_info_list = 6;
+    repeated GachaTenDiscountInfo gacha_ten_discount_info_list = 7;
+    repeated GachaDailyTimesLimit gacha_daily_times_limit_list = 8;
+
+
+    enum CmdId {
+        CMD_ID = 4703;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message GachaDisplayInfo {
+    optional GachaType gacha_type = 1;
+    optional GachaDisplayCommonData common_data = 2;
+    optional HcoinGachaData hcoin_gacha_data = 3;
+    optional FriendsPointGachaData friends_point_gacha_data = 4;
+    optional ActivityGachaData activity_gacha_data = 5;
+    optional CustomGachaData custom_gacha_data = 6;
+    optional UniqueGachaData unique_gacha_data = 7;
+    optional BoxGachaData box_gacha_data = 8;
+    optional PrayGachaData pray_gacha_data = 9;
+    //TODO: tobe implemented
+    // optional ControllableBoxGachaData controllable_box_gacha_data = 10;
+    // optional OptionalGachaData optional_gacha_data = 11;
+    // optional AdventureGachaData adventure_gacha_data = 12; 
+    // optional AdventureEquipGachaData adventure_equip_gacha_data = 13;
+    // optional SpEquipGachaData sp_equip_gacha_data = 14;
+    // optional SpecialCommonGachaData special_gacha_data = 15;
+}
+
+message GachaTenDiscountInfo {
+    optional uint32 activity_id = 1;
+    optional uint32 begin_time = 2;
+    optional uint32 end_time = 3;
+    optional uint32 ticket_cost_num = 4;
+    optional bool is_used = 5; 
+    repeated uint32 gacha_type_list = 6;
+}
+
+message GachaDailyTimesLimit {
+    optional GachaType type = 1;
+    optional uint32 group_daily_times = 2;
+    optional uint32 group_daily_limit_times = 3;
+    optional string group_limit_display_ext = 4;
+}
+
+message AvatarCultivateGetActivityReq {
+    enum CmdId {
+        CMD_ID = 5991;
+    }
+}
+
+message AvatarCultivateGetActivityRsp {
+    optional Retcode retcode = 1;
+    repeated AvatarCultivateActivityAreaDropRecord drop_record_list = 2;
+    repeated AvatarCultivateActivityRewardLineRecord reward_line_record_list = 3;
+
+    enum CmdId {
+        CMD_ID = 5992;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message AvatarCultivateActivityAreaDropRecord {
+    optional uint32 area_id = 1;
+    optional uint32 cur_drop_num = 2;
+}
+
+message AvatarCultivateActivityRewardLineRecord {
+    optional uint32 stage_id = 1;
+    optional uint32 max_score = 2;
+}
+
+message GetShopListReq {
+    enum CmdId {
+        CMD_ID = 6700;
+    }
+}
+
+message GetShopListRsp {
+    optional Retcode retcode = 1;
+    repeated Shop shop_list = 2;
+    optional bool is_all = 3;
+
+    enum CmdId {
+        CMD_ID = 6701;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message GetShoppingMallListReq {
+    enum CmdId {
+        CMD_ID = 6702;
+    }
+}
+
+message GetShoppingMallListRsp {
+    //TODO: field number 3 may be wrong
+    optional Retcode retcode = 1;
+    repeated Shop shop_list = 2;
+    repeated EffectiveGiftGoodsData effective_gift_goods_list = 3;
+
+    enum CmdId {
+        CMD_ID = 6703;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message GetProductListReq {
+    enum CmdId {
+        CMD_ID = 6706;
+    }
+}
+
+message GetProductListRsp {
+    //TODO: field number may be wrong
+    optional Retcode retcode = 1;
+    repeated Product product_list = 2;
+    optional uint32 next_random_box_product_refresh_time = 3;
+    optional uint32 next_limit_product_refresh_time = 4;
+    repeated FoundationData foundation_list = 5;
+
+    enum CmdId {
+        CMD_ID = 6707;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        DEVICE_ERROR = 2;
+    }
+}
+
+message GetRecommendGoodsReq {
+    enum CmdId {
+        CMD_ID = 6710;
+    }
+}
+
+
+message GetRecommendGoodsRsp {
+    optional Retcode retcode = 1;
+    repeated RecommendGoods recommend_goods_list = 2;
+
+    enum CmdId {
+        CMD_ID = 6711;
+    }
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message GetVipRewardDataReq {
+    enum CmdId {
+        CMD_ID = 6717;
+    }
+}
+
+message GetVipRewardDataRsp {
+    optional Retcode retcode = 1;
+    optional uint32 total_pay_hcoin = 2;
+    repeated VipReward vip_reward_list = 3;
+
+    enum CmdId {
+        CMD_ID = 6718;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message GetCardProductInfoReq {
+    enum CmdId {
+        CMD_ID = 6721;
+    }
+}
+
+message GetCardProductInfoRsp {
+    optional Retcode retcode = 1;
+    repeated CardProductInfo card_product_info_list = 2;
+
+    enum CmdId {
+        CMD_ID = 6722;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        NOT_OPEN = 2;
+    }
+}
+
+message GetTimeLimitAddUpDataReq {
+    enum CmdId {
+        CMD_ID = 6735;
+    }
+}
+
+message GetTimeLimitAddUpDataRsp {
+    //TODO: field number may be wrong
+    optional Retcode retcode = 1;
+    optional TimeLimitAddUpType type = 2;
+    optional uint32 begin_time = 3;
+    optional uint32 end_time = 4;
+    optional uint32 add_up_value = 5;
+    repeated TimeLimitAddUpReward reward_list = 6;
+
+    enum CmdId {
+        CMD_ID = 6736;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        NOT_OPEN = 2;
+    }
+}
+
+message PlatformShooterWeaponPoolGetDisplayReq {
+    optional uint32 activity_id = 1;
+
+    enum CmdId {
+        CMD_ID = 6954;
+    }
+}
+
+message PlatformShooterWeaponPoolGetDisplayRsp {
+    optional Retcode retcode = 1;
+    optional uint32 activity_id = 2;
+    optional uint32 gacha_random = 3;
+    repeated PlatformShooterWeaponPool pool_list = 4;
+
+    enum CmdId {
+        CMD_ID = 6955;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message PlatformShooterWeaponPool {
+    optional uint32 pool_id = 1;
+    optional PlatformShooterWeaponPoolStatus status = 2;
+    repeated uint32 has_got_weapon_list = 3;
+}
+
+enum PlatformShooterWeaponPoolStatus {
+    PLATFORM_SHOOTER_WEAPON_POOL_NONE = 0;
+    PLATFORM_SHOOTER_WEAPON_POOL_LOCKED = 1;
+    PLATFORM_SHOOTER_WEAPON_POOL_DOING = 2;
+    PLATFORM_SHOOTER_WEAPON_POOL_FINISHED = 3;
+}
+
+message MirageGetActivityReq {
+    enum CmdId {
+        CMD_ID = 7000;
+    }
+}
+
+message MirageGetActivityRsp {
+    optional Retcode retcode = 1;
+    optional MirageActivity activity = 2;
+
+    enum CmdId {
+        CMD_ID = 7001;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        NOT_OPEN = 2;
+    }
+}
+
+message MirageActivity {
+    //TODO: Not fully implemented!
+    optional uint32 schedule_id = 1;
+    optional uint32 daily_currency_drop_num = 2;
+	repeated MirageTalent talent_list = 3;
+}
+
+
+message MirageTalent {
+    optional uint32 talent_id = 1;
+    optional uint32 level = 2;
 }

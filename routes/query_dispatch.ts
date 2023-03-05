@@ -6,12 +6,11 @@ export default function handler(req: Request, res: Response) {
 	return res.send(JSON.stringify({
 		region_list: [
 			{
-				dispatch_url:
-					`https://${config.serverHost}/query_gateway`,
+				dispatch_url: `https://${config.serverHost}/query_gateway`,
 				ext: gatewayExt,
 				name: config.regionName,
 				retcode: 0,
-				title: config.regionName,
+				title: "",
 			},
 		],
 		retcode: 0,

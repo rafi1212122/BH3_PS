@@ -9,7 +9,7 @@ export default function handler(req: Request, res: Response) {
 				message: "OK",
 				data: {
 					id: 16,
-					game_key: "bh3_os",
+					game_key: "bh3_usa",
 					client: "PC",
 					identity: "I_IDENTITY",
 					guest: false, // enabling guest can cause client to stuck

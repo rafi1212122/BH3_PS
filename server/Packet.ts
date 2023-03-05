@@ -91,7 +91,7 @@ export default class Packet {
         const int32 = new Uint32Array(bytes.buffer);
         const intRemoteIp = int32[0]
 
-        const Message = this.proto?.lookupType(`bh3.${CmdId[cmdId]}`)
+        const Message = this.proto?.lookupType(`${CmdId[cmdId]}`)
         const encodedProtobuf = Message.encode(Message.fromObject(data)).finish()
         const buf = Buffer.alloc(34+encodedProtobuf.length+4)
         buf.writeUInt32BE(0x1234567)
@@ -107,17 +107,17 @@ export default class Packet {
         Buffer.from(encodedProtobuf).copy(buf, 34)
         buf.writeUInt32BE(0x89abcdef, 34+encodedProtobuf.length)
 
-        if(buf.length>1412){
-            // this is so cringe
-            for (let index = 0; index < Math.ceil(buf.length/1412); index++) {
-                let currentBuffer = buf.slice(index*1412, index==Math.ceil(buf.length/1412)-1?buf.length:(index+1)*1412)
-                socket.write(currentBuffer, (err) => {
-                    if(err) return console.log('socket.write error', err)
-                    logger(`${CmdId[cmdId]} Part ${index} sent! - ${currentBuffer.length}`, 'warn', 'TCP')
-                })
-            }
-            return
-        }
+        // if(buf.length>1412){
+        //     // this is so cringe
+        //     for (let index = 0; index < Math.ceil(buf.length/1412); index++) {
+        //         let currentBuffer = buf.slice(index*1412, index==Math.ceil(buf.length/1412)-1?buf.length:(index+1)*1412)
+        //         socket.write(currentBuffer, (err) => {
+        //             if(err) return console.log('socket.write error', err)
+        //             logger(`${CmdId[cmdId]} Part ${index} sent! - ${currentBuffer.length}`, 'warn', 'TCP')
+        //         })
+        //     }
+        //     return
+        // }
 
         TxtLogger.getInstance().log(`${CmdId[cmdId]} | ${buf.toString('hex')}`, data)
         TxtLogger.getInstance().log(`---------------------------------------------------`)
