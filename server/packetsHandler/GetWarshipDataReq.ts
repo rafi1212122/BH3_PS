@@ -8,9 +8,6 @@ export default (socket: net.Socket, packet: GetWarshipDataReq) => {
         warshipList: [
             {},
             {
-                warshipId: 400004,
-            },
-            {
                 warshipId: 401999,
             },
             {
@@ -20,7 +17,25 @@ export default (socket: net.Socket, packet: GetWarshipDataReq) => {
                 warshipId: 401006,
             },
             {
-                warshipId: 401005,
+                warshipId: 400001,
+                componentList: [// idk how other bridges works
+                    {
+                        type: 1,
+                        componentId: 401005
+                    }
+                ]
+            },
+            {
+                warshipId: 400004,
+            },
+            {
+                warshipId: 400005,
+                componentList: [
+                    {
+                        type: 2,
+                        componentId: 401010
+                    }
+                ]
             }
         ],
         isAll: true

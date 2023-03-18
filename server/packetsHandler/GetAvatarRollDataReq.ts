@@ -10,6 +10,21 @@ export default (socket: net.Socket, packet: GetAvatarRollDataReq) => {
                 avatarId: 101,
                 progress: 0,
                 isUnlock: true
+            },
+            {
+                avatarId: 201,
+                progress: 0,
+                isUnlock: true
+            },
+            {
+                avatarId: 105,
+                progress: 0,
+                isUnlock: true
+            },
+            {
+                avatarId: 317,
+                progress: 0,
+                isUnlock: true
             }
         ],
         isAll: true

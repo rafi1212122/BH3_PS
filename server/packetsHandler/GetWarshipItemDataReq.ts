@@ -9,6 +9,7 @@ export default (socket: net.Socket, packet: GetWarshipItemDataReq) => {
             400004,
             401005,
             401006,
+            401010,
             401998,
             401999
         ],

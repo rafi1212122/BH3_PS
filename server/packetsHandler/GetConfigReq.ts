@@ -1,3 +1,4 @@
+import dayjs from "dayjs"
 import net from "net"
 import { GetConfigReq, GetConfigRsp, GetConfigRsp_CmdId, GetConfigRsp_Retcode } from "../../BengHuai"
 import config from "../../config"
@@ -171,7 +172,8 @@ export default (socket: net.Socket, packet: GetConfigReq) => {
                 "beginTime": 1673467200,
                 "endTime": 1675396800,
                 "paraIntList": [
-                    317
+                    106,
+                    206
                 ]
             },
             {
@@ -1183,7 +1185,7 @@ export default (socket: net.Socket, packet: GetConfigReq) => {
         },
         "isCanGalTouch": true,
         "isResistanceOpen": true,
-        "nextDayBeginTime": parseInt(getTs())+100000
+        "nextDayBeginTime": Math.round(dayjs().add(1, 'day').startOf("day").toDate().getTime()/1000)
     } as GetConfigRsp)
 }
 

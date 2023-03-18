@@ -7,7 +7,7 @@ export default (socket: net.Socket, packet: GetNewbieActivityReq) => {
     Packet.getInstance().serializeAndSend(socket, GetNewbieActivityRsp_CmdId.CMD_ID, {
         retcode: GetNewbieActivityRsp_Retcode.SUCC,
         scheduleId: 129,
-        endTime: parseInt(getTs()) + 1000000,
+        endTime: parseInt(getTs())*2,
         challenge: {
             isTakeChallengeReward: false,
             enterTimes: 0

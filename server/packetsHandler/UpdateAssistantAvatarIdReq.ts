@@ -7,6 +7,7 @@ import User from "../../mongodb/Model/User"
 export default async (socket: net.Socket, packet: UpdateAssistantAvatarIdReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
+    console.log(packet)
     if(!user){
         return Packet.getInstance().serializeAndSend(socket, UpdateAssistantAvatarIdRsp_CmdId.CMD_ID, {
             retcode: UpdateAssistantAvatarIdRsp_Retcode['FAIL'],
@@ -25,10 +26,10 @@ export default async (socket: net.Socket, packet: UpdateAssistantAvatarIdReq) =>
     session.user = updateUser.value
     Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
         retcode: GetMainDataRsp_Retcode.SUCC,
-        assistantAvatarId: packet.avatarId
+        assistantAvatarId: updateUser.value.assistantAvatarId
     } as GetMainDataRsp)
     
-    // Packet.getInstance().serializeAndSend(socket, UpdateAssistantAvatarIdRsp_CmdId.CMD_ID, {
-    //     retcode: UpdateAssistantAvatarIdRsp_Retcode.SUCC,
-    // } as UpdateAssistantAvatarIdRsp)
+    Packet.getInstance().serializeAndSend(socket, UpdateAssistantAvatarIdRsp_CmdId.CMD_ID, {
+        retcode: UpdateAssistantAvatarIdRsp_Retcode.SUCC,
+    } as UpdateAssistantAvatarIdRsp)
 }

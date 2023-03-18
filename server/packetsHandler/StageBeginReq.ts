@@ -18,7 +18,9 @@ export default async (socket: net.Socket, packet: StageBeginReq) => {
         progress: 0,
         signKey: stageKeys.find((val)=>val.stageId===packet.stageId)?.key,
         isCollectCheatData: false,
-        dropItemList: [] as DropItem[]
+        dropItemList: [] as DropItem[],
+        tag: 0,
+        stageTransactionStr: `${user.uid}-${packet.stageId}`
     } as StageBeginRsp)
 
     if(packet.stageId===10101){
@@ -48,5 +50,9 @@ const stageKeys = [
     {
         stageId: 146074,
         key: '61793084'
+    },
+    {
+        stageId: 13910,
+        key: '1971771435'
     },
 ]

@@ -1,7 +1,7 @@
 export default {
     serverHost: require('os').hostname(),
     gameServerPort: 16100,
-    regionName: "BH3_PS",
+    regionName: "overseas01",
     mongodbUrl: "mongodb://localhost:27017"
 } as configInterface
 

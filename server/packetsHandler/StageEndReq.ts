@@ -1,10 +1,11 @@
 import net from "net"
-import { GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, PlayerLevelUpNotify, PlayerLevelUpNotify_CmdId, StageEndReq, StageEndRsp, StageEndRsp_CmdId, StageEndRsp_Retcode, StageEndStatus } from "../../BengHuai"
+import { GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode, PlayerLevelUpNotify, PlayerLevelUpNotify_CmdId, StageEndReq, StageEndReqBody, StageEndRsp, StageEndRsp_CmdId, StageEndRsp_Retcode, StageEndStatus } from "../../BengHuai"
 import User from "../../mongodb/Model/User"
 import GameServer from "../GameServer"
 import Packet from "../Packet"
 import ChapterGroupGetDataReq from "./ChapterGroupGetDataReq"
 import GetConfigReq from "./GetConfigReq"
+import logger from '../../util/logger'
 
 export default async (socket: net.Socket, packet: StageEndReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -14,10 +15,11 @@ export default async (socket: net.Socket, packet: StageEndReq) => {
             retcode: StageEndRsp_Retcode.FAIL,
         } as StageEndRsp)
     }
+    const stageEndBody = StageEndReqBody.decode(packet.body)
     const updateUser = await User.findOneAndUpdate({
         uid: user.uid,
     }, {
-        $inc: { scoin: 750, exp: 7, level: 1, stamina: -6 }
+        $inc: { scoin: stageEndBody.scoinReward, exp: 7, level: 1, stamina: -6 }
     }, {
         returnDocument: 'after'
     })
@@ -28,10 +30,10 @@ export default async (socket: net.Socket, packet: StageEndReq) => {
 
     Packet.getInstance().serializeAndSend(socket, StageEndRsp_CmdId.CMD_ID, {
         retcode: StageEndRsp_Retcode.SUCC,
-        stageId: 10101,
+        stageId: stageEndBody.stageId,
         playerExpReward: 30,
-        avatarExpReward: 0,
-        scoinReward: 750,
+        avatarExpReward: stageEndBody.avatarExpReward,
+        scoinReward: stageEndBody.scoinReward,
         expConvertScoin: 0,
         buffReward: {
             avatarExpReward: 0
