@@ -23,7 +23,7 @@ export default function handler(req: Request, res: Response) {
 		oaserver_url: `http://${config.serverHost}/oaserver`,
 		region_name: config.regionName,
 		retcode: 0,
-		server_cur_time: getTs(),
+		server_cur_time: parseInt(getTs()),
 		server_cur_timezone: 7,
 		server_ext: {
 			cdkey_url: "https://sg-public-api.hoyoverse.com/common/",
@@ -54,7 +54,17 @@ export const getGatewayExt = (version: string) => {
 		"res_use_asset_boundle": "1",
 		"show_version_text": "0",
 		"update_streaming_asb": "1",
-		"use_multy_cdn": "1"
+		"use_multy_cdn": "1",
+		"apm_log_dest": "2",
+		"apm_switch_game_log": "1",
+		"block_error_dialog": "1",
+		"elevator_model_path": "GameEntry/EVA/StartLoading_Model",
+		"ex_res_buff_size": "10485760",
+		"is_xxxx": "0",
+		"mtp_switch": "0",
+		"network_feedback_enable": "0",
+		"show_bulletin_button": "0",
+		"show_bulletin_empty_dialog_bg": "0",
 	}
 }
 
@@ -100,7 +110,7 @@ const getAVUrl = (version: string) => {
 			"bundle-qcloud.bh3.com/tmp/CGAudio",
 			"bundle.bh3.com/tmp/CGAudio",
 		]
-	} else return[]
+	} else return undefined
 }
 
 const getResUrl = (version: string) => {
