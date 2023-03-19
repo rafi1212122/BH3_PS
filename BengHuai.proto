@@ -45024,3 +45024,48 @@ message MirageTalent {
     optional uint32 talent_id = 1;
     optional uint32 level = 2;
 }
+
+message GetOpenworldQuestActivityReq {
+    enum CmdId {
+        CMD_ID = 4546;
+    }
+}
+
+message GetOpenworldQuestActivityRsp {
+    //TODO: field number may be wrong
+    optional Retcode retcode = 1;
+    optional uint32 activity_id = 2;
+    optional uint32 total_score = 3;
+    optional uint32 cycle_quest_taken_num = 4;
+    
+    enum CmdId {
+        CMD_ID = 4547;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        NOT_OPEN = 2;
+    }
+}
+
+message WaveRushGetActivityReq {
+    enum CmdId {
+        CMD_ID = 5961;
+    }
+}
+
+message WaveRushGetActivityRsp {
+    //TODO: Not fully implemented!
+    optional Retcode retcode = 1;
+    
+    enum CmdId {
+        CMD_ID = 5962;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        NOT_OPEN = 2;
+    }
+}

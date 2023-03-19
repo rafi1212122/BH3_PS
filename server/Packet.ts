@@ -120,28 +120,6 @@ export default class Packet {
         //     return
         // }
 
-        const exRsp = (JSON.parse(readFileSync("C:/Users/rafi1/Desktop/HonkaiPacketSniffer/BH_64.json").toString('utf-8')) as JSONDump[]).find(packet=>packet.parsed.cmd_id===cmdId)
-        if(exRsp&&cmdId>5){
-            const body = Buffer.from(exRsp.parsed.body, 'hex')
-            const buf = Buffer.alloc(34+body.length+4)
-            buf.writeUInt32BE(0x1234567)
-            buf.writeUInt16BE(1, 4)
-            buf.writeUInt16BE(0, 6)
-            buf.writeUInt32BE(session?.packetSentCount||0, 8)
-            buf.writeUInt32BE(session?.user?.uid||0, 12)
-            buf.writeUInt32BE(0, 16)
-            buf.writeUInt32BE(0, 20)
-            buf.writeUInt32BE(cmdId, 24)
-            buf.writeUInt16BE(0, 28)
-            buf.writeUInt32BE(body.length, 30)
-            Buffer.from(body).copy(buf, 34)
-            buf.writeUInt32BE(0x89abcdef, 34+body.length)
-            return socket.write(buf, (err) => {
-                if(err) return console.log('socket.write error', err)
-                logger(`dummy ${CmdId[cmdId]} sent!`, 'warn', 'TCP')
-            })
-        }
-
         TxtLogger.getInstance().log(`${CmdId[cmdId]} | ${buf.toString('hex')}`, data)
         TxtLogger.getInstance().log(`---------------------------------------------------`)
         
