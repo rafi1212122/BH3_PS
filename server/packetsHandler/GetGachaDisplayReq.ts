@@ -13,57 +13,57 @@ export default (socket: net.Socket, packet: GetGachaDisplayReq) => {
                 "gachaType": GachaType.GACHA_SPECIAL_HCOIN,
                 "commonData": {
                     "titleImage": "SpriteOutput/Gacha/TitleKakin3",
-                    "supplyImage": "event/GachaPic/6.4_UP_A_0216_truecolor2048",
-                    "title": "2.16~3.17",
-                    "content": "Focused Target kali ini:\\n\u26054 Weapon Key of Anonymity\\n\u26054 Stigmata Kiana Kaslana(T)(M)(B)",
+                    "supplyImage": "event/GachaPic/6.5_UP_A_0406_truecolor2048",
+                    "title": "4.6~4.14",
+                    "content": "Focused Target kali ini:\\n\u26054 Weapon Keys of Oblivion\\n\u26054 Stigmata Raksha(T)(M)(B)",
                     "upWeaponList": [
                         {
-                            "id": 21731,
+                            "id": 21341,
                             "level": 10
                         }
                     ],
                     "upStigmataList": [
                         {
-                            "id": 34841,
+                            "id": 32761,
                             "level": 10
                         },
                         {
-                            "id": 34851,
+                            "id": 32771,
                             "level": 10
                         },
                         {
-                            "id": 34861,
+                            "id": 32781,
                             "level": 10
                         }
                     ],
                     "contentUrl": "",
                     "btnImagePath": "",
                     "isEnablePrompt": true,
-                    "gachaId": 30103800,
-                    "dataBeginTime": 1676491200,
-                    "dataEndTime": 1679025599,
-                    "displayExt": "{\"web_intro_url\":\"\",\"web_intro_img\":\"\",\"web_intro_text\":\"\",\"common_btn_link_type\":\"\",\"common_btn_link_params\":\"\",\"common_btn_link_url\":\"\",\"common_btn_img\":\"\",\"common_btn_text\":\"\",\"common_gacha_bg\":\"event/GachaPic/6.4_UP_A_0216BG_truecolor2048\",\"banner_btn_img\":\"event/Immediately/GachaPic/6.4_W1FSA_Pack\",\"banner_btn_link_type\":\"115\",\"banner_btn_link_params\":\"16305614,16305615,16305616,16305617,16305618,16303616,16303617\",\"common_title_img\":\"event/Immediately/GachaPic/const_Focus_Title_truecolor2048\"}"
+                    "gachaId": 30112200,
+                    "dataBeginTime": 1680724800,
+                    "dataEndTime": 1681444799,
+                    "displayExt": "{\"web_intro_url\":\"\",\"web_intro_img\":\"\",\"web_intro_text\":\"\",\"common_btn_link_type\":\"\",\"common_btn_link_params\":\"\",\"common_btn_link_url\":\"\",\"common_btn_img\":\"\",\"common_btn_text\":\"\",\"common_gacha_bg\":\"event/GachaPic/6.5_UP_A_0406BG_truecolor2048\",\"banner_btn_img\":\"event/Immediately/GachaPic/const_GiftBanner_Focus\",\"banner_btn_link_type\":\"115\",\"banner_btn_link_params\":\"16303616,16303617\",\"common_title_img\":\"event/Immediately/GachaPic/const_Focus_Title_truecolor2048\"}"
                 },
                 "hcoinGachaData": {
                     "ticketHcoinCost": 280,
                     "ticketMaterialId": 1102,
                     "wishWellData": {
                         "leftTimes": 1,
-                        "setId": 158,
+                        "setId": 112,
                         "materialId": 8004,
                         "materialNum": 2000,
                         "equipNeedNum": 2,
                         "equipList": [
                             {
-                                "equipId": 34841,
+                                "equipId": 32761,
                                 "equipLevel": 10
                             },
                             {
-                                "equipId": 34851,
+                                "equipId": 32771,
                                 "equipLevel": 10
                             },
                             {
-                                "equipId": 34861,
+                                "equipId": 32781,
                                 "equipLevel": 10
                             }
                         ],
@@ -74,16 +74,12 @@ export default (socket: net.Socket, packet: GetGachaDisplayReq) => {
                     "protectDisplayInfo": {
                         "protectDisplayType": GachaProtectDisplayInfo_ProtectDisplayType.EQUIP_DISPLAY,
                         "displayKeyItemList": [
-                            21731,
-                            34841,
-                            34851,
-                            34861
+                            21341,
+                            32761,
+                            32771,
+                            32781
                         ],
-                        "dropedUpItemList": [
-                            34851,
-                            34861
-                        ],
-                        "noProtectGachaTimes": 25
+                        "noProtectGachaTimes": 0
                     },
                     "displayMaxTimes": 50
                 }

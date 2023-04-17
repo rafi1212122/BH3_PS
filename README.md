@@ -2,12 +2,12 @@
 ### A PS for HI3 sea client
 #### Heavily inspired from CrepeSR
 --------------------------
-pls elp me on dumping protos 
+level not working, try to edit level with other programs
 __________________________
 
 ### What works
 - Login
-- Going to the warship / game home (game data not yet aavailable)
+- Going to the warship / game home (some game data not updating)
 
 ### Running the thing
 1. Do Git Clone / Download as Zip

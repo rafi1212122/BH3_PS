@@ -4246,55 +4246,55 @@ message BuyGoodsCost {
     repeated Material cost_item_list = 4;
 }
 
-message BuyGoodsReq {
-    optional uint32 shop_id = 1;
-    optional uint32 goods_id = 2;
-    optional uint32 coupon_material_id = 3;
-    optional uint32 coupon_num = 4;
-    optional uint32 mcoin_coupon_material_id = 5;
-    optional uint32 goods_num = 6;
-    optional uint32 gift_pack_select_reward_id = 7;
-    optional uint32 discount_save_num = 8;
+// message BuyGoodsReq {
+//     optional uint32 shop_id = 1;
+//     optional uint32 goods_id = 2;
+//     optional uint32 coupon_material_id = 3;
+//     optional uint32 coupon_num = 4;
+//     optional uint32 mcoin_coupon_material_id = 5;
+//     optional uint32 goods_num = 6;
+//     optional uint32 gift_pack_select_reward_id = 7;
+//     optional uint32 discount_save_num = 8;
 
-    enum CmdId {
-        CMD_ID = 203;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 203;
+//     }
+// }
 
-message BuyGoodsRsp {
-    optional Retcode retcode = 1;
-    optional uint32 shop_id = 2;
-    optional uint32 goods_id = 3;
-    optional uint32 goods_buy_times = 4;
-    optional uint32 item_id = 5;
-    optional uint32 level = 6;
-    optional uint32 num = 7;
-    optional uint32 gift_pack_select_reward_id = 8;
+// message BuyGoodsRsp {
+//     optional Retcode retcode = 1;
+//     optional uint32 shop_id = 2;
+//     optional uint32 goods_id = 3;
+//     optional uint32 goods_buy_times = 4;
+//     optional uint32 item_id = 5;
+//     optional uint32 level = 6;
+//     optional uint32 num = 7;
+//     optional uint32 gift_pack_select_reward_id = 8;
 
-    enum CmdId {
-        CMD_ID = 204;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-        GOODS_NOT_EXIST = 2;
-        BUY_TIMES_LACK = 3;
-        MONEY_LACK = 4;
-        EQUIPMENT_FULL = 5;
-        SHOP_CLOSE = 6;
-        SHOP_OVERDUE = 7;
-        GIFT_GOODS_EFFECT = 8;
-        GOODS_LOCKED = 9;
-        COUPON_ERROR = 10;
-        COUPON_LACK = 11;
-        FEATURE_CLOSED = 12;
-        MCOIN_LIMIT = 13;
-        GLOBAL_GOODS_NUM_LIMIT = 14;
-        NOT_IN_DISCOUNT = 15;
-        IN_DISCOUNT = 16;
-        DISCOUNT_ERROR = 17;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 204;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//         GOODS_NOT_EXIST = 2;
+//         BUY_TIMES_LACK = 3;
+//         MONEY_LACK = 4;
+//         EQUIPMENT_FULL = 5;
+//         SHOP_CLOSE = 6;
+//         SHOP_OVERDUE = 7;
+//         GIFT_GOODS_EFFECT = 8;
+//         GOODS_LOCKED = 9;
+//         COUPON_ERROR = 10;
+//         COUPON_LACK = 11;
+//         FEATURE_CLOSED = 12;
+//         MCOIN_LIMIT = 13;
+//         GLOBAL_GOODS_NUM_LIMIT = 14;
+//         NOT_IN_DISCOUNT = 15;
+//         IN_DISCOUNT = 16;
+//         DISCOUNT_ERROR = 17;
+//     }
+// }
 
 message BuyProductReq {
     optional string name = 1;
@@ -19727,25 +19727,25 @@ message GetPrivilegeInfoRsp {
 //     }
 // }
 
-message GetProductRecommendListReq {
+// message GetProductRecommendListReq {
 
-    enum CmdId {
-        CMD_ID = 1478;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 1478;
+//     }
+// }
 
-message GetProductRecommendListRsp {
-    optional Retcode retcode = 1;
-    repeated uint32 recommend_list = 2;
+// message GetProductRecommendListRsp {
+//     optional Retcode retcode = 1;
+//     repeated uint32 recommend_list = 2;
 
-    enum CmdId {
-        CMD_ID = 1479;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 1479;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//     }
+// }
 
 message GetPupilEvalDataReq {
 
@@ -20649,28 +20649,28 @@ message GetSimulateActivityRsp {
     }
 }
 
-message GetSingleShopWithoutRefreshReq {
-    optional uint32 shop_id = 1;
+// message GetSingleShopWithoutRefreshReq {
+//     optional uint32 shop_id = 1;
 
-    enum CmdId {
-        CMD_ID = 1617;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 1617;
+//     }
+// }
 
 
-message GetSingleShopWithoutRefreshRsp {
-    optional Retcode retcode = 1;
-    optional Shop shop = 2;
+// message GetSingleShopWithoutRefreshRsp {
+//     optional Retcode retcode = 1;
+//     optional Shop shop = 2;
 
-    enum CmdId {
-        CMD_ID = 1618;
-    }
-    enum Retcode {
-        SUCC = 0;
-        FAIL = 1;
-        NOT_OPEN = 2;
-    }
-}
+//     enum CmdId {
+//         CMD_ID = 1618;
+//     }
+//     enum Retcode {
+//         SUCC = 0;
+//         FAIL = 1;
+//         NOT_OPEN = 2;
+//     }
+// }
 
 message GetSlotMachineMainInfoReq {
     optional uint32 activity_id = 1;
@@ -45055,9 +45055,37 @@ message WaveRushGetActivityReq {
     }
 }
 
+message WaveRushStageScore {
+    optional uint32 stage_id = 1;
+    optional uint32 score = 2;
+}
+
+message WaveRushBuff {
+    optional uint32 buff_id = 1;
+    optional uint32 buff_level = 2;
+}
+
+message WaveRushBuffSuite {
+    optional uint32 suite_id = 1;
+    optional string suite_name = 2;
+    repeated uint32 buff_id_list = 3;
+}
+
+message WaveRushActivity {
+    optional uint32 schedule_id = 1;
+    repeated WaveRushStageScore stage_score_list = 2;
+    repeated WaveRushBuff buff_list = 3;
+    repeated WaveRushBuffSuite buff_suite_list = 4;
+    optional uint32 active_buff_suite_id = 5;
+    optional uint32 cur_daily_stage_id = 6;
+    optional uint32 daily_drop_material_num = 7;
+    optional uint32 daily_drop_limit_num = 8;
+}
+
 message WaveRushGetActivityRsp {
     //TODO: Not fully implemented!
     optional Retcode retcode = 1;
+    optional WaveRushActivity activity = 2;
     
     enum CmdId {
         CMD_ID = 5962;
@@ -45067,5 +45095,491 @@ message WaveRushGetActivityRsp {
         SUCC = 0;
         FAIL = 1;
         NOT_OPEN = 2;
+    }
+}
+
+message OpenworldChapterGetDataReq {
+    optional uint32 map_id = 1;
+    
+    enum CmdId {
+        CMD_ID = 4565;
+    }
+}
+
+message OpenworldChapterGetDataRsp {
+    //TODO: Not fully implemented!
+    optional Retcode retcode = 1;
+    optional OpenworldChapter chapter_data = 2;
+    
+    enum CmdId {
+        CMD_ID = 4566;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message OpenworldChapterSlot {
+    optional uint32 slot_id = 1;
+    optional uint32 buff_id = 2;
+}
+
+message OpenworldChapterBuff {
+    optional uint32 buff_id = 1;
+    optional uint32 level = 2;
+
+    enum Type {
+        SKILL = 3;
+    }
+}
+
+message OpenworldChapterChallenge {
+    optional uint32 today_challenge_times = 1;
+    optional uint32 last_challenge_time = 2;
+}
+
+message OpenworldChapterEndlessTowerSite {
+    optional uint32 site_id = 1;
+    optional uint32 has_take_reward_score = 2;
+}
+
+message OpenworldChapterHero {
+    optional uint32 hero_id = 1;
+    optional uint32 hero_level = 2;
+}
+
+message OpenworldChapterHeroCard {
+    optional uint32 card_id = 1;
+    optional uint32 card_level = 2;
+    optional uint32 card_exp = 3;
+}
+
+message OpenworldChapterHeroCardSlot {
+    optional uint32 slot_idx = 1;
+    optional uint32 card_id = 2;
+}
+
+message OpenworldChapterHeroCardGroup {
+    optional uint32 hero_id = 1;
+    optional string group_name = 2;
+    optional bool is_active = 3;
+    repeated OpenworldChapterHeroCardSlot slot_list = 4;
+}
+
+message OpenworldChapterAchievementMission {
+    optional uint32 mission_id = 1;
+    optional uint32 finish_time = 2;
+}
+
+message OpenworldChapterEndlessChallenge {
+    optional uint32 challenge_id = 1;
+    optional bool is_passed = 2;
+    optional uint32 max_score = 3;
+}
+
+message OpenworldChapterBuilding {
+    optional uint32 main_id = 1;
+    optional uint32 level = 2;
+    optional uint32 level_up_finish_time = 3;
+}
+
+message OpenworldChapterTerminal {
+    optional uint32 level = 1;
+    optional uint32 exp = 2;
+    optional bool is_period_upgraded = 3;
+}
+
+message OpenworldChapterQuestData {
+    repeated OpenworldQuest quest_list = 1;
+    optional uint32 quest_accept_times = 2;
+    optional uint32 quest_refresh_times = 3;
+    optional uint32 special_quest_finished_num = 4;
+}
+
+message OpenworldChapterFurnaceFormulaUseHistory {
+    optional uint32 formula_id = 1;
+    optional uint32 use_times = 2;
+}
+
+enum OpenworldChapterFurnaceWorkStatus {
+    OPENWORLD_CHAPTER_FURNACE_WORK_INVALID = 0;
+    OPENWORLD_CHAPTER_FURNACE_WORK_NOT_BEGIN = 1;
+    OPENWORLD_CHAPTER_FURNACE_WORK_DOING = 2;
+    OPENWORLD_CHAPTER_FURNACE_WORK_FINISHED = 3;
+}
+
+message OpenworldChapterFurnaceWork {
+    optional uint32 unique_id = 1;
+    optional uint32 formula_id = 2;
+    optional OpenworldChapterFurnaceWorkStatus status = 5;
+    optional uint32 finish_time = 6;
+}
+
+message OpenworldChapterFurnace {
+    repeated OpenworldChapterFurnaceFormulaUseHistory formula_use_history_list = 1;
+    repeated OpenworldChapterFurnaceWork furnace_work_list = 2;
+}
+
+message OpenworldChapterTalent {
+    optional uint32 talent_id = 1;
+    optional uint32 talent_level = 2;
+}
+
+message OpenworldChapterDigSiteProgramTimes {
+    optional uint32 program_id = 1;
+    optional uint32 times = 2;
+}
+
+message OpenworldChapterDigSite {
+    optional uint32 main_id = 1;
+    optional uint32 program_id = 2;
+    optional uint32 program_finish_time = 3;
+    repeated OpenworldChapterDigSiteProgramTimes program_times_list = 4;
+}
+
+message OpenworldChapter {
+    optional uint32 map_id = 1;
+    repeated OpenworldChapterSlot slot_list = 2;
+    optional uint32 max_equip_cost = 4;
+    repeated OpenworldChapterBuff buff_list = 5;
+    optional uint32 max_reward_take_num = 6;
+    optional uint32 fame = 7;
+    optional uint32 fame_level = 8;
+    required OpenworldChapterChallenge challenge = 9;
+    repeated OpenworldChapterEndlessTowerSite endless_tower_site_list = 10;
+    repeated OpenworldChapterHero hero_list = 11;
+    repeated OpenworldChapterHeroCard hero_card_list = 14;
+    repeated OpenworldChapterHeroCardGroup hero_card_group_list = 15;
+    repeated OpenworldChapterAchievementMission achievement_mission_list = 16;
+    repeated OpenworldChapterEndlessChallenge endless_challenge_list = 17;
+    repeated OpenworldChapterBuilding building_list = 18;
+    required OpenworldChapterTerminal terminal = 19;
+    required OpenworldChapterQuestData quest_data = 20;
+    required OpenworldChapterFurnace furnace = 21;
+    repeated OpenworldChapterTalent talent_list = 22;
+    repeated uint32 active_talent_id_list = 23;
+    repeated OpenworldChapterDigSite dig_site_list = 24;
+    repeated uint32 got_last_reward_special_qte_map_list = 25;
+}
+
+message OpenworldChapterGetShopDataReq {
+    optional uint32 shop_id = 1;
+    
+    enum CmdId {
+        CMD_ID = 4575;
+    }
+}
+
+message OpenworldChapterGetShopDataRsp {
+    //TODO: Not fully implemented!
+    optional Retcode retcode = 1;
+    optional OpenworldChapterShop shop = 2;
+    
+    enum CmdId {
+        CMD_ID = 4576;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message OpenworldChapterShop {
+    optional uint32 shop_id = 1;
+    repeated OpenworldChapterShopGoods goods_list = 2;
+}
+
+message OpenworldChapterShopGoods {
+    optional uint32 goods_id = 1;
+    optional uint32 cost_material_id = 2;
+    optional uint32 cost_num = 3;
+    optional bool is_sold = 4;
+    optional uint32 need_fame_level = 5;
+    optional uint32 reward_id = 6;
+}
+
+message GetProductRecommendListReq {
+    
+    enum CmdId {
+        CMD_ID = 6729;
+    }
+}
+
+message GetProductRecommendListRsp {
+    //TODO: probably wrong field number implemented!
+    optional Retcode retcode = 1;
+    repeated uint32 recommend_list = 2;
+    
+    enum CmdId {
+        CMD_ID = 6730;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message GetOpenworldMechaDefenseReq {
+    
+    enum CmdId {
+        CMD_ID = 4514;
+    }
+}
+
+message OpenworldMechaDefense {
+    //TODO: probably wrong field number!
+    optional uint32 last_enter_time = 1;
+    optional uint32 left_enter_times = 2;
+    optional uint32 last_rating = 3;
+}
+
+message GetOpenworldMechaDefenseRsp {
+    //TODO: probably wrong field number!
+    optional Retcode retcode = 1;
+    repeated OpenworldMechaDefense mecha_defense = 2;
+    
+    enum CmdId {
+        CMD_ID = 4515;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message GetOpenworldMapReq {
+    optional uint32 map_id = 1;
+
+    enum CmdId {
+        CMD_ID = 4498;
+    }
+}
+
+message OpenworldAreaInfo {
+    optional uint32 area_id = 1;
+    repeated string info_list = 2;
+}
+
+message OpenworldEntityState {
+    optional uint32 entity_id = 1;
+    optional uint32 entity_state = 2;
+}
+
+message OpenworldAreaEntityState {
+    optional uint32 area_id = 1;
+    repeated OpenworldEntityState entity_state_list = 2;
+}
+
+message GetOpenworldMapRsp {
+    required Retcode retcode = 1;
+    optional uint32 map_id = 2;
+    optional uint32 cycle = 3;
+    repeated OpenworldEvent event_list = 4;
+    optional uint32 event_random_seed = 5;
+    optional string spawn_point = 6;
+    repeated OpenworldOverView over_view_list = 7;
+    repeated OpenworldStat stat_list = 8;
+    optional uint32 status = 9;
+    required OpenworldQuestData quest_data = 11;
+    required OpenworldTechData tech_data = 12;
+    optional uint32 has_take_finish_reward_cycle = 13;
+    required OpenworldActivity activity_data = 14;
+    required OpenworldBossHunt boss_hunt = 15;
+    repeated OpenworldAreaInfo area_info_list = 16;
+    repeated OpenworldAreaEntityState area_entity_state_list = 17;
+    repeated uint32 finish_once_event_list = 19;
+
+    enum CmdId {
+        CMD_ID = 4499;
+    }
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message GetOpenworldStageReq {
+    optional uint32 map_id = 1;
+
+    enum CmdId {
+        CMD_ID = 4460;
+    }
+}
+
+message GetOpenworldStageRsp {
+    required Retcode retcode = 1;
+    repeated OpenworldStageAvatarInfo avatar_list = 2;
+    repeated uint32 cook_buffer_list = 3;
+    optional uint32 map_id = 4;
+    repeated uint32 mecha_buff_list = 5;
+    optional uint32 mecha_lost_hp_percent = 6;
+    optional uint32 mecha_lost_sp_percent = 7;
+    optional uint32 map_energy = 8;
+    optional uint32 sc_dlc_fever_score = 9;
+    optional uint32 sc_dlc_climax_score = 10;
+
+    enum CmdId {
+        CMD_ID = 4461;
+    }
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        CYCLE_NOT_OPEN = 2;
+        NOT_OPEN = 3;
+    }
+}
+
+message GetSingleShopWithoutRefreshReq {
+    optional uint32 shop_id = 1;
+
+    enum CmdId {
+        CMD_ID = 6704;
+    }
+}
+
+message GetSingleShopWithoutRefreshRsp {
+    optional Retcode retcode = 1;
+    optional Shop shop = 2;
+
+    enum CmdId {
+        CMD_ID = 6705;
+    }
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        NOT_OPEN = 2;
+    }
+}
+
+message BuyGoodsReq {
+    optional uint32 shop_id = 1;
+    optional uint32 goods_id = 2;
+    optional uint32 coupon_material_id = 3;
+    optional uint32 coupon_num = 4;
+    optional uint32 mcoin_coupon_material_id = 5;
+    optional uint32 goods_num = 6;
+    optional uint32 gift_pack_select_reward_id = 7;
+    optional uint32 discount_save_num = 8;
+
+    enum CmdId {
+        CMD_ID = 6714;
+    }
+}
+
+message BuyGoodsRsp {
+    optional Retcode retcode = 1;
+    optional uint32 shop_id = 2;
+    optional uint32 goods_id = 3;
+    optional uint32 goods_buy_times = 4;
+    optional uint32 item_id = 5;
+    optional uint32 level = 6;
+    optional uint32 num = 7;
+    optional uint32 gift_pack_select_reward_id = 8;
+
+    enum CmdId {
+        CMD_ID = 6715;
+    }
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        GOODS_NOT_EXIST = 2;
+        BUY_TIMES_LACK = 3;
+        MONEY_LACK = 4;
+        EQUIPMENT_FULL = 5;
+        SHOP_CLOSE = 6;
+        SHOP_OVERDUE = 7;
+        GIFT_GOODS_EFFECT = 8;
+        GOODS_LOCKED = 9;
+        COUPON_ERROR = 10;
+        COUPON_LACK = 11;
+        FEATURE_CLOSED = 12;
+        MCOIN_LIMIT = 13;
+        GLOBAL_GOODS_NUM_LIMIT = 14;
+        NOT_IN_DISCOUNT = 15;
+        IN_DISCOUNT = 16;
+        DISCOUNT_ERROR = 17;
+    }
+}
+
+message GetActivityMainDataReq {
+
+    enum CmdId {
+        CMD_ID = 1705;
+    }
+}
+
+message GetActivityMainDataRsp {
+    optional Retcode retcode = 1;
+    repeated uint32 activity_module_type_list = 2;
+
+    enum CmdId {
+        CMD_ID = 1706;
+    }
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message OpenworldHuntActivityGetDataReq {
+    optional uint32 activity_id = 1;
+
+    enum CmdId {
+        CMD_ID = 4600;
+    }
+}
+
+enum HuntActivityHunterState {
+    HUNTER_STATE_NONE = 0;
+    HUNTER_STATE_PARTOL = 1;
+    HUNTER_STATE_CHASE = 2;
+    HUNTER_STATE_BATTLE = 3;
+    HUNTER_STATE_DEAD = 4;
+}
+
+message HuntActivityHunter {
+    optional uint32 hunter_id = 1;
+    optional HuntActivityHunterState state = 2;
+    optional string spawn_point = 3;
+}
+
+message HuntActivityMachine {
+    optional uint32 machine_id = 1;
+    optional uint32 state = 2;
+}
+
+message HuntActivityMapData {
+    optional uint32 map_id = 1;
+    optional bool is_unlock = 2;
+    optional uint32 open_time = 3;
+    required HuntActivityHunter hunter = 4;
+    repeated HuntActivityMachine machine_list = 5;
+    repeated uint32 show_stronghold_id_list = 7;
+    optional uint32 hard_level = 8;
+    optional uint32 remain_stronghold_take_times = 9;
+    repeated OpenworldQuest quest_list = 10;
+    optional uint32 hunting_score = 11;
+    optional uint32 finish_quest_num = 12;
+    repeated uint32 finish_stronghold_id_list = 13;
+}
+
+message OpenworldHuntActivityGetDataRsp {
+    required Retcode retcode = 1;
+    optional uint32 schedule_id = 2;
+    repeated HuntActivityMapData map_data_list = 3;
+    repeated OpenworldTalent talent_list = 4;
+
+    enum CmdId {
+        CMD_ID = 4601;
+    }
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        ACTIVITY_NOT_OPEN = 2;
     }
 }

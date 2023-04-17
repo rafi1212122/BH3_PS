@@ -28,6 +28,11 @@ export default class Interface{
 
             const args = cmd.split(' ')
 
+            if(args[0].toLowerCase()==='exit'){
+                console.log("Thanks for using!")
+                process.exit(0)
+            }
+
             if(args[0].toLowerCase()==='target'){
                 if(!args[1]){
                     const keys = Array.from(GameServer.getInstance().sessions.keys())

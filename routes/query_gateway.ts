@@ -84,8 +84,8 @@ const getAssetUrl = (version: string) => {
 			case 'gf':
 				if(version.includes("beta")){
 					return[
-						"https://bundle-qcloud.bh3.com/asset_bundle/beta_dev/1.0",
-						"https://bundle.bh3.com/asset_bundle/beta_dev/1.0",
+						"https://bh3rd-beta-qcloud.bh3.com/asset_bundle/beta_dev/1.0",
+						"https://bh3rd-beta.bh3.com/asset_bundle/beta_dev/1.0",
 					]
 				}
 				return[
@@ -107,8 +107,8 @@ const getAssetUrl = (version: string) => {
 const getAVUrl = (version: string) => {
 	if (version.includes("gf")&&version.includes("beta")) {
 		return [
-			"bundle-qcloud.bh3.com/tmp/CGAudio",
-			"bundle.bh3.com/tmp/CGAudio",
+			"bh3rd-beta-qcloud.bh3.com/tmp/CGAudio",
+			"bh3rd-beta.bh3.com/tmp/CGAudio",
 		]
 	} else return undefined
 }
@@ -129,8 +129,8 @@ const getResUrl = (version: string) => {
 			case 'gf':
 				if(version.includes("beta")){
 					return[
-						"bundle-qcloud.bh3.com/tmp/beta",
-						"bundle.bh3.com/tmp/beta",
+						"bh3rd-beta-qcloud.bh3.com/tmp/beta",
+						"bh3rd-beta.bh3.com/tmp/beta",
 					]
 				}
 				return[

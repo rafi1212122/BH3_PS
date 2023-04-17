@@ -25,8 +25,8 @@ export default async (socket: net.Socket, packet: GetPlayerTokenReq) => {
         accountType: AccountType['ACCOUNT_HOYOLAB'],
         accountUid: packet.accountUid,
         userType: 3,
-        fightserverIp: 1975629014,
-        fightserverPort: 1368696305,
+        fightserverIp: 863554783,
+        fightserverPort: 769938288,
         hoyolabAccountUid: packet.accountUid
     } as GetPlayerTokenRsp)
     
