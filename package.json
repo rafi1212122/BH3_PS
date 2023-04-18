@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node index.ts --respawn --transpile-only",
-    "dev": "ts-node-dev index.ts --respawn --transpile-only --watch"
+    "dev": "ts-node-dev index.ts --respawn --transpile-only --watch --max_old_space_size=4096"
   },
   "keywords": [],
   "author": "",

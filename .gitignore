@@ -5,3 +5,4 @@ prisma/*.db
 .env
 *.txt
 /resources
+/cache/*

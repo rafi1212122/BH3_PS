@@ -10,6 +10,7 @@ const app = express();
 
 app.disable('x-powered-by');
 app.use(express.json());
+app.use(express.static('cache'))
 
 app.all('/admin/mi18n/*', (req: Request, res: Response) => {
     return res.json({
