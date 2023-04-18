@@ -9,17 +9,33 @@ export default async (socket: Socket, args: string[]) => {
     const user = session?.user
 
     if(!user) return
-    if(isNaN(parseInt(args[1]))) return
+    if(isNaN(parseInt(args[2]))) return
 
-    const updatedUser = (await User.findOneAndUpdate({
-        uid: user.uid
-    }, {
-        $inc: {
-            scoin: parseInt(args[1])
-        }
-    }, {
-        returnDocument: 'after'
-    }))
+    let updatedUser
+    switch (args[1]) {
+        case "add":
+            updatedUser = (await User.findOneAndUpdate({
+                uid: user.uid
+            }, {
+                $inc: {
+                    scoin: parseInt(args[2])
+                }
+            }, {
+                returnDocument: 'after'
+            }))
+            break;    
+        default:
+            updatedUser = (await User.findOneAndUpdate({
+                uid: user.uid
+            }, {
+                $set: {
+                    scoin: parseInt(args[2])
+                }
+            }, {
+                returnDocument: 'after'
+            }))
+            break
+    }
     
     if(!updatedUser.value) return
 

@@ -1,64 +1,19 @@
 import net from "net"
 import { GetStageDataReq, GetStageDataRsp, GetStageDataRsp_CmdId, GetStageDataRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
+import getTs from '../../util/getTs'
 
 export default (socket: net.Socket, packet: GetStageDataReq) => {
+    console.log("requested stages: ", packet.stageIdList)
     Packet.getInstance().serializeAndSend(socket, GetStageDataRsp_CmdId.CMD_ID, {
         retcode: GetStageDataRsp_Retcode.SUCC,
-        stageList: [
-            {
-                id: 101402
-            },
-            {
-                id: 101403,
+        stageList: packet.stageIdList.map(id=> {
+            return{
+                id,
                 progress: 1,
-                challengeIndexList: [
-                    0,
-                    1,
-                    2
-                ],
-                minStageTime: 25,
                 isDone: true,
-                backupChallengeIndexList: [
-                    0,
-                    1,
-                    2
-                ]
-            },
-            {
-                id: 101404,
-                progress: 1,
-                challengeIndexList: [
-                    0,
-                    1,
-                    2
-                ],
-                minStageTime: 18,
-                isDone: true,
-                backupChallengeIndexList: [
-                    0,
-                    1,
-                    2
-                ]
-            },
-            {
-                id: 101405,
-                progress: 1,
-                enterTimes: 1,
-                challengeIndexList: [
-                    0,
-                    1,
-                    2
-                ],
-                minStageTime: 27,
-                isDone: true,
-                backupChallengeIndexList: [
-                    0,
-                    1,
-                    2
-                ]
             }
-        ],
+        }),
         finishedChapterList: [
             1,
             2,
@@ -94,8 +49,8 @@ export default (socket: net.Socket, packet: GetStageDataReq) => {
         eventDataList: [
             {
                 beginTime: 1673467200,
-                endTime: 1680724799,
-                chapterId: 34,
+                endTime: parseInt(getTs())*1.2,
+                chapterId: 37,
                 unlockLevel: 30
             }
         ]

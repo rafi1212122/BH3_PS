@@ -7,7 +7,7 @@ export default (socket: net.Socket, packet: GetMissionDataReq) => {
         retcode: GetMissionDataRsp_Retcode.SUCC, 
         missionList: [
             {
-                missionId: 17046,
+                missionId: 10001,
                 status: MissionStatus.MISSION_FINISH,
                 progress: 1,
                 beginTime: 1674966397,

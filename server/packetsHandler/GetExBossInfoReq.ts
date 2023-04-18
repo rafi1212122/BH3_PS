@@ -11,6 +11,9 @@ export default (socket: net.Socket, packet: GetExBossInfoReq) => {
             rankId: 104,
             bossIdList: [
                 {
+                    bossId: 34126
+                },
+                {
                     bossId: 41126
                 },
                 {
