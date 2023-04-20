@@ -1,14 +1,19 @@
 import net from "net"
 import { GetOpenworldMapReq, GetOpenworldMapRsp, GetOpenworldMapRsp_CmdId, GetOpenworldMapRsp_Retcode, OpenworldQuestStatus } from "../../BengHuai"
 import Packet from "../Packet"
+import GameServer from "../GameServer"
+import { getSpawn } from "../../mongodb/Model/OpenworldSpawn"
 
-export default (socket: net.Socket, packet: GetOpenworldMapReq) => {
+export default async (socket: net.Socket, packet: GetOpenworldMapReq) => {
+    const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
+    const user = session?.user
+
     Packet.getInstance().serializeAndSend(socket, GetOpenworldMapRsp_CmdId.CMD_ID, {
         retcode: GetOpenworldMapRsp_Retcode.SUCC,
         mapId: packet.mapId,
         cycle: 4,
         eventRandomSeed: 761201006,
-        spawnPoint: "AreaC_Born:101,AreaA_P (1):102",
+        spawnPoint: user?(await getSpawn(user.uid, packet.mapId))?.point:"AreaC_Born:101,AreaA_P (1):102",
         overViewList: [
             {
                 missionId: 55001,

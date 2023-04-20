@@ -3,6 +3,7 @@ import { DropItem, StageBeginReq, StageBeginRsp, StageBeginRsp_CmdId, StageBegin
 import User from "../../mongodb/Model/User"
 import GameServer from "../GameServer"
 import Packet from "../Packet"
+import cuid from "cuid"
 
 export default async (socket: net.Socket, packet: StageBeginReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -16,7 +17,7 @@ export default async (socket: net.Socket, packet: StageBeginReq) => {
         retcode: StageBeginRsp_Retcode.SUCC,
         stageId: packet.stageId,
         progress: 0,
-        signKey: stageKeys.find((val)=>val.stageId===packet.stageId)?.key,
+        signKey: cuid(),
         isCollectCheatData: false,
         dropItemList: [] as DropItem[],
         tag: 0,
