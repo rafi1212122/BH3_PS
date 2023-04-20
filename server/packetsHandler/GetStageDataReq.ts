@@ -7,45 +7,49 @@ export default (socket: net.Socket, packet: GetStageDataReq) => {
     console.log("requested stages: ", packet.stageIdList)
     Packet.getInstance().serializeAndSend(socket, GetStageDataRsp_CmdId.CMD_ID, {
         retcode: GetStageDataRsp_Retcode.SUCC,
-        stageList: packet.stageIdList.map(id=> {
+        stageList: packet.stageIdList.length?packet.stageIdList.map(id=> {
             return{
                 id,
-                progress: 1,
-                isDone: true,
+                // progress: 1,
+                // isDone: true,
             }
-        }),
-        finishedChapterList: [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            32
+        }):[
+            {
+                id: 170184
+            }
         ],
+        // finishedChapterList: [
+        //     1,
+        //     2,
+        //     3,
+        //     4,
+        //     5,
+        //     6,
+        //     7,
+        //     8,
+        //     9,
+        //     10,
+        //     11,
+        //     12,
+        //     13,
+        //     14,
+        //     15,
+        //     16,
+        //     17,
+        //     18,
+        //     19,
+        //     20,
+        //     21,
+        //     22,
+        //     23,
+        //     24,
+        //     25,
+        //     26,
+        //     27,
+        //     28,
+        //     29,
+        //     32
+        // ],
         eventDataList: [
             {
                 beginTime: 1673467200,

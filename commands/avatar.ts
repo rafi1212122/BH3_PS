@@ -1,7 +1,6 @@
 import { Socket } from "net";
 import GameServer from "../server/GameServer";
-import Avatar, { Avatar as AvatarSchema, assignAvatar, removeAvatar } from "../mongodb/Model/Avatar";
-import { InsertOneResult } from "mongodb";
+import Avatar, { Avatar as AvatarSchema, assignAllAvatar, assignAvatar, removeAvatar } from "../mongodb/Model/Avatar";
 import GetAvatarDataReq from "../server/packetsHandler/GetAvatarDataReq";
 
 export default async (socket: Socket, args: string[]) => {
@@ -9,9 +8,12 @@ export default async (socket: Socket, args: string[]) => {
     const avatars = session?.avatars
 
     if(!avatars||!session.user) return
-    if(isNaN(parseInt(args[2]))) return
+    if(isNaN(parseInt(args[2]))&&args[1]!=="giveall") return
     
     switch (args[1]) {
+        case "giveall":
+            await assignAllAvatar(session.user.uid)
+            break
         default:
             try {
                 await assignAvatar(parseInt(args[2]), session.user.uid)

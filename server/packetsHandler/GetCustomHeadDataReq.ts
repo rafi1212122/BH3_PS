@@ -8,28 +8,7 @@ export default (socket: net.Socket, packet: GetCustomHeadDataReq) => {
         isAll: true,
         customHeadList: [
             {
-                "id": 161001
-            },
-            {
-                "id": 161007
-            },
-            {
-                "id": 161009
-            },
-            {
-                "id": 161011
-            },
-            {
-                "id": 161016
-            },
-            {
-                "id": 161017
-            },
-            {
-                "id": 161065
-            },
-            {
-                "id": 162081
+                id: 161001
             }
         ]
     } as GetCustomHeadDataRsp)

@@ -45385,11 +45385,11 @@ message GetOpenworldMapRsp {
     repeated OpenworldOverView over_view_list = 7;
     repeated OpenworldStat stat_list = 8;
     optional uint32 status = 9;
-    required OpenworldQuestData quest_data = 11;
-    required OpenworldTechData tech_data = 12;
+    optional OpenworldQuestData quest_data = 11;
+    optional OpenworldTechData tech_data = 12;
     optional uint32 has_take_finish_reward_cycle = 13;
-    required OpenworldActivity activity_data = 14;
-    required OpenworldBossHunt boss_hunt = 15;
+    optional OpenworldActivity activity_data = 14;
+    optional OpenworldBossHunt boss_hunt = 15;
     repeated OpenworldAreaInfo area_info_list = 16;
     repeated OpenworldAreaEntityState area_entity_state_list = 17;
     repeated uint32 finish_once_event_list = 19;
@@ -45581,5 +45581,139 @@ message OpenworldHuntActivityGetDataRsp {
         SUCC = 0;
         FAIL = 1;
         ACTIVITY_NOT_OPEN = 2;
+    }
+}
+
+message OpenworldChapterStageBeginInfo {
+    optional uint32 location_id = 1;
+    optional uint32 story_mode = 2;
+    optional uint32 story_serial = 3;
+    optional bool is_quick_start = 4;
+}
+
+message OpenworldStageBeginReq {
+    repeated uint32 avatar_id_list = 1;
+    optional uint32 area_id = 2;
+    optional uint32 map_id = 3;
+    repeated uint32 elf_id_list = 4;
+    optional OpenworldStageType openworld_stage_type = 5;
+    optional uint32 stage_id = 6;
+    optional uint32 support_avatar_id = 7;
+    required OpenworldChapterStageBeginInfo chapter_ow_info = 8;
+    optional string report_ext = 9;
+
+    enum CmdId {
+        CMD_ID = 4462;
+    }
+}
+
+message OpenworldStageBeginRsp {
+    required Retcode retcode = 1;
+    repeated uint32 can_sp_recover_avatar_list = 2;
+    optional uint32 map_id = 3;
+    repeated uint32 dlc_support_avatar_list = 4;
+
+    enum CmdId {
+        CMD_ID = 4463;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        CYCLE_NOT_OPEN = 2;
+        AVATAR_ERROR = 3;
+        NOT_OPEN = 4;
+        AREA_NOT_EXIST = 5;
+        AREA_NOT_OPEN = 6;
+        EQUIPMENT_USED = 7;
+        AVATAR_USED = 8;
+        ELF_ERROR = 9;
+        ELF_CARRY_LEVEL_LIMIT = 10;
+        FEATURE_LIMIT = 11;
+        HONKAI_ENERGY_FULL = 12;
+        FEATURE_CLOSED = 13;
+    }
+}
+
+message ReportOpenworldSpawnPointReq {
+    optional string point_info = 1;
+    repeated OpenworldStageAvatarInfo avatar_list = 2;
+    optional bool is_ld_sp_recover = 3;
+    repeated uint32 sp_recover_avatar_list = 4;
+    optional uint32 map_id = 5;
+
+    enum CmdId {
+        CMD_ID = 4486;
+    }
+}
+
+message ReportOpenworldSpawnPointRsp {
+    required Retcode retcode = 1;
+    optional uint32 map_id = 2;
+    optional string point_info = 3;
+
+    enum CmdId {
+        CMD_ID = 4487;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        AVATAR_ERROR = 2;
+    }
+}
+
+message OpenworldAcceptNewStoryReq {
+    optional uint32 map_id = 1;
+    optional string report_ext = 2;
+
+    enum CmdId {
+        CMD_ID = 4569;
+    }
+}
+
+message OpenworldAcceptNewStoryRsp {
+    required Retcode retcode = 1;
+    optional uint32 map_id = 2;
+    repeated uint32 story_id_list = 3;
+
+    enum CmdId {
+        CMD_ID = 4570;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+    }
+}
+
+message AcceptOpenworldStoryReq {
+    optional uint32 story_id = 1;
+    optional string report_ext = 2;
+
+    enum CmdId {
+        CMD_ID = 4452;
+    }
+}
+
+message AcceptOpenworldStoryRsp {
+    required Retcode retcode = 1;
+    optional uint32 story_id = 2;
+
+    enum CmdId {
+        CMD_ID = 4453;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        CYCLE_NOT_MATCH = 2;
+        PRE_STORY_NOT_FINISH = 3;
+        STORY_NOT_BEGIN = 4;
+        QUEST_LEVEL_LIMIT = 5;
+        STORY_DOING = 6;
+        STORY_DONE = 7;
+        TECH_LEVEL_LIMIT = 8;
+        CONDITION_NOT_MEET = 9;
     }
 }

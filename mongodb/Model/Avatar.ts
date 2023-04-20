@@ -13,7 +13,7 @@ export const assignAvatar = async (avatarId: number, uid: number) => {
   return database.collection<Avatar>("avatar").insertOne({
     avatarId,
     star: avatarData.unlockStar,
-    level: 80,
+    level: 1,
     exp: 0,
     fragment: 0,
     weaponUniqueId: avatarData.initialWeapon,
@@ -35,6 +35,16 @@ export const assignAvatar = async (avatarId: number, uid: number) => {
     touchGoodfeel: 0,
     userUid: uid
   })
+}
+
+export const assignAllAvatar = async (uid: number) => {
+  const avatars = await database.collection<Avatar>("avatar").find({
+    userUid: uid
+  }).toArray()
+  const unassignedAvatars = AvatarExcel.filter(avatar=>!avatars.some(a=>avatar.avatarID==a.avatarId))
+  for (const avatarData of unassignedAvatars) {
+    await assignAvatar(avatarData.avatarID, uid)
+  }
 }
 
 export const removeAvatar = async (avatarId: number, uid: number) => {

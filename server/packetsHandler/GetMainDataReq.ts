@@ -25,7 +25,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
             hcoin: user.hcoin,
             scoin: user.scoin,
             stamina: user.stamina,
-            staminaRecoverLeftTime: 360,
+            staminaRecoverLeftTime: 0,
             staminaRecoverConfigTime: 360,
             equipmentSizeLimit: 1000,
             selfDesc: user.selfDesc,
@@ -62,7 +62,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
 
     if(packet.typeList.includes(GetMainDataReq_DataType.STAMINA)){
         rsp.stamina = user.stamina
-        rsp.staminaRecoverLeftTime = 360,
+        rsp.staminaRecoverLeftTime = 0,
         rsp.staminaRecoverConfigTime = 360
         return Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, rsp)
     }
@@ -75,7 +75,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
         hcoin: user.hcoin,
         scoin: user.scoin,
         stamina: user.stamina,
-        staminaRecoverLeftTime: 360,
+        staminaRecoverLeftTime: 0,
         staminaRecoverConfigTime: 360,
         equipmentSizeLimit: 1000,
         selfDesc: user.selfDesc,

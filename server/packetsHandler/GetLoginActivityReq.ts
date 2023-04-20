@@ -1,6 +1,4 @@
 import net from "net"
-import logger from "../../util/logger"
-import { CmdId } from "../../util/CmdId"
 import getTs from "../../util/getTs"
 import Packet from "../Packet"
 import GameServer from "../GameServer"

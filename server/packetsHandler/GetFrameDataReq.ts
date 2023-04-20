@@ -10,9 +10,6 @@ export default (socket: net.Socket, packet: GetFrameDataReq) => {
             {
                 id: 200001
             },
-            {
-                id: 200006
-            },
         ]
     } as GetFrameDataRsp)
 }

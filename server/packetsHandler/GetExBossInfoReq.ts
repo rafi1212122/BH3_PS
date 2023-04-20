@@ -13,9 +13,9 @@ export default (socket: net.Socket, packet: GetExBossInfoReq) => {
                 {
                     bossId: 34126
                 },
-                {
-                    bossId: 41126
-                },
+                // {
+                //     bossId: 41126
+                // },
                 {
                     bossId: 40126
                 },

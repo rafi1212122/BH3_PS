@@ -1,6 +1,7 @@
 export type PacketName = keyof typeof CmdId;
 
 export enum CmdId {
+	ChangeGodWarChallengeSupportAvatarReq = 0,
 	KeepAliveNotify = 1,
 	GetGameserverReq = 2,
 	GetGameserverRsp = 3,
@@ -1847,8 +1848,14 @@ export enum CmdId {
 	NinjaActivityNotify = 4404,
 	NinjaSlotChooseEffectReq = 4405,
 	NinjaSlotChooseEffectRsp = 4406,
+	AcceptOpenworldStoryReq = 4452,
+	AcceptOpenworldStoryRsp = 4453,
 	GetOpenworldStageReq = 4460,
 	GetOpenworldStageRsp = 4461,
+	OpenworldStageBeginReq = 4462,
+	OpenworldStageBeginRsp = 4463,
+	ReportOpenworldSpawnPointReq = 4486,
+	ReportOpenworldSpawnPointRsp = 4487,
 	GetNewOpenworldReq = 4496,
 	GetNewOpenworldRsp = 4497,
 	GetOpenworldMapReq = 4498,
@@ -1861,6 +1868,8 @@ export enum CmdId {
 	GetOpenworldQuestActivityRsp = 4547,
 	OpenworldChapterGetDataReq = 4565,
 	OpenworldChapterGetDataRsp = 4566,
+	OpenworldAcceptNewStoryReq = 4569,
+	OpenworldAcceptNewStoryRsp = 4570,
 	OpenworldChapterGetShopDataReq = 4575,
 	OpenworldChapterGetShopDataRsp = 4576,
 	OpenworldHuntActivityGetDataReq = 4600,
@@ -2308,5 +2317,5 @@ export enum CmdId {
 	PlatformShooterWeaponPoolGetDisplayReq = 6954,
 	PlatformShooterWeaponPoolGetDisplayRsp = 6955,
 	MirageGetActivityReq = 7000,
-	MirageGetActivityRsp = 7001
+	MirageGetActivityRsp = 7001,
 }
