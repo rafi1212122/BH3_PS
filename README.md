@@ -2,7 +2,15 @@
 ### A PS for HI3 sea client
 #### Heavily inspired from CrepeSR
 --------------------------
-level not working, try to edit level with other programs
+### Checkout the ```resourceful``` branch
+Put ExcelOutputAsset in resources folder in order to run the resourceful branch
+```
+├───resources
+│   └───ExcelOutputAsset
+```
+
+
+<b>level is not working, try to edit level with other programs</b>
 __________________________
 
 ### What works
