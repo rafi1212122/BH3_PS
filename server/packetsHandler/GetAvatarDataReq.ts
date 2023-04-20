@@ -2,8 +2,9 @@ import net from "net"
 import { GetAvatarDataReq, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode } from "../../BengHuai"
 import Packet from "../Packet"
 import GameServer from "../GameServer"
+import Avatar from "../../mongodb/Model/Avatar"
 
-export default (socket: net.Socket, packet: GetAvatarDataReq) => {
+export default async (socket: net.Socket, packet: GetAvatarDataReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(!user){
@@ -11,6 +12,11 @@ export default (socket: net.Socket, packet: GetAvatarDataReq) => {
             retcode: GetAvatarDataRsp_Retcode['FAIL'],
         } as GetAvatarDataRsp)
     }
+
+    session.avatars = await Avatar.find({
+        userUid: user.uid
+    }).toArray()
+
     Packet.getInstance().serializeAndSend(socket, GetAvatarDataRsp_CmdId.CMD_ID, {
         retcode: GetAvatarDataRsp_Retcode.SUCC,
         avatarList: session.avatars.map((avatar)=>{

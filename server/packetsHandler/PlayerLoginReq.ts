@@ -21,10 +21,6 @@ export default async (socket: net.Socket, packet: PlayerLoginReq) => {
         await assignAvatar(101, user.uid)
     }
 
-    session.avatars = await Avatar.find({
-        userUid: user.uid
-    }).toArray()
-
     Packet.getInstance().serializeAndSend(socket, PlayerLoginRsp_CmdId.CMD_ID, {
         retcode: PlayerLoginRsp_Retcode['SUCC'],
         regionName: config.regionName,

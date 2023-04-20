@@ -7,9 +7,13 @@ export default (socket: net.Socket, packet: GetWarshipItemDataReq) => {
         retcode: GetWarshipItemDataRsp_Retcode.SUCC,
         warshipItemIdList: [
             400004,
+            400006,
             401005,
             401006,
+            401008,
+            401009,
             401010,
+            401011,
             401998,
             401999
         ],

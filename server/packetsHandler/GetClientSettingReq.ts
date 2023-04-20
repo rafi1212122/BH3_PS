@@ -25,7 +25,6 @@ export default (socket: net.Socket, packet: GetClientSettingReq) => {
                 snsShowPriviledgeState: 1
             }
         ],
-        avatarArtifactSwitchList: [],
         masterPupilTagSwitchList: [
             {
                 type: MasterPupilType.MASTER_PUPIL_MASTER_TYPE,

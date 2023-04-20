@@ -52,7 +52,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
                 warshipSecondAvatarId: 0
             },
             customHeadId: 161001,
-            totalLoginDays: 2,
+            totalLoginDays: 1,
             registerTime: 1673232737,
             warshipTheme: user.warshipId?{
                 warshipId: user.warshipId
@@ -102,7 +102,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
             warshipSecondAvatarId: 0
         },
         customHeadId: 161001,
-        totalLoginDays: 2,
+        totalLoginDays: 1,
         registerTime: 1673232737,
         warshipTheme: user.warshipId?{
             warshipId: user.warshipId

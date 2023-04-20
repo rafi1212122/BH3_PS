@@ -1854,6 +1854,8 @@ export enum CmdId {
 	GetOpenworldStageRsp = 4461,
 	OpenworldStageBeginReq = 4462,
 	OpenworldStageBeginRsp = 4463,
+	OpenworldStageEndReq = 4464,
+	OpenworldStageEndRsp = 4465,
 	ReportOpenworldSpawnPointReq = 4486,
 	ReportOpenworldSpawnPointRsp = 4487,
 	GetNewOpenworldReq = 4496,
@@ -1862,8 +1864,12 @@ export enum CmdId {
 	GetOpenworldMapRsp = 4499,
 	GetOpenworldStoryReq = 4500,
 	GetOpenworldStoryRsp = 4501,
+	OpenworldGetMechaTeamReq = 4508,
+	OpenworldGetMechaTeamRsp = 4509,
 	GetOpenworldMechaDefenseReq = 4514,
 	GetOpenworldMechaDefenseRsp = 4515,
+	ReportOpenworldAreaEntityStateReq = 4542,
+	ReportOpenworldAreaEntityStateRsp = 4543,
 	GetOpenworldQuestActivityReq = 4546,
 	GetOpenworldQuestActivityRsp = 4547,
 	OpenworldChapterGetDataReq = 4565,
@@ -2317,5 +2323,5 @@ export enum CmdId {
 	PlatformShooterWeaponPoolGetDisplayReq = 6954,
 	PlatformShooterWeaponPoolGetDisplayRsp = 6955,
 	MirageGetActivityReq = 7000,
-	MirageGetActivityRsp = 7001,
+	MirageGetActivityRsp = 7001
 }

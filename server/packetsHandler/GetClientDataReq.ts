@@ -19,7 +19,7 @@ export default async (socket: net.Socket, packet: GetClientDataReq) => {
             id: packet.id,
             type: packet.type,
             clientDataList: [{
-                data: Buffer.from(data.data),
+                data: Buffer.from(data.data, 'base64'),
                 id: data.id,
                 type: data.type
             }]

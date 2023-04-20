@@ -45717,3 +45717,110 @@ message AcceptOpenworldStoryRsp {
         CONDITION_NOT_MEET = 9;
     }
 }
+
+message ReportOpenworldAreaEntityStateReq {
+    optional uint32 map_id = 1;
+    optional uint32 area_id = 2;
+    optional uint32 entity_id = 3;
+    optional uint32 entity_state = 4;
+
+    enum CmdId {
+        CMD_ID = 4542;
+    }
+}
+
+message ReportOpenworldAreaEntityStateRsp {
+    required Retcode retcode = 1;
+    optional uint32 map_id = 2;
+    optional uint32 area_id = 3;
+    optional uint32 entity_id = 4;
+    repeated OpenworldAreaEntityState area_entity_state_list = 5;
+
+    enum CmdId {
+        CMD_ID = 4543;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        MAP_ERROR = 2;
+        AREA_ERROR = 3;
+        ENTITY_ID_ERROR = 4;
+        ENTITY_STATE_ERROR = 5;
+    }
+}
+
+message OpenworldStageEndReq {
+    required StageEndStatus end_status = 1;
+    optional uint32 cheat_type = 2;
+    repeated StageCheatData cheat_data_list = 3;
+    repeated OpenworldStageAvatarInfo avatar_list = 4;
+    repeated uint32 sp_recover_avatar_list = 5;
+    optional uint32 map_id = 6;
+    optional uint32 mecha_lost_hp_percent = 7;
+    optional uint32 mecha_lost_sp_percent = 8;
+    repeated DropItem drop_item_list = 10;
+    optional uint32 map_energy = 11;
+    optional uint32 sc_dlc_fever_score = 12;
+    optional uint32 sc_dlc_climax_score = 13;
+    optional uint32 area_id = 14;
+    optional string report_ext = 15;
+
+    enum CmdId {
+        CMD_ID = 4464;
+    }
+}
+
+message OpenworldStageEndRsp {
+    required Retcode retcode = 1;
+    optional StageEndStatus end_status = 2;
+    optional uint32 map_id = 3;
+
+    enum CmdId {
+        CMD_ID = 4465;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        CYCLE_NOT_OPEN = 2;
+        NOT_BEGIN = 3;
+        STAGE_ERROR = 4;
+        STAGE_FAIL = 5;
+        AVATAR_ERROR = 6;
+        NOT_OPEN = 7;
+        MECHA_ERROR = 8;
+    }
+}
+
+message OpenworldGetMechaTeamReq {
+
+    enum CmdId {
+        CMD_ID = 4508;
+    }
+}
+
+message OpenworldMechaTeamMember {
+    optional uint32 pos = 1;
+    optional uint32 mecha_unique_id = 2;
+}
+
+message OpenworldMechaTeam {
+    repeated OpenworldMechaTeamMember mecha_list = 1;
+}
+
+message OpenworldGetMechaTeamRsp {
+    required Retcode retcode = 1;
+    repeated OpenworldMechaTeam mecha_team_list = 2;
+    optional uint32 cur_team_index = 3;
+
+    enum CmdId {
+        CMD_ID = 4509;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        NOT_OPEN = 2;
+    }
+}

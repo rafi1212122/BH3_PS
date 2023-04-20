@@ -5,7 +5,6 @@ import net from 'net'
 import GameServer from './GameServer'
 import * as bh3 from '../BengHuai'
 import TxtLogger from '../util/TxtLogger'
-import { readFileSync } from 'fs'
 
 export default class Packet {
     private readonly proto: protobuf.Root
@@ -94,6 +93,7 @@ export default class Packet {
 
         const Message = this.proto?.lookupType(`${CmdId[cmdId]}`)
         const encodedProtobuf = Message.encode(Message.fromObject(data)).finish()
+        // const encodedProtobuf = (bh3[CmdId[cmdId] as PacketName] as any).encode(data).finish()
         const buf = Buffer.alloc(34+encodedProtobuf.length+4)
         buf.writeUInt32BE(0x1234567)
         buf.writeUInt16BE(1, 4)
@@ -131,13 +131,13 @@ export default class Packet {
     }
 }
 
-export interface JSONDump {
+interface JSONDump {
     source:  string;
     payload: string;
     parsed:  Parsed;
 }
 
-export interface Parsed {
+interface Parsed {
     head_magic:        number;
     packet_version:    number;
     client_version:    number;

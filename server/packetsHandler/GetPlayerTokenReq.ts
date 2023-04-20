@@ -22,7 +22,7 @@ export default async (socket: net.Socket, packet: GetPlayerTokenReq) => {
         retcode: GetPlayerTokenRsp_Retcode['SUCC'],
         uid: user?.uid,
         token: user?.token,
-        accountType: AccountType['ACCOUNT_HOYOLAB'],
+        accountType: packet.accountType,
         accountUid: packet.accountUid,
         userType: 3,
         fightserverIp: 863554783,

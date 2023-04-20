@@ -36,6 +36,9 @@ export default (socket: net.Socket, packet: GetWarshipDataReq) => {
                         componentId: 401010
                     }
                 ]
+            },
+            {
+                warshipId: 400006,
             }
         ],
         isAll: true

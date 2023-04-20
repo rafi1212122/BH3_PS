@@ -5,6 +5,6 @@ import Packet from "../Packet"
 export default (socket: net.Socket, packet: GetGobackReq) => {
     Packet.getInstance().serializeAndSend(socket, GetGobackRsp_CmdId.CMD_ID, {
         retcode: GetGobackRsp_Retcode.SUCC,
-        gobackEndTime: 1630094399
+        gobackEndTime: 0
     } as GetGobackRsp)
 }
