@@ -45824,3 +45824,33 @@ message OpenworldGetMechaTeamRsp {
         NOT_OPEN = 2;
     }
 }
+
+message RefreshGodWarTicketReq {
+    optional uint32 god_war_id = 1;
+
+    enum CmdId {
+        CMD_ID = 6189;
+    }
+}
+
+message RefreshGodWarTicketRsp {
+    required Retcode retcode = 1;
+    optional uint32 god_war_id = 2;
+    repeated RefreshGodWarTicketInfo ticket_refresh_list = 3;
+
+    enum CmdId {
+        CMD_ID = 6190;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        FEATURE_CLOSE = 2;
+    }
+}
+
+message RefreshGodWarTicketInfo {
+    optional uint32 ticket_id = 1;
+    optional uint32 material_id = 2;
+    optional uint32 add_num = 3;
+}

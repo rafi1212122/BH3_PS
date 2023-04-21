@@ -9,10 +9,10 @@ export default (socket: net.Socket, packet: GetNewOpenworldReq) => {
         mapList: [
             {
                 mapId: 1,
-                status: 0,
-                cycle: 4,
+                status: 1,
+                cycle: 1,
                 questLevel: 30,
-                hasTakeFinishRewardCycle: 4
+                hasTakeFinishRewardCycle: 0
             },
             {
                 mapId: 2,
@@ -23,7 +23,7 @@ export default (socket: net.Socket, packet: GetNewOpenworldReq) => {
             },
             {
                 mapId: 301,
-                status: 2,
+                status: 0,
                 cycle: 0,
                 questLevel: 30,
                 hasTakeFinishRewardCycle: 0

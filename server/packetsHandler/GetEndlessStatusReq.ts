@@ -11,7 +11,7 @@ export default (socket: net.Socket, packet: GetEndlessStatusReq) => {
             beginTime: 1681110000,
             endTime: parseInt(getTs())*1.2,
             closeTime: parseInt(getTs())*1.25,
-            preGeneralActivityId: 40000162
+            canJoinIn: true
         },
         selectedEndlessType: 5
     } as GetEndlessStatusRsp)

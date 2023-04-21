@@ -2,6 +2,7 @@ import { Socket } from "net";
 import GameServer from "../server/GameServer";
 import Avatar, { Avatar as AvatarSchema, assignAllAvatar, assignAvatar, removeAvatar } from "../mongodb/Model/Avatar";
 import GetAvatarDataReq from "../server/packetsHandler/GetAvatarDataReq";
+import GetEquipmentDataReq from "../server/packetsHandler/GetEquipmentDataReq";
 
 export default async (socket: Socket, args: string[]) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -27,5 +28,6 @@ export default async (socket: Socket, args: string[]) => {
         userUid: session.user.uid
     }).toArray()
 
+    await GetEquipmentDataReq(socket, { materialIdList: [0], mechaUniqueIdList: [0], stigmataUniqueIdList: [0], weaponUniqueIdList: [0] })
     GetAvatarDataReq(socket, { avatarIdList: [0] })
 }
