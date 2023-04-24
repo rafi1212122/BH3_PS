@@ -7,7 +7,7 @@ export default (socket: net.Socket, packet: GetStaminaExchangeInfoReq) => {
         retcode: GetStaminaExchangeInfoRsp_Retcode.SUCC,
         usableTimes: 20,
         totalTimes: 20,
-        hcoinCost: 1,
-        staminaGet: 50
+        hcoinCost: 25,
+        staminaGet: 60
     } as GetStaminaExchangeInfoRsp)
 }

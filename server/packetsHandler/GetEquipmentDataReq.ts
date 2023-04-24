@@ -3,6 +3,7 @@ import { GetEquipmentDataReq, GetEquipmentDataRsp, GetEquipmentDataRsp_CmdId, Ge
 import GameServer from "../GameServer"
 import Packet from "../Packet"
 import { getWeapons } from "../../mongodb/Model/Weapon"
+import { getItems } from "../../mongodb/Model/Item"
 
 export default async (socket: net.Socket, packet: GetEquipmentDataReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -109,56 +110,10 @@ export default async (socket: net.Socket, packet: GetEquipmentDataReq) => {
         //         promoteTimes: 0
         //     }
         // ],
-        materialList: [
-            // {
-            //     id: 5,
-            //     num: 900
-            // },
-            {
-                id: 100, //should be scoin
-                num: user?.scoin
-            },
-            // {
-            //     id: 803,
-            //     num: 10
-            // },
-            // {
-            //     id: 1001,
-            //     num: 46
-            // },
-            // {
-            //     id: 1003,
-            //     num: 11
-            // },
-            // {
-            //     id: 1301,
-            //     num: 8
-            // },
-            // {
-            //     id: 3000,
-            //     num: 69
-            // },
-            // {
-            //     id: 3007,
-            //     num: 10
-            // },
-            // {
-            //     id: 3122,
-            //     num: 27
-            // },
-            // {
-            //     id: 4004,
-            //     num: 1
-            // },
-            // {
-            //     id: 7032,
-            //     num: 20
-            // },
-            // {
-            //     id: 7159,
-            //     num: 42
-            // }
-        ],
+        materialList: (await getItems(user.uid)).map(item=>({
+            id: item.id,
+            num: item.num
+        })),
         isAll: true,
         vitalityValue: 0
     } as GetEquipmentDataRsp)

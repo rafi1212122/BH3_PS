@@ -8,12 +8,11 @@ export default database.collection<User>("user");
 
 export const createUser = async (name: string) => {
   return database.collection<User>("user").insertOne({
-    uid: crypto.randomInt(10000000, 99999999),
+    uid: crypto.randomInt(10000000, 50000000),
     name: name,
     level: 1,
     exp: 0,
     hcoin: 0,
-    scoin: 0,
     stamina: 80,
     selfDesc: "",
     isFirstLogin: true,
@@ -70,7 +69,6 @@ export interface User {
   level: number
   exp: number
   hcoin: number
-  scoin: number
   stamina: number
   selfDesc: string
   isFirstLogin: boolean

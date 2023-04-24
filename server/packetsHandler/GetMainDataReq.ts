@@ -2,8 +2,9 @@ import net from "net"
 import { GetMainDataReq, GetMainDataReq_DataType, GetMainDataRsp, GetMainDataRsp_CmdId, GetMainDataRsp_Retcode } from "../../BengHuai"
 import GameServer from "../GameServer"
 import Packet from "../Packet"
+import { getItem } from "../../mongodb/Model/Item"
 
-export default (socket: net.Socket, packet: GetMainDataReq) => {
+export default async (socket: net.Socket, packet: GetMainDataReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
     const user = session?.user
     if(!user){
@@ -16,6 +17,8 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
         retcode: GetMainDataRsp_Retcode['SUCC'],
     }
 
+    const scoin = (await getItem(user.uid, 100))?.num||0
+
     if(packet.typeList.includes(GetMainDataReq_DataType.ALL)){
         return Packet.getInstance().serializeAndSend(socket, GetMainDataRsp_CmdId.CMD_ID, {
             retcode: GetMainDataRsp_Retcode['SUCC'],
@@ -23,7 +26,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
             level: user.level,
             exp: user.exp,
             hcoin: user.hcoin,
-            scoin: user.scoin,
+            scoin,
             stamina: user.stamina,
             staminaRecoverLeftTime: 0,
             staminaRecoverConfigTime: 360,
@@ -73,7 +76,7 @@ export default (socket: net.Socket, packet: GetMainDataReq) => {
         level: user.level,
         exp: user.exp,
         hcoin: user.hcoin,
-        scoin: user.scoin,
+        scoin,
         stamina: user.stamina,
         staminaRecoverLeftTime: 0,
         staminaRecoverConfigTime: 360,

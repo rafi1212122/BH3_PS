@@ -6,6 +6,7 @@ import Packet from "../Packet"
 import ChapterGroupGetDataReq from "./ChapterGroupGetDataReq"
 import GetConfigReq from "./GetConfigReq"
 import GetWorldMapDataReq from "./GetWorldMapDataReq"
+import { addItem } from "../../mongodb/Model/Item"
 
 export default async (socket: net.Socket, packet: StageEndReq) => {
     const session = GameServer.getInstance().sessions.get(`${socket.remoteAddress}:${socket.remotePort}`)
@@ -20,10 +21,11 @@ export default async (socket: net.Socket, packet: StageEndReq) => {
     const updateUser = await User.findOneAndUpdate({
         uid: user.uid,
     }, {
-        $inc: { scoin: stageEndBody.scoinReward, stamina: -6 }
+        $inc: { stamina: -6 }
     }, {
         returnDocument: 'after'
     })
+    await addItem(user.uid, 100, stageEndBody.scoinReward)
     if(!updateUser.value)return Packet.getInstance().serializeAndSend(socket, StageEndRsp_CmdId.CMD_ID, {
         retcode: StageEndRsp_Retcode.FAIL,
     } as StageEndRsp)

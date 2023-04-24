@@ -45854,3 +45854,108 @@ message RefreshGodWarTicketInfo {
     optional uint32 material_id = 2;
     optional uint32 add_num = 3;
 }
+
+message SetOpenworldStoryProgressReq {
+    optional uint32 story_id = 1;
+    optional uint32 story_progress = 2;
+
+    enum CmdId {
+        CMD_ID = 4454;
+    }
+}
+
+message SetOpenworldStoryProgressRsp {
+    required Retcode retcode = 1;
+    optional uint32 story_id = 2;
+
+    enum CmdId {
+        CMD_ID = 4455;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        STORY_NOT_FOUND = 2;
+    }
+}
+
+message TakeOpenworldStoryRewardReq {
+    optional uint32 story_id = 1;
+    optional bool is_accept_follow_story = 2;
+    optional string report_ext = 3;
+
+    enum CmdId {
+        CMD_ID = 4456;
+    }
+}
+
+message TakeOpenworldStoryRewardRsp {
+    required Retcode retcode = 1;
+    repeated RewardData reward_list = 2;
+    optional uint32 story_id = 3;
+    repeated uint32 accept_story_id_list = 4;
+    optional bool is_accept_follow_story = 5;
+
+    enum CmdId {
+        CMD_ID = 4457;
+    }
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        STORY_NOT_FOUND = 2;
+    }
+}
+
+message TakeOpenworldCycleFinishRewardReq {
+    optional uint32 cycle = 1;
+    optional uint32 map_id = 2;
+
+    enum CmdId {
+        CMD_ID = 4490;
+    }
+}
+
+message TakeOpenworldCycleFinishRewardRsp {
+    required Retcode retcode = 1;
+    repeated RewardData reward_list = 2;
+    optional uint32 map_id = 3;
+    optional uint32 cycle = 4;
+
+    enum CmdId {
+        CMD_ID = 4491;
+    }
+
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        STORY_NOT_FINISH = 2;
+        CYCLE_NOT_MATCH = 3;
+        MAP_NOT_FOUND = 4;
+    }
+}
+
+message OpenOpenworldQuestReq {
+    optional uint32 map_id = 1;
+
+    enum CmdId {
+        CMD_ID = 4474;
+    }
+}
+
+message OpenOpenworldQuestRsp {
+    required Retcode retcode = 1;
+
+    enum CmdId {
+        CMD_ID = 4475;
+    }
+    
+    enum Retcode {
+        SUCC = 0;
+        FAIL = 1;
+        IS_OPEN = 2;
+        TIMES_LACK = 3;
+        CYCLE_NOT_MATCH = 4;
+        MAP_NOT_FOUND = 5;
+        MAP_NOT_OPEN = 6;
+    }
+}

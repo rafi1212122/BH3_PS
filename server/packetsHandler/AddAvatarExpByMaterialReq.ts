@@ -46,11 +46,9 @@ export default async (socket: net.Socket, packet: AddAvatarExpByMaterialReq) => 
                 skillList: updatedAvatar.skillList,
                 touchGoodfeel: updatedAvatar.touchGoodfeel,
                 todayHasAddGoodfeel: updatedAvatar.touchGoodfeel,
-                dressList: [
-                    59101
-                ],
-                dressId: 59101,
-                subStar: 0
+                dressList: updatedAvatar.dressList,
+                dressId: updatedAvatar.dressId,
+                subStar: updatedAvatar.subStar
             }
         ],
         isAll: true
