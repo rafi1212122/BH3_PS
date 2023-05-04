@@ -4,19 +4,20 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "ts-node index.ts --respawn --transpile-only",
-    "dev": "ts-node-dev index.ts --respawn --transpile-only --watch --max_old_space_size=4096"
+    "start": "node --max_old_space_size=8192 -r ts-node/register index.ts --respawn --transpile-only",
+    "dev": "npx cross-env NODE_OPTIONS=--max-old-space-size=8192 ts-node-dev index.ts --respawn --transpile-only --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@typegoose/typegoose": "^11.0.0",
+    "acfg": "^1.2.3",
     "chalk": "^4.1.2",
     "cuid": "^2.1.8",
     "dayjs": "^1.11.7",
     "express": "^4.18.2",
-    "mongodb": "^4.13.0",
-    "nodemon": "^2.0.20",
+    "mongoose": "^7.0.3",
     "protobufjs": "^7.1.2"
   },
   "devDependencies": {
