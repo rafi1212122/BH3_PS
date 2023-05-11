@@ -1,12 +1,17 @@
-import { DocumentType, ModelOptions, Prop, Ref, ReturnModelType, getModelForClass, isDocument, isDocumentArray } from "@typegoose/typegoose";
+import { DocumentType, ModelOptions, Prop, Ref, ReturnModelType, Severity, getModelForClass, isDocument, isDocumentArray } from "@typegoose/typegoose";
 import { randomInt } from "crypto";
 import cuid from "cuid";
 import Player from "../server/tcp/game/Player";
 import EquipmentModel, { Equipment } from "./Equipment";
 import AvatarData from "../utils/excel/AvatarData";
 import AvatarModel, { Avatar } from "./Avatar";
+import PlayerLevelData from "../utils/excel/PlayerLevelData";
+import Session from "../server/tcp/Session";
+import Packet from "../server/tcp/Packet";
+import { GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode, PlayerLevelUpNotify, PlayerLevelUpNotify_CmdId, Stage } from "../resources/proto/BengHuai";
+import AvatarLevelData from "../utils/excel/AvatarLevelData";
 
-@ModelOptions({ schemaOptions: { timestamps: true, collection: "users" }, options: { customName: "User" } })
+@ModelOptions({ schemaOptions: { timestamps: true, collection: "users" }, options: { customName: "User", allowMixed: Severity.ALLOW } })
 export class User {
     @Prop({ unique: true, default: randomInt(10000000, 50000000) })
     public uid!: number;
@@ -17,7 +22,7 @@ export class User {
     @Prop()
     public nick?: string;
 
-    @Prop({ default: 0 })
+    @Prop({ default: 1 })
     public level!: number;
 
     @Prop({ default: 0 })
@@ -26,7 +31,7 @@ export class User {
     @Prop({ default: 0 })
     public hcoin!: number;
     
-    @Prop({ default: 0 })
+    @Prop({ default: 80 })
     public stamina!: number;
     
     @Prop()
@@ -44,11 +49,14 @@ export class User {
     @Prop({ default: 101 })
     public warshipFirstAvatarId!: number;
     
-    @Prop({ default: 101 })
+    @Prop({ default: 0 })
     public assistantAvatarId!: number;
     
     @Prop()
     public birthDate?: number;
+
+    @Prop({ default: [] })
+    public finishedStages!: Stage[];
 
     @Prop({ ref: () => Equipment })
     public equipment!: Ref<Equipment>;
@@ -124,10 +132,10 @@ export class User {
             exp: 0,
             fragment: 0,
             weaponUniqueId: weapon.uniqueId,
-            stigmataUniqueId1: 0,
-            stigmataUniqueId2: 0,
-            stigmataUniqueId3: 0,
-            skillList: avatarData.skillList.map(skillId=>({ skillId })),
+            stigmataUniqueId1: avatarData.avatarID === 101 ? (await equipment.addStigmata(30007)).uniqueId : 0,
+            stigmataUniqueId2: avatarData.avatarID === 101 ? (await equipment.addStigmata(30060)).uniqueId : 0,
+            stigmataUniqueId3: avatarData.avatarID === 101 ? (await equipment.addStigmata(30113)).uniqueId : 0,
+            skillList: avatarData.skillList.map(skillId => ({ skillId })),
             touchGoodfeel: 0,
             todayHasAddGoodfeel: 0,
             dressList: [avatarData.DefaultDressId],
@@ -138,6 +146,60 @@ export class User {
         this.avatarList.push(newAvatar)
 
         await equipment.save()
+    }
+
+    public addLevel(this: DocumentType<User>, exp: number, session: Session) {
+        let expRemain = exp
+
+        while (expRemain) {
+            const playerLevelData = PlayerLevelData.fromLevel(this.level)
+            if(!playerLevelData) throw "Invalid level!"
+    
+            if(this.exp + expRemain >= playerLevelData?.exp) {
+                this.level++
+                session.send(Packet.encode(PlayerLevelUpNotify, { oldLevel: this.level - 1, newLevel: this.level }, PlayerLevelUpNotify_CmdId.CMD_ID))
+                expRemain -= playerLevelData.exp
+            }else {
+                this.$inc('exp', expRemain)
+                expRemain = 0
+            }
+        }
+    }
+
+    public async addAvatarExp(this: DocumentType<User>, exp: number, session: Session, ...avatarIds: number[]) {
+        if(!this.populated('avatarList')){
+            await this.populate('avatarList')
+        }
+
+        if (!isDocumentArray(this.avatarList)) {
+            throw "Failed to populate user avatarList!"
+        }
+
+        for (const avatarId of avatarIds) {
+            const avatar = this.avatarList.find(a => a.avatarId === avatarId)
+            if(!avatar) return
+            
+            let expRemain = exp
+            while (expRemain) {
+                const avatarLevelData = AvatarLevelData.fromLevel(avatar.level)
+                if(!avatarLevelData) throw "Bad avatar data!"
+        
+                if(avatar.exp + expRemain >= avatarLevelData.exp) {
+                    avatar.level++
+                    expRemain -= avatarLevelData.exp
+                }else {
+                    avatar.$inc('exp', expRemain)
+                    expRemain = 0
+                }
+            }
+            await avatar.save()
+        }
+
+
+        session.send(Packet.encode(GetAvatarDataRsp, {
+            retcode: GetAvatarDataRsp_Retcode.SUCC,
+            avatarList: this.avatarList.filter(({ avatarId }) => avatarIds.includes(avatarId))
+        }, GetAvatarDataRsp_CmdId.CMD_ID))
     }
 }
 

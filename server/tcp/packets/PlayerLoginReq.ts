@@ -1,4 +1,4 @@
-import { CGType, GetMpDataRsp, GetMpDataRsp_CmdId, GetMpDataRsp_OpType, GetMpDataRsp_Retcode, MpDataType, PlayerLoginReq, PlayerLoginRsp, PlayerLoginRsp_CmdId, PlayerLoginRsp_Retcode } from "../../../resources/proto/BengHuai";
+import { CGType, GetMpDataRsp, GetMpDataRsp_CmdId, GetMpDataRsp_OpType, GetMpDataRsp_Retcode, MpDataType, PlayerLoginRsp, PlayerLoginRsp_CmdId, PlayerLoginRsp_Retcode } from "../../../resources/proto/BengHuai";
 import Config from "../../../utils/Config";
 import Packet from "../Packet";
 import Session from "../Session";
@@ -10,7 +10,10 @@ export default async (session: Session, packet: Packet) => {
         retcode: PlayerLoginRsp_Retcode.SUCC,
         isFirstLogin: user.isFirstLogin,
         regionName: Config.GAMESERVER.REGION_NAME,
-        cgType: user.isFirstLogin ? CGType.CG_START : CGType.CG_SEVEN_CHAPTER
+        cgType: user.isFirstLogin ? CGType.CG_START : CGType.CG_SEVEN_CHAPTER,
+        regionId: 248,
+        loginSessionToken: 1,
+        psychoKey: 0 // please someone figure out wth is this!?
     }, PlayerLoginRsp_CmdId.CMD_ID)
 
     session.send(rsp, Packet.encode(GetMpDataRsp, {

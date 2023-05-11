@@ -25,8 +25,9 @@ export default class Packet {
 
         this.headMagic = buf.subarray(0, 4)
         this.userId = buf.readUInt32BE(12)
+        const headerLen = buf.readUInt16BE(28)
         this.bodyLen = buf.readUInt32BE(30)
-        this.body = buf.subarray(34, 34+this.bodyLen)
+        this.body = buf.subarray(34+headerLen, 34+this.bodyLen+headerLen)
         this.tailMagic = buf.slice(-4)
         try {
             this.data = bh3[packetName].decode(this.body)
@@ -40,6 +41,24 @@ export default class Packet {
     public static isValid(data: Buffer): boolean {
         const str = data.toString('hex')
         return str.startsWith("01234567") && str.endsWith("89abcdef")
+    }
+
+    public static encodeFromRaw(data: Buffer, cmdId: number): Packet {
+        const buf = Buffer.allocUnsafe(38+data.length)
+        buf.writeUInt32BE(0x1234567)
+        buf.writeUInt16BE(1, 4)
+        buf.writeUInt16BE(0, 6)
+        buf.writeUInt32BE(0, 8)
+        buf.writeUInt32BE(0, 12)
+        buf.writeUInt32BE(0, 16)
+        buf.writeUInt32BE(0, 20)
+        buf.writeUInt32BE(cmdId, 24)
+        buf.writeUInt16BE(0, 28)
+        buf.writeUInt32BE(data.length, 30)
+        Buffer.from(data).copy(buf, 34)
+        buf.writeUInt32BE(0x89abcdef, 34+data.length)
+
+        return new Packet(buf)
     }
 
     public static encode<T extends MessageType<any>>(type: T, data: UnWrapMessageType<T>, cmdId: number) {

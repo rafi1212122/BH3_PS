@@ -62,6 +62,7 @@ export default class Session {
         const packetName = CmdId[packet.cmdId]
         this.c.log(packetName||`CMD ID ${packet.cmdId}`)
 
+        // Packets that doesn't need to be handled
         const ignoredPackets = ["KeepAliveNotify"]
         if(ignoredPackets.includes(packetName)) return
 

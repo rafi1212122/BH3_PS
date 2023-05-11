@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express'
 import Logger from '../../utils/Logger'
 import https from 'https'
 import fs from 'fs'
-import { resolve } from 'path'
 import Config from '../../utils/Config'
 
 const c = new Logger('HTTP', 'greenBright')
@@ -21,9 +20,6 @@ export default class HttpServer {
                 version: 67
             })
         })
-
-        this.app.use('/design_data/', express.static(resolve(__dirname, '../routes/design_data')));
-        this.app.use('/game_res/', express.static(resolve(__dirname, '../routes/game_res')));
 
         this.app.all('/*', (req: Request, res: Response) => {
             import(`./routes${req.url.split('?')[0]}`).then(async r => {

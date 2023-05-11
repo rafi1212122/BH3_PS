@@ -11,12 +11,12 @@ export default function handler(req: Request, res: Response) {
 		ex_resource_url_list: getResUrl(String(req.query.version)),
 		ext: getGatewayExt(String(req.query.version)),
 		gameserver: {
-			ip: Config.GAMESERVER.HOST,
-			port: Config.GAMESERVER.PORT,
+			ip: Config.PROXY.USE_PROXY ? "127.0.0.1" : Config.GAMESERVER.HOST,
+			port: Config.PROXY.USE_PROXY ? Config.PROXY.LOCAL_PORT : Config.GAMESERVER.PORT,
 		},
 		gateway: {
-			ip: Config.GAMESERVER.HOST,
-			port: Config.GAMESERVER.PORT,
+			ip: Config.PROXY.USE_PROXY ? "127.0.0.1" : Config.GAMESERVER.HOST,
+			port: Config.PROXY.USE_PROXY ? Config.PROXY.LOCAL_PORT : Config.GAMESERVER.PORT,
 		},
 		is_data_ready: true,
 		msg: "",
