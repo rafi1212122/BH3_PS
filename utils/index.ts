@@ -1,0 +1,1 @@
+export const unixInSeconds = Math.floor(Date.now() / 1000)

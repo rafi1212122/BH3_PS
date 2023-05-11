@@ -4,26 +4,42 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "ts-node index.ts --respawn --transpile-only",
-    "dev": "ts-node-dev index.ts --respawn --transpile-only --watch --max_old_space_size=4096"
+    "start": "node --max_old_space_size=8192 -r ts-node/register index.ts --respawn --transpile-only",
+    "dev": "npx cross-env NODE_OPTIONS=--max-old-space-size=8192 ts-node-dev index.ts --respawn --transpile-only --watch",
+    "proxy": "node --max_old_space_size=8192 -r ts-node/register tools/proxy/index.ts --respawn --transpile-only",
+    "proxy-dev": "npx cross-env NODE_OPTIONS=--max-old-space-size=8192 ts-node-dev tools/proxy/index.ts --respawn --transpile-only --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@typegoose/typegoose": "^11.0.0",
+    "acfg": "^1.2.3",
     "chalk": "^4.1.2",
     "cuid": "^2.1.8",
     "dayjs": "^1.11.7",
     "express": "^4.18.2",
-    "mongodb": "^4.13.0",
-    "nodemon": "^2.0.20",
+    "mongoose": "^7.0.3",
     "protobufjs": "^7.1.2"
   },
   "devDependencies": {
+    "@emotion/react": "^11.11.0",
+    "@mantine/core": "^6.0.10",
+    "@mantine/hooks": "^6.0.10",
     "@types/express": "^4.17.15",
     "@types/node": "^18.11.17",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@types/request": "^2.48.8",
+    "@types/ws": "^8.5.4",
+    "@vitejs/plugin-react": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "request": "^2.88.2",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vite": "^4.3.5",
+    "ws": "^8.13.0"
   }
 }

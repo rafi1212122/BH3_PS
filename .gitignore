@@ -1,8 +1,8 @@
 node_modules
 dist
-prisma/*.db
-# Keep environment variables out of version control
-.env
 *.txt
-/resources
+/config.json
+/resources/**
 /cache/*
+
+!/**/.gitkeep

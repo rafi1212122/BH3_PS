@@ -1,45 +1,39 @@
-# BH3_PS (Not actually usable)
-### A PS for HI3 sea client
-#### Heavily inspired from CrepeSR
---------------------------
-### Checkout the ```resourceful``` branch
-Put ExcelOutputAsset in resources folder in order to run the resourceful branch
+# <b>BH3_PS (Not actually usable)</b>
+
+## <b>Warning!⚠️</b>
+The `rewrite` branch has been merged to master, to view the old one go to `legacy` branch
+
+## <b>Getting Started</b>
+- `git clone` or download this repo
+- Run `npm install` in this project directory
+- Place your resources in the `resources` directory
 ```
 ├───resources
 │   └───ExcelOutputAsset
+│   └───proto
 ```
+- Make sure you have MongoDB server running
+- Start the server `npm start`
+- Check `config.json` for anything that needs to be changed, and restart after changing
+- Run your proxy
+```bash
+mitmproxy -k -s .\proxy.py
+```
+- Start the game and login with any username, account will automatically created
 
-
-<b>level is not working, try to edit level with other programs</b>
-__________________________
-
-### What works
+## <b>What Works</b>
 - Login
-- Going to the warship / game home (some game data not updating)
+- Main Story!!!
+- others soon to be implemented!
 
-### Running the thing
-1. Do Git Clone / Download as Zip
+> try to manually modify the level in db to unlock more functions
 
-```bash
-git clone https://github.com/rafi1212122/BH3_PS.git 
-```
+## <b>Acknowledgement</b>
+- <b>Crepe-Inc</b> for:
+    - <b>CrepeSR</b> that inspires the development project!
 
-2. Make sure you have MongoDB server running
 
-3. Install required packages
-
-```bash
-npm install 
-```
-
-4. Start the server
-```bash
-npm run dev
-```
-
-5. Start the game and login with any username, account will automatically created
-
-### Contact
+## <b>Contact</b>
 ```
 rfi#2668
 ```
