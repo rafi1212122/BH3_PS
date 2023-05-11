@@ -14,7 +14,7 @@ export default class LevelData {
     public static nextLevelFromId(id: number) {
         const curLevel = (LevelExcelTable as LevelExcelTable).find(e => e.levelId === id)
         const higherLevels = (LevelExcelTable as LevelExcelTable).filter(e => e.levelId > id);
-        const nextLevelInAct = higherLevels.find(l => l.actId === curLevel?.actId)
+        const nextLevelInAct = higherLevels.find(l => l.actId === curLevel?.actId && l.IsActChallenge && l.levelId.toString()[0] === curLevel.levelId.toString()[0])
 
         if(nextLevelInAct) {
             return nextLevelInAct

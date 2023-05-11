@@ -1,5 +1,5 @@
 import { isDocument } from "@typegoose/typegoose";
-import { GetStageDataRsp, GetStageDataRsp_CmdId, StageEndReq, StageEndReqBody, StageEndRsp, StageEndRsp_CmdId, StageEndRsp_Retcode } from "../../../resources/proto/BengHuai";
+import { StageEndReq, StageEndReqBody, StageEndRsp, StageEndRsp_CmdId, StageEndRsp_Retcode } from "../../../resources/proto/BengHuai";
 import LevelData from "../../../utils/excel/LevelData";
 import Packet from "../Packet";
 import Session from "../Session";
@@ -40,21 +40,6 @@ export default async (session: Session, packet: Packet) => {
     await user.addAvatarExp(decodedBody.avatarExpReward || 0, session, ...(session.player.lastStageInnerDataReport?.avatarList || []).map(av => av.avatarId || 0))
     await GetWorldMapDataReq(session, { ...packet, data: { } })
     await ChapterGroupGetDataReq(session, { ...packet, data: { } })
-    
-    const newStageData = Packet.encode(GetStageDataRsp, {
-        stageList: [
-            {
-                id: LevelData.nextLevelFromId(levelData?.levelId || 10101).levelId
-            },
-            {
-                id: decodedBody.stageId,
-                isDone: true,
-                challengeIndexList: decodedBody.challengeIndexList,
-                progress: 1,
-                enterTimes: 1
-            },
-        ]
-    }, GetStageDataRsp_CmdId.CMD_ID)
 
     await GetStageDataReq(session, { ...packet, data: { } })
 

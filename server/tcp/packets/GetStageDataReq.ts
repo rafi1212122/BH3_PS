@@ -15,7 +15,7 @@ export default async (session: Session, packet: Packet) => {
             progress: stage.maxProgress,
             enterTimes: 1
         }))
-        // stageList: data.stageIdList ? data.stageIdList.map(id => ({ id })) : [...finishedStages, ...LevelData.all().filter(stage => !(finishedStages.map(s => s.id).includes(stage.levelId)))]
+        // stageList: data.stageIdList ? data.stageIdList.map(id => ({ id })) : finishedStages.length ? [...finishedStages, { id: LevelData.nextLevelFromId(finishedStages[finishedStages.length-1].id || 10101).levelId }] : [{ id: 10101 }]
     }, GetStageDataRsp_CmdId.CMD_ID)
 
     session.send(rsp)

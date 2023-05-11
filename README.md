@@ -18,6 +18,13 @@ mitmproxy -k -s .\proxy.py
 ```
 - Start the game and login with any username, account will automatically created
 
+## <b>What Works</b>
+- Login
+- Main Story!!!
+- others soon to be implemented!
+
+> try to manually modify the level in db to unlock more functions
+
 ## <b>Acknowledgement</b>
 - <b>Crepe-Inc</b> for:
     - <b>CrepeSR</b> that inspires the development project!
