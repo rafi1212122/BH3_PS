@@ -17,7 +17,7 @@ The `rewrite` branch has been merged to master, to view the old one go to `legac
 - Check `config.json` for anything that needs to be changed, and restart after changing
 - Run your proxy
 ```bash
-mitmproxy -k -s .\proxy.py
+mitmdump -k -s .\proxy.py
 ```
 - Start the game and login with any username, account will automatically created
 
