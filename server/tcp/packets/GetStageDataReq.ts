@@ -1,5 +1,5 @@
 import { GetStageDataReq, GetStageDataRsp, GetStageDataRsp_CmdId, GetStageDataRsp_Retcode } from "../../../resources/proto/BengHuai";
-import LevelData from "../../../utils/excel/LevelData";
+import LevelData from "../../../utils/excel/StageData";
 import Packet from "../Packet";
 import Session from "../Session";
 

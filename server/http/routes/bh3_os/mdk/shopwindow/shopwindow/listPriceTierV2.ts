@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import getTs from '../../../../../util/getTs'
+import { unixInSeconds } from "../../../../../../../utils";
 
 export default function handler(req: Request, res: Response) {
 	return res.json({
@@ -8,7 +8,7 @@ export default function handler(req: Request, res: Response) {
 		data: {
 			suggest_currency: "",
 			tiers: [],
-			price_tier_version: getTs(),
+			price_tier_version: unixInSeconds,
 		},
 	});
 }

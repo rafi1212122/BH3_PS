@@ -1,4 +1,4 @@
-import AvatarExcelTable from "../../resources/ExcelOutputAsset/Avatar.json";
+import AvatarExcelTable from "../../resources/ExcelOutputAsset/AvatarData.json";
 
 export default class AvatarData {
     private constructor() { }

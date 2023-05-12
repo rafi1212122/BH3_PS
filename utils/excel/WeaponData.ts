@@ -1,4 +1,4 @@
-import WeaponExcelTable from "../../resources/ExcelOutputAsset/Weapon.json";
+import WeaponExcelTable from "../../resources/ExcelOutputAsset/WeaponData.json";
 
 export default class WeaponData {
     private constructor() { }

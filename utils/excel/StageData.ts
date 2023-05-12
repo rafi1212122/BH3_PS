@@ -1,4 +1,4 @@
-import LevelExcelTable from "../../resources/ExcelOutputAsset/Level.json";
+import LevelExcelTable from "../../resources/ExcelOutputAsset/StageData_Main.json";
 
 export default class LevelData {
     private constructor() { }

@@ -6,7 +6,7 @@ The `rewrite` branch has been merged to master, to view the old one go to `legac
 ## <b>Getting Started</b>
 - `git clone` or download this repo
 - Run `npm install` in this project directory
-- Place your resources in the `resources` directory
+- Place your [resources](https://anonfiles.com/g7Z4H9q7ze/resources_7z) in the `resources` directory
 ```
 ├───resources
 │   └───ExcelOutputAsset

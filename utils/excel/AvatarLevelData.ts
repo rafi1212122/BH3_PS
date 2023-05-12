@@ -1,4 +1,4 @@
-import AvatarLevelExcelTable from "../../resources/ExcelOutputAsset/AvatarLevel.json";
+import AvatarLevelExcelTable from "../../resources/ExcelOutputAsset/AvatarLevelData.json";
 
 export default class AvatarLevelData {
     private constructor() { }

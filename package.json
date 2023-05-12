@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node --max_old_space_size=8192 -r ts-node/register index.ts --respawn --transpile-only",
     "dev": "npx cross-env NODE_OPTIONS=--max-old-space-size=8192 ts-node-dev index.ts --respawn --transpile-only --watch",
+    "dev-nodemon": "npx cross-env NODE_OPTIONS=--max-old-space-size=8192 npx concurrently \"npx tsc --watch\" \"npx nodemon -q dist/index.js\"",
+    "compile": "npx cross-env NODE_OPTIONS=--max-old-space-size=8192 npx tsc",
     "proxy": "node --max_old_space_size=8192 -r ts-node/register tools/proxy/index.ts --respawn --transpile-only",
     "proxy-dev": "npx cross-env NODE_OPTIONS=--max-old-space-size=8192 ts-node-dev tools/proxy/index.ts --respawn --transpile-only --watch"
   },

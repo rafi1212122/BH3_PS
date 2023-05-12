@@ -1,4 +1,4 @@
-import PlayerLevelExcelTable from "../../resources/ExcelOutputAsset/PlayerLevel.json";
+import PlayerLevelExcelTable from "../../resources/ExcelOutputAsset/PlayerLevelData.json";
 
 export default class PlayerLevelData {
     private constructor() { }

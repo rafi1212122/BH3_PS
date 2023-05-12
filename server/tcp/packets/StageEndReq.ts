@@ -1,6 +1,6 @@
 import { isDocument } from "@typegoose/typegoose";
 import { StageEndReq, StageEndReqBody, StageEndRsp, StageEndRsp_CmdId, StageEndRsp_Retcode } from "../../../resources/proto/BengHuai";
-import LevelData from "../../../utils/excel/LevelData";
+import LevelData from "../../../utils/excel/StageData";
 import Packet from "../Packet";
 import Session from "../Session";
 import ChapterGroupGetDataReq from "./ChapterGroupGetDataReq";
