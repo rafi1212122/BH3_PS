@@ -43,8 +43,8 @@ export default async (session: Session, packet: Packet) => {
         },
         levelLockId: 1,
         warshipAvatar: {
-            warshipFirstAvatarId: user.warshipFirstAvatarId,
-            warshipSecondAvatarId: 0
+            warshipFirstAvatarId: user.warshipAvatar.firstAvatarId,
+            warshipSecondAvatarId: user.warshipAvatar.secondAvatarId
         },
         customHeadId: 161001,
         totalLoginDays: 1,

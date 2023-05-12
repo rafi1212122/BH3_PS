@@ -41,6 +41,7 @@ export default class Session {
           const endIndex = data.indexOf(packetEnd, magicIndex + packetMagic.length);
           if (endIndex < 0) {
             // End of packet not found, packet is incomplete
+            this.c.err('HUH undending packet is detected!!!')
             break;
           }
           const packet = data.slice(magicIndex, endIndex + packetEnd.length);

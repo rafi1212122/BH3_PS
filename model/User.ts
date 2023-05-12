@@ -46,8 +46,11 @@ export class User {
     @Prop({ default: 0 })
     public warshipId!: number;
     
-    @Prop({ default: 101 })
-    public warshipFirstAvatarId!: number;
+    @Prop({ default: { firstAvatarId: 101, secondAvatarId: 0  } })
+    public warshipAvatar!: {
+        firstAvatarId: number
+        secondAvatarId: number
+    };
     
     @Prop({ default: 0 })
     public assistantAvatarId!: number;

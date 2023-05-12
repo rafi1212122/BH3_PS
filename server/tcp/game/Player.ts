@@ -6,7 +6,7 @@ export default class Player {
     public readonly user: DocumentType<User>
     public lastStageInnerDataReport = StageInnerDataReportReq.fromPartial({})
 
-    get avatars(): Avatar[] {
+    get avatars(): DocumentType<Avatar>[] {
         return isDocumentArray(this.user.avatarList) ? this.user.avatarList : []
     }
 

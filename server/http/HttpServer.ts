@@ -9,6 +9,7 @@ const c = new Logger('HTTP', 'greenBright')
 
 export default class HttpServer {
     private readonly app = express();
+    public readonly objCache = new Map<string, any>()
     private static instance: HttpServer
 
     private constructor() {

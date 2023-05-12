@@ -84,8 +84,8 @@ const getAssetUrl = (version: string) => {
 			case 'gf':
 				if(version.includes("beta")){
 					return[
-						"https://bh3rd-beta-qcloud.bh3.com/asset_bundle/beta_dev/1.0",
-						"https://bh3rd-beta.bh3.com/asset_bundle/beta_dev/1.0",
+						"https://bh3rd-beta-qcloud.bh3.com/asset_bundle/beta_release/1.0",
+						"https://bh3rd-beta.bh3.com/asset_bundle/beta_release/1.0",
 					]
 				}
 				return[
