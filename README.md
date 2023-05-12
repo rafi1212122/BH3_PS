@@ -28,7 +28,8 @@ mitmdump -k -s .\proxy.py
 - GM WebUI (WIP)
 - others soon to be implemented!
 
-> try to manually modify the level in db to unlock more functions
+## <b>Notes</b>
+- If something is broken after `git pull`, try nuking the db first
 
 ## <b>Acknowledgement</b>
 - <b>Crepe-Inc</b> for:
