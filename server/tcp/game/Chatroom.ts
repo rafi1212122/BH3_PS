@@ -1,3 +1,4 @@
+import { readdirSync } from "fs"
 import { ChatMsg, ChatMsg_MsgChannel, RecvChatMsgNotify, RecvChatMsgNotify_CmdId } from "../../../resources/proto/BengHuai"
 import { unixInSeconds } from "../../../utils"
 import Packet from "../Packet"
@@ -32,8 +33,64 @@ export default class Chatroom {
             }
         }
 
+        const commands = readdirSync(__dirname + '/../../commands').map(c => c.replace('.ts', ""))
+        let args = chatMsg.msg?.split(' ') || []
+        const command = args.shift()
+        
+        if(command && commands.includes(command)) {
+            session.send(Packet.encode(RecvChatMsgNotify, { chatMsgList: [chatMsg] }, RecvChatMsgNotify_CmdId.CMD_ID))
+
+            import(__dirname + `/../../commands/${command}`).then(async r => {
+                await r.default(session, ...args);
+            }).catch(err => {
+                Chatroom.getInstance().sendAiMsg(typeof err === 'string' ? err : "Command failed to execute!", session)
+            }).finally(() => {
+                Chatroom.getInstance().sendAiMsg("Command executed!", session)
+            });
+        }else {
+            for (const session of this.sessions) {
+                session.send(Packet.encode(RecvChatMsgNotify, { chatMsgList: [ chatMsg ] }, RecvChatMsgNotify_CmdId.CMD_ID))
+            }
+        }
+    }
+
+    public sendAiMsg(msg: string, session?: Session) {
+        if(session) {
+            return session.send(Packet.encode(RecvChatMsgNotify, { chatMsgList: [{
+                uid: 1,
+                nickname: "Ai-chan",
+                time: unixInSeconds,
+                msg: msg,
+                avatarId: 3201,
+                dressId: 593201,
+                channel: ChatMsg_MsgChannel.WORLD,
+                frameId: 200001,
+                customHeadId: 161080,
+                checkResult: {
+                    shieldType: 0,
+                    numberCheck: 0,
+                    rewriteText: msg
+                }
+            }] }, RecvChatMsgNotify_CmdId.CMD_ID))
+        }
+
         for (const session of this.sessions) {
-            session.send(Packet.encode(RecvChatMsgNotify, { chatMsgList: [ chatMsg ] }, RecvChatMsgNotify_CmdId.CMD_ID))
+            session.send(Packet.encode(RecvChatMsgNotify, { chatMsgList: [{
+                uid: 1000001,
+                nickname: "Ai-chan",
+                time: unixInSeconds,
+                msg: msg,
+                avatarId: 3201,
+                dressId: 593201,
+                channel: ChatMsg_MsgChannel.WORLD,
+                frameId: 200001,
+                customHeadId: 161080,
+                checkResult: {
+                    shieldType: 0,
+                    numberCheck: 0,
+                    rewriteText: msg
+                }
+            }] }, RecvChatMsgNotify_CmdId.CMD_ID))
         }
     }
 }
