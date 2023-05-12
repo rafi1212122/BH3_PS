@@ -35,6 +35,7 @@ mitmdump -k -s .\proxy.py
 
 
 ## <b>Contact</b>
+Pleeeeease..., if you have exprience in developing PS or RE and intrested in contributing please feel free to contact me🙏🏻
 ```
 rfi#2668
 ```
