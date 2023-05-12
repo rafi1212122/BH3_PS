@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import Logger from '../../utils/Logger'
 import https from 'https'
 import fs from 'fs'
+import cors from 'cors'
 import Config from '../../utils/Config'
 
 const c = new Logger('HTTP', 'greenBright')
@@ -13,6 +14,7 @@ export default class HttpServer {
     private constructor() {
         this.app.disable('x-powered-by');
         this.app.use(express.json());
+        this.app.use(cors());
         this.app.use(express.urlencoded({ extended: true }));
 
         this.app.all('/admin/mi18n/plat*', (req: Request, res: Response) => {

@@ -1,5 +1,5 @@
 import { isDocument } from "@typegoose/typegoose";
-import { StageEndReq, StageEndReqBody, StageEndRsp, StageEndRsp_CmdId, StageEndRsp_Retcode } from "../../../resources/proto/BengHuai";
+import { GetEquipmentDataRsp, GetEquipmentDataRsp_CmdId, StageEndReq, StageEndReqBody, StageEndRsp, StageEndRsp_CmdId, StageEndRsp_Retcode } from "../../../resources/proto/BengHuai";
 import LevelData from "../../../utils/excel/StageData";
 import Packet from "../Packet";
 import Session from "../Session";
@@ -24,6 +24,10 @@ export default async (session: Session, packet: Packet) => {
     if (isDocument(user.equipment)) {
         user.equipment.addMaterial(100, decodedBody.scoinReward)
         await user.equipment.save()
+
+        session.send(Packet.encode(GetEquipmentDataRsp, {
+            materialList: [{ id: 100, num: user.equipment.materialList.find(m => m.id === 100)?.num || decodedBody.scoinReward }]
+        }, GetEquipmentDataRsp_CmdId.CMD_ID))
     }
 
     user.finishedStages.push({

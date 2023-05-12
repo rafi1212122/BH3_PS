@@ -25,6 +25,7 @@ mitmdump -k -s .\proxy.py
 - Login
 - Main Story!!!
 - Chatroom Commands
+- GM WebUI (WIP)
 - others soon to be implemented!
 
 > try to manually modify the level in db to unlock more functions
