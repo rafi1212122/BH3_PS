@@ -1,8 +1,5 @@
 # <b>BH3_PS (Not actually usable)</b>
 
-## <b>Warning!⚠️</b>
-The `rewrite` branch has been merged to master, to view the old one go to `legacy` branch
-
 ## <b>Getting Started</b>
 - `git clone` or download this repo
 - Run `npm install` in this project directory
