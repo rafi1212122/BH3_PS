@@ -3,6 +3,7 @@ import { GetConfigRsp, GetConfigRsp_CmdId, GetConfigRsp_Retcode } from "../../..
 import Packet from "../Packet";
 import Session from "../Session";
 import { unixInSeconds } from "../../../utils";
+import Config from "../../../utils/Config";
 
 export default async (session: Session, packet: Packet) => {
     const rsp = Packet.encode(GetConfigRsp, {
@@ -171,7 +172,7 @@ export default async (session: Session, packet: Packet) => {
             "hcoinCost": 100
           }
         ],
-        "regionName": "overseas01",
+        "regionName": Config.GAMESERVER.REGION_NAME,
         "minInviteLevel": 26,
         "discountScheduleConfigList": [],
         "islandEventRefreshInterval": 120,

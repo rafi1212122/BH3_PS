@@ -1,5 +1,5 @@
 import { isDocument } from "@typegoose/typegoose";
-import { GetEquipmentDataRsp, GetEquipmentDataRsp_CmdId, StageEndReq, StageEndReqBody, StageEndRsp, StageEndRsp_CmdId, StageEndRsp_Retcode } from "../../../resources/proto/BengHuai";
+import { GetEquipmentDataRsp, GetEquipmentDataRsp_CmdId, StageEndReq, StageEndReqBody, StageEndRsp, StageEndRsp_CmdId, StageEndRsp_Retcode, StageEndStatus } from "../../../resources/proto/BengHuai";
 import LevelData from "../../../utils/excel/StageData";
 import Packet from "../Packet";
 import Session from "../Session";
@@ -7,27 +7,34 @@ import ChapterGroupGetDataReq from "./ChapterGroupGetDataReq";
 import GetMainDataReq from "./GetMainDataReq";
 import GetWorldMapDataReq from "./GetWorldMapDataReq";
 import GetStageDataReq from "./GetStageDataReq";
+import GetEquipmentDataReq from "./GetEquipmentDataReq";
 
 export default async (session: Session, packet: Packet) => {
     const data  = packet.data as StageEndReq
     const { user } = session.player
     const decodedBody = data.body ? StageEndReqBody.decode(data.body) : {}
     const levelData = LevelData.fromId(decodedBody.stageId || 10101)
+    
+    if(decodedBody.stageId === 10101) user.$set('isFirstLogin', false)
+
+    if(decodedBody.endStatus !== StageEndStatus.STAGE_WIN) {
+        return session.send(Packet.encode(StageEndRsp, {
+            retcode: StageEndRsp_Retcode.SUCC,
+            stageId: decodedBody.stageId,
+            endStatus: decodedBody.endStatus
+        }, StageEndRsp_CmdId.CMD_ID))
+    }
 
     if(levelData) {
         user.$inc('stamina', -levelData.staminaCost)
     }
     user.$inc('hcoin', 15)
     user.addLevel(100, session)
-    if(decodedBody.stageId === 10101) user.$set('isFirstLogin', false)
 
     if (isDocument(user.equipment)) {
-        user.equipment.addMaterial(100, decodedBody.scoinReward)
-        await user.equipment.save()
+        await user.equipment.addMaterial(100, decodedBody.scoinReward).save()
 
-        session.send(Packet.encode(GetEquipmentDataRsp, {
-            materialList: [{ id: 100, num: user.equipment.materialList.find(m => m.id === 100)?.num || decodedBody.scoinReward }]
-        }, GetEquipmentDataRsp_CmdId.CMD_ID))
+        await GetEquipmentDataReq(session, { ...packet, data: { } })
     }
 
     user.finishedStages.push({

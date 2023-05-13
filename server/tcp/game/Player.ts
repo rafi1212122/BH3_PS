@@ -30,7 +30,7 @@ export default class Player {
         this.user = user
     }
 
-    public async repopulate() {
+    public async populate() {
         await this.user.populate('avatarList')
         await this.user.populate('equipment')
     }

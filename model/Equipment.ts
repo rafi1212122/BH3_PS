@@ -12,7 +12,7 @@ export class Equipment {
     @Prop({ required: true })
     public stigmataList!: Stigmata[]
 
-    @Prop({ required: true })
+    @Prop({ required: true, default: [{ num: 750, id: 100 }] })
     public materialList!: Material[]
 
     @Prop({ required: true })
@@ -58,10 +58,12 @@ export class Equipment {
         const index = this.materialList.findIndex(({ id }) => id === materialId);
         
         if (index === -1) {
-            this.materialList.push({ id: materialId, num: 1 });
+            this.materialList.push({ id: materialId, num });
         } else {
             this.materialList[index] = { ...this.materialList[index], num: (this.materialList[index].num || 0) + num };
         }
+
+        return this
     }
 }
 

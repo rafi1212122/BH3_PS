@@ -8,7 +8,7 @@ import AvatarModel, { Avatar } from "./Avatar";
 import PlayerLevelData from "../utils/excel/PlayerLevelData";
 import Session from "../server/tcp/Session";
 import Packet from "../server/tcp/Packet";
-import { GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode, PlayerLevelUpNotify, PlayerLevelUpNotify_CmdId, Stage } from "../resources/proto/BengHuai";
+import { AvatarTeam, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode, PlayerLevelUpNotify, PlayerLevelUpNotify_CmdId, Stage } from "../resources/proto/BengHuai";
 import AvatarLevelData from "../utils/excel/AvatarLevelData";
 
 @ModelOptions({ schemaOptions: { timestamps: true, collection: "users" }, options: { customName: "User", allowMixed: Severity.ALLOW } })
@@ -57,6 +57,9 @@ export class User {
     
     @Prop()
     public birthDate?: number;
+
+    @Prop({ default: [{ avatarIdList: [101], stageType: 1 }] })
+    public avatarTeams!: AvatarTeam[];
 
     @Prop({ default: [] })
     public finishedStages!: Stage[];
@@ -109,7 +112,7 @@ export class User {
         if(!user) throw "Why is user not found!!!"
 
         const player = new Player(user)
-        await player.repopulate()
+        await player.populate()
 
         return player
     }
@@ -167,6 +170,17 @@ export class User {
                 expRemain = 0
             }
         }
+    }
+
+    public updateAvatarTeam(this: DocumentType<User>, team: AvatarTeam) {
+        const index = this.avatarTeams.findIndex(({ stageType }) => team.stageType === stageType);
+        
+        if (index === -1) {
+            this.avatarTeams.push(team);
+        } else {
+            this.avatarTeams[index] = { ...this.avatarTeams[index], avatarIdList: team.avatarIdList };
+        }
+        return this
     }
 
     public async addAvatarExp(this: DocumentType<User>, exp: number, session: Session, ...avatarIds: number[]) {

@@ -8,11 +8,9 @@ export default async (session: Session, packet: Packet) => {
     const rsp = Packet.encode(GetOpenworldMapRsp, {
         retcode: GetOpenworldMapRsp_Retcode.SUCC,
         mapId: data.mapId,
-        cycle: 0,
-        eventList: [],
-        eventRandomSeed: 365767841,
+        cycle: data.mapId === 1 ? 1 : 0,
+        eventRandomSeed: 425767841,
         spawnPoint: "",
-        overViewList: [],
         statList: [
           {
             id: 1,
@@ -30,34 +28,20 @@ export default async (session: Session, packet: Packet) => {
             finishNum: 0
           }
         ],
-        status: 3,
+        status: data.mapId === 1 ? 1 : 3,
+        overViewList: data.mapId === 1 ? [
+            {
+                missionId: 55008,
+                progress: 1
+            }
+        ] : [],
         questData: {
-          level: 0,
-          star: 0,
-          isOpen: false,
-          dayOpenTimes: 0,
-          questList: [],
           refreshLeftTimes: 15,
-          nextRefreshCost: 0,
-          maxQuestLevel: 0,
-          isCanAbandon: true,
-          challengeScore: 0,
-          finishKeyQuestList: [],
-          isQuestFinish: false,
-          openQuestTime: 0
+          isCanAbandon: true
         },
         techData: {
-          mapId: data.mapId,
-          level: 0,
-          exp: 0,
-          nextCollectTime: 0,
-          skillPoint: 0,
-          unlockSkillList: []
-        },
-        hasTakeFinishRewardCycle: 0,
-        areaInfoList: [],
-        areaEntityStateList: [],
-        finishOnceEventList: []
+          mapId: data.mapId
+        }
     }, GetOpenworldMapRsp_CmdId.CMD_ID)
 
     session.send(rsp)

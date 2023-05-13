@@ -10,9 +10,9 @@ export default async (session: Session, packet: Packet) => {
         mapList: [
             {
                 mapId: 1,
-                status: 3,
+                status: 1,
                 statList: [],
-                cycle: 0,
+                cycle: 1,
                 questLevel: 1,
                 hasTakeFinishRewardCycle: 0
             },
@@ -42,47 +42,26 @@ export default async (session: Session, packet: Packet) => {
             }
         ],
         nextRefreshTime: dayjs().add(1, 'week').startOf('week').add(4, 'hour').unix(),
-        globalRandomSeed: 952403967,
+        globalRandomSeed: 952303927,
         closeTime: dayjs().add(1, 'week').startOf('week').add(3, 'hour').unix(),
         cookList: [],
-        questThemeIndex: 8353,
+        questThemeIndex: 8355,
         tech: [
             {
-                mapId: 1,
-                level: 0,
-                exp: 0,
-                nextCollectTime: 0,
-                skillPoint: 0,
-                unlockSkillList: []
+                mapId: 1
             },
             {
-                mapId: 2,
-                level: 0,
-                exp: 0,
-                nextCollectTime: 0,
-                skillPoint: 0,
-                unlockSkillList: []
+                mapId: 2
             },
             {
-                mapId: 401,
-                level: 0,
-                exp: 0,
-                nextCollectTime: 0,
-                skillPoint: 0,
-                unlockSkillList: []
+                mapId: 401
             },
             {
-                mapId: 601,
-                level: 0,
-                exp: 0,
-                nextCollectTime: 0,
-                skillPoint: 0,
-                unlockSkillList: []
+                mapId: 601
             }
         ],
         mechaPortList: [],
         questLevel: 1,
-        questStar: 0,
         maxQuestLevel: 1
     }, GetNewOpenworldRsp_CmdId.CMD_ID)
 

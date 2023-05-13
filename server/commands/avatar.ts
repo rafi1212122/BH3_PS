@@ -4,6 +4,8 @@ import Packet from "../tcp/Packet";
 import Session from "../tcp/Session";
 import Player from "../tcp/game/Player";
 import GetAvatarDataReq from "../tcp/packets/GetAvatarDataReq";
+import GetEquipmentDataReq from "../tcp/packets/GetEquipmentDataReq";
+import { GetEquipmentDataReq_CmdId } from "../../resources/proto/BengHuai";
 
 export default async (instance: Session | Player, ...args: string[]) => {
     let session: Session | undefined
@@ -23,7 +25,6 @@ export default async (instance: Session | Player, ...args: string[]) => {
         case "add":
             if(isDocument(user.equipment)) {
                 await user.addAvatar(avatarId, user.equipment)
-                await player.repopulate()
             }else {
                 throw "Server error!"
             }
@@ -35,6 +36,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
     await user.save()
 
     if(session) {
+        await GetEquipmentDataReq(session, Packet.encodeFromRaw(Buffer.from(""), GetEquipmentDataReq_CmdId.CMD_ID))
         GetAvatarDataReq(session, Packet.encodeFromRaw(Buffer.from(""), GetAvatarDataReq_CmdId.CMD_ID))
     }
 }
