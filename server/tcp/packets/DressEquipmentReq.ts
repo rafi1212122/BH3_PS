@@ -1,13 +1,10 @@
-import { DressEquipmentReq, DressEquipmentRsp, DressEquipmentRsp_CmdId, DressEquipmentRsp_Retcode, EquipmentSlot, GetAvatarDataReq_CmdId, GetEquipmentDataReq_CmdId } from "../../../resources/proto/BengHuai"
-import GetAvatarDataReq from "./GetAvatarDataReq";
-import GetEquipmentDataReq from "./GetEquipmentDataReq";
+import { DressEquipmentReq, DressEquipmentRsp, DressEquipmentRsp_CmdId, DressEquipmentRsp_Retcode, EquipmentSlot, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode } from "../../../resources/proto/BengHuai"
 import Config, { VerboseLevel } from "../../../utils/Config"
 import Packet from "../Packet"
 import Session from "../Session"
 
 // TODO: Figure out how the game handles swapping pieces of gear between Valks
 export default async (session: Session, packet: Packet) => {
-    const { user } = session.player
     const data = packet.data as DressEquipmentReq
     const uid = data.uniqueId
     const avatar = session.player.avatars.find(a => a.avatarId === data.avatarId)
@@ -36,12 +33,13 @@ export default async (session: Session, packet: Packet) => {
             retcode: DressEquipmentRsp_Retcode.SUCC
         }, DressEquipmentRsp_CmdId.CMD_ID)
 
-        session.send(rsp)
+        session.send(Packet.encode(GetAvatarDataRsp, {
+            retcode: GetAvatarDataRsp_Retcode.SUCC,
+            avatarList: [avatar],
+            isAll: false
+        }, GetAvatarDataRsp_CmdId.CMD_ID), rsp)
 
-        await user.save();
-
-        await GetEquipmentDataReq(session, Packet.encodeFromRaw(Buffer.from(""), GetEquipmentDataReq_CmdId.CMD_ID))
-        await GetAvatarDataReq(session, Packet.encodeFromRaw(Buffer.from(""), GetAvatarDataReq_CmdId.CMD_ID))
+        await avatar.save();
     }
     else
         throw "Invalid Avatar in DressEquipmentReq"

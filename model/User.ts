@@ -75,7 +75,7 @@ export class User {
             name
         }, {
             $setOnInsert: {
-                equipment: await EquipmentModel.create({ materialList: [], mechaList: [], stigmataList: [], weaponList: [] })
+                equipment: await EquipmentModel.create({ materialList: [{ id: 100, num: 750 }], mechaList: [], stigmataList: [], weaponList: [] })
             }
         }, {
             upsert: true,

@@ -12,7 +12,7 @@ export class Equipment {
     @Prop({ required: true })
     public stigmataList!: Stigmata[]
 
-    @Prop({ required: true, default: [{ num: 750, id: 100 }] })
+    @Prop({ required: true })
     public materialList!: Material[]
 
     @Prop({ required: true })

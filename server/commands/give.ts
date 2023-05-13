@@ -5,11 +5,10 @@ import { isDocument } from "@typegoose/typegoose";
 import GetEquipmentDataReq from "../tcp/packets/GetEquipmentDataReq";
 import GetAvatarDataReq from "../tcp/packets/GetAvatarDataReq";
 import { GetAvatarDataReq_CmdId, GetEquipmentDataReq_CmdId } from "../../resources/proto/BengHuai";
-import { BeAnyObject } from "@typegoose/typegoose/lib/types";
-import avatarData from "../../resources/ExcelOutputAsset/AvatarData.json";
-import weaponData from "../../resources/ExcelOutputAsset/WeaponData.json";
-import stigmataData from "../../resources/ExcelOutputAsset/StigmataData.json";
-import materialData from "../../resources/ExcelOutputAsset/MaterialData.json";
+import MaterialData from "../../utils/excel/MaterialData";
+import StigmataData from "../../utils/excel/StigmataData";
+import AvatarData from "../../utils/excel/AvatarData";
+import WeaponData from "../../utils/excel/WeaponData";
 
 export default async (instance: Session | Player, ...args: string[]) => {
     let session: Session | undefined
@@ -29,12 +28,10 @@ export default async (instance: Session | Player, ...args: string[]) => {
         case "characters":
         case "chars":
             if (isDocument(user.equipment)) {
-                for (let avatar of avatarData) {
+                for (let avatar of AvatarData.all()) {
                     if (avatar.avatarID >= 9000) continue;
 
-                    for (let a of player?.avatars)
-                        if (a.avatarId === avatar.avatarID)
-                            continue;
+                    if(player.avatars.find(av => av.avatarId === avatar.avatarID)) continue
 
                     await user.addAvatar(avatar.avatarID, user.equipment)
                 }
@@ -44,7 +41,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
             break;
         case "weapons":
             if (isDocument(user.equipment)) {
-                for (let weapon of weaponData) {
+                for (let weapon of WeaponData.all()) {
                     await user.equipment.addWeapon(weapon.ID)
                 }
 
@@ -56,7 +53,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
         case "stigmata":
         case "stigs":
             if (isDocument(user.equipment)) {
-                for (let stigmata of stigmataData) {
+                for (let stigmata of StigmataData.all()) {
                     await user.equipment.addStigmata(stigmata.ID)
                 }
 
@@ -68,7 +65,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
         case "materials":
         case "matz":
             if (isDocument(user.equipment)) {
-                for (let material of materialData) {
+                for (let material of MaterialData.all()) {
                     // TODO: Filter out unnecessary things like trial characters
 
                     await user.equipment.addMaterial(material.ID, material.quantityLimit)
