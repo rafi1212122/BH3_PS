@@ -29,5 +29,5 @@ export default acfg({
         START_DISPATCH: true
     },
 
-    DB_URL: "mongodb://localhost:27017/BH3_PS"
+    DB_URL: "mongodb://127.0.0.1:27017/BH3_PS"
 }, { logMissing: true })
