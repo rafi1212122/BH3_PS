@@ -158,10 +158,15 @@ export class User {
             const playerLevelData = PlayerLevelData.fromLevel(this.level)
             if(!playerLevelData) throw "Invalid level!"
     
-            if(this.exp + expRemain >= playerLevelData?.exp) {
-                this.level++
-                session.send(Packet.encode(PlayerLevelUpNotify, { oldLevel: this.level - 1, newLevel: this.level }, PlayerLevelUpNotify_CmdId.CMD_ID))
-                expRemain -= playerLevelData.exp
+            if (this.exp + expRemain >= playerLevelData?.exp) {
+                if (this.level < 88) {
+                    this.level++
+                    session.send(Packet.encode(PlayerLevelUpNotify, { oldLevel: this.level - 1, newLevel: this.level }, PlayerLevelUpNotify_CmdId.CMD_ID))
+                    expRemain -= playerLevelData.exp
+                } else {
+                    this.$set('exp', playerLevelData?.exp)
+                    expRemain = 0
+                }
             }else {
                 this.$inc('exp', expRemain)
                 expRemain = 0
@@ -187,9 +192,14 @@ export class User {
                 const avatarLevelData = AvatarLevelData.fromLevel(avatar.level)
                 if(!avatarLevelData) throw "Bad avatar data!"
         
-                if(avatar.exp + expRemain >= avatarLevelData.exp) {
-                    avatar.level++
-                    expRemain -= avatarLevelData.exp
+                if (avatar.exp + expRemain >= avatarLevelData.exp) {
+                    if (avatar.level < 80) {
+                        avatar.level++
+                        expRemain -= avatarLevelData.exp
+                    } else {
+                        avatar.$set('exp', avatarLevelData.exp)
+                        expRemain = 0
+                    }
                 }else {
                     avatar.$inc('exp', expRemain)
                     expRemain = 0
