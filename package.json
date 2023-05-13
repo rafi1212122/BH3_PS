@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mantine/notifications": "^6.0.10",
     "@typegoose/typegoose": "^11.0.0",
     "acfg": "^1.2.3",
     "chalk": "^4.1.2",

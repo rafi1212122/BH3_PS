@@ -2,7 +2,14 @@ import { Request, Response } from "express";
 import Gameserver from "../../../tcp/Gameserver";
 
 export default function handler(req: Request, res: Response) {
-    const { session_id, cmd } = req.query
+    let session_id: string = req.body.session_id
+    let cmd: string = req.body.cmd
+
+    if(!session_id&&!cmd) {
+        session_id = String(req.query.session_id)
+        cmd = String(req.query.cmd)
+    }
+
     const session = Gameserver.getInstance().sessions.get(Array.isArray(session_id) ? session_id.pop() as string : session_id as string)
 
     if(!cmd||!session) {

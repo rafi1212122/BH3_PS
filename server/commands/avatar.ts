@@ -38,6 +38,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
             } else {
                 throw "Server error!"
             }
+            break;
         case "modify":
             if (isDocument(user.equipment) && modifyType !== '' && value > 0) {
                 let updatedAvatars = []
@@ -64,6 +65,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
             } else {
                 throw "Server error!"
             }
+            break;
         default:
             throw "Bad command!"
     }
