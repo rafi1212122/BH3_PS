@@ -31,7 +31,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
                 for (let avatar of AvatarData.all()) {
                     if (avatar.avatarID >= 9000) continue;
 
-                    if(player.avatars.find(av => av.avatarId === avatar.avatarID)) continue
+                    if (player.avatars.find(av => av.avatarId === avatar.avatarID)) continue
 
                     await user.addAvatar(avatar.avatarID, user.equipment)
                 }
@@ -45,7 +45,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
                     await user.equipment.addWeapon(weapon.ID)
                 }
 
-                user.equipment.save()
+                await user.equipment.save()
             }
             else
                 throw "Server error!"
@@ -57,7 +57,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
                     await user.equipment.addStigmata(stigmata.ID)
                 }
 
-                user.equipment.save()
+                await user.equipment.save()
             }
             else
                 throw "Server error!"
@@ -71,7 +71,7 @@ export default async (instance: Session | Player, ...args: string[]) => {
                     await user.equipment.addMaterial(material.ID, material.quantityLimit)
                 }
 
-                user.equipment.save()
+                await user.equipment.save()
             }
             else
                 throw "Server error!"
