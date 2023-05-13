@@ -7,7 +7,7 @@ export default async (session: Session, packet: Packet) => {
     const rsp = Packet.encode(GetExBossScheduleRsp, {
         retcode: GetExBossScheduleRsp_Retcode.SUCC,
         beginTime: dayjs().startOf('w').add(4, 'hour').unix(),
-        endTime: dayjs().endOf('w').add(-20, 'hour').unix(),
+        endTime: dayjs().endOf('w').add(3, 'hour').unix(),
         minLevel: 0,
         rankId: 104,
         scheduleId: 1
