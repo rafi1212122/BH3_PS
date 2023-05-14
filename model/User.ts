@@ -5,11 +5,13 @@ import Player from "../server/tcp/game/Player";
 import EquipmentModel, { Equipment } from "./Equipment";
 import AvatarData from "../utils/excel/AvatarData";
 import AvatarModel, { Avatar } from "./Avatar";
+import OWStoryModel, { OWStory } from "./OWStory";
 import PlayerLevelData from "../utils/excel/PlayerLevelData";
 import Session from "../server/tcp/Session";
 import Packet from "../server/tcp/Packet";
 import { AvatarTeam, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode, PlayerLevelUpNotify, PlayerLevelUpNotify_CmdId, Stage } from "../resources/proto/BengHuai";
 import AvatarLevelData from "../utils/excel/AvatarLevelData";
+import dayjs from "dayjs";
 
 @ModelOptions({ schemaOptions: { timestamps: true, collection: "users" }, options: { customName: "User", allowMixed: Severity.ALLOW } })
 export class User {
@@ -62,6 +64,9 @@ export class User {
     public avatarTeams!: AvatarTeam[];
 
     @Prop({ default: [] })
+    public openworldSpawns!: { spawnPoint: string, mapId: number }[];
+
+    @Prop({ default: [] })
     public finishedStages!: Stage[];
 
     @Prop({ ref: () => Equipment })
@@ -69,6 +74,9 @@ export class User {
 
     @Prop({ ref: () => Avatar })
     public avatarList!: Ref<Avatar>[];
+
+    @Prop({ ref: () => OWStory })
+    public openworldStories!: Ref<OWStory>[];
 
     public static async fromName(this: ReturnModelType<typeof User>, name: string) {
         const user = await this.findOneAndUpdate({
@@ -227,6 +235,43 @@ export class User {
             retcode: GetAvatarDataRsp_Retcode.SUCC,
             avatarList: this.avatarList.filter(({ avatarId }) => avatarIds.includes(avatarId))
         }, GetAvatarDataRsp_CmdId.CMD_ID))
+    }
+
+
+    public async setStory(this: DocumentType<User>, storyId: number, progress = 0) {
+        if(!this.populated('openworldStories')){
+            await this.populate('openworldStories')
+        }
+
+        if (!isDocumentArray(this.openworldStories)) {
+            throw "Failed to populate user openworldStories!"
+        }
+
+        const story = this.openworldStories.find(({ storyId }) => storyId === storyId)
+
+        if(story) {
+            story.$set('storyProgress', progress)
+            await story.save()
+        }else {
+            this.openworldStories.push(await OWStoryModel.create({
+                storyId,
+                storyProgress: progress
+            }))
+        }
+
+        await this.save()
+    }
+
+    public setOWSpawn(this: DocumentType<User>, mapId: number, spawnPoint: string) {
+        const index = this.openworldSpawns.findIndex(s => s.mapId === mapId);
+        
+        if (index === -1) {
+            this.openworldSpawns.push({ mapId, spawnPoint });
+        } else {
+            this.openworldSpawns[index] = { ...this.openworldSpawns[index], spawnPoint };
+        }
+
+        return this
     }
 }
 

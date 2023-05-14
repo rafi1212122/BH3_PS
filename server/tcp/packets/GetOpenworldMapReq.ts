@@ -3,6 +3,7 @@ import Packet from "../Packet";
 import Session from "../Session";
 
 export default async (session: Session, packet: Packet) => {
+    const { openworldSpawns } = session.player.user
     const data = packet.data as GetOpenworldMapReq
 
     const rsp = Packet.encode(GetOpenworldMapRsp, {
@@ -10,7 +11,7 @@ export default async (session: Session, packet: Packet) => {
         mapId: data.mapId,
         cycle: data.mapId === 1 ? 1 : 0,
         eventRandomSeed: 425767841,
-        spawnPoint: "",
+        spawnPoint: openworldSpawns.find(i => i.mapId === data.mapId)?.spawnPoint || "",
         statList: [
           {
             id: 1,
