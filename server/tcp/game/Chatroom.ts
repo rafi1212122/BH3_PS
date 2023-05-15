@@ -61,6 +61,11 @@ export default class Chatroom {
                 nickname: "Ai-chan",
                 time: unixInSeconds,
                 msg: msg,
+                content: {
+                    items: [
+                        { msgStr: msg }
+                    ]
+                },
                 avatarId: 3201,
                 dressId: 593201,
                 channel: ChatMsg_MsgChannel.WORLD,

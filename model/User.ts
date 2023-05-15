@@ -9,7 +9,7 @@ import OWStoryModel, { OWStory } from "./OWStory";
 import PlayerLevelData from "../utils/excel/PlayerLevelData";
 import Session from "../server/tcp/Session";
 import Packet from "../server/tcp/Packet";
-import { AvatarTeam, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode, PlayerLevelUpNotify, PlayerLevelUpNotify_CmdId, Stage } from "../resources/proto/BengHuai";
+import { AvatarTeam, CustomAvatarTeam, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode, PlayerLevelUpNotify, PlayerLevelUpNotify_CmdId, Stage } from "../resources/proto/BengHuai";
 import AvatarLevelData from "../utils/excel/AvatarLevelData";
 import dayjs from "dayjs";
 
@@ -64,6 +64,9 @@ export class User {
     public avatarTeams!: AvatarTeam[];
 
     @Prop({ default: [] })
+    public customAvatarTeams!: CustomAvatarTeam[];
+
+    @Prop({ default: [] })
     public openworldSpawns!: { spawnPoint: string, mapId: number }[];
 
     @Prop({ default: [] })
@@ -83,7 +86,7 @@ export class User {
             name
         }, {
             $setOnInsert: {
-                equipment: await EquipmentModel.create({ materialList: [{ id: 100, num: 750 }], mechaList: [], stigmataList: [], weaponList: [] })
+                equipment: await EquipmentModel.create({ materialList: [{ id: 100, num: 750 }, { id: 119107, num: 6 }], mechaList: [], stigmataList: [], weaponList: [] })
             }
         }, {
             upsert: true,
@@ -192,6 +195,17 @@ export class User {
             this.avatarTeams.push(team);
         } else {
             this.avatarTeams[index] = { ...this.avatarTeams[index], avatarIdList: team.avatarIdList };
+        }
+        return this
+    }
+
+    public updateCustomAvatarTeam(this: DocumentType<User>, team: CustomAvatarTeam) {
+        const index = this.customAvatarTeams.findIndex(({ teamId }) => team.teamId === teamId);
+        
+        if (index === -1) {
+            this.customAvatarTeams.push(team);
+        } else {
+            this.customAvatarTeams[index] = { ...this.customAvatarTeams[index], avatarIdList: team.avatarIdList, elfIdList: team.elfIdList, name: team.name };
         }
         return this
     }

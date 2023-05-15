@@ -7,7 +7,8 @@ export default async (session: Session, packet: Packet) => {
 
     const rsp = Packet.encode(GetAvatarTeamDataRsp, {
         retcode: GetAvatarTeamDataRsp_Retcode.SUCC,
-        avatarTeamList: user.avatarTeams || [{ avatarIdList: [101], stageType: 1 }]
+        avatarTeamList: user.avatarTeams || [{ avatarIdList: [101], stageType: 1 }],
+        customAvatarTeamList: user.customAvatarTeams || []
     }, GetAvatarTeamDataRsp_CmdId.CMD_ID)
 
     session.send(rsp)

@@ -13,7 +13,7 @@ export default function handler(req: Request, res: Response) {
     const session = Gameserver.getInstance().sessions.get(Array.isArray(session_id) ? session_id.pop() as string : session_id as string)
 
     if(!cmd||!session) {
-        return res.status(400).json({ retcode: 1, msg: "Invalid parameter!" })
+        return res.status(400).json({ retcode: 1, msg: "Invalid parameter!, session may be invalid" })
     }
     
     let args = (cmd as string).split(' ') || []
