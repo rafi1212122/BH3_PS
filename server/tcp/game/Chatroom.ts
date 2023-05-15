@@ -57,7 +57,7 @@ export default class Chatroom {
     public sendAiMsg(msg: string, session?: Session) {
         if(session) {
             return session.send(Packet.encode(RecvChatMsgNotify, { chatMsgList: [{
-                uid: 1,
+                uid: 0,
                 nickname: "Ai-chan",
                 time: unixInSeconds,
                 msg: msg,
@@ -76,7 +76,7 @@ export default class Chatroom {
 
         for (const session of this.sessions) {
             session.send(Packet.encode(RecvChatMsgNotify, { chatMsgList: [{
-                uid: 1000001,
+                uid: 0,
                 nickname: "Ai-chan",
                 time: unixInSeconds,
                 msg: msg,

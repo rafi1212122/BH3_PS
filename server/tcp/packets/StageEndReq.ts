@@ -32,8 +32,13 @@ export default async (session: Session, packet: Packet) => {
     user.addLevel(100, session)
 
     if (isDocument(user.equipment)) {
-        await user.equipment.addMaterial(100, decodedBody.scoinReward).save()
+        if(decodedBody.dropItemList) {
+            for (const dropItem of decodedBody.dropItemList) {
+                if(dropItem.itemId) user.equipment.addMaterial(dropItem.itemId, dropItem.num)
+            }
+        }
 
+        await user.equipment.addMaterial(100, decodedBody.scoinReward).save()
         await GetEquipmentDataReq(session, { ...packet, data: { } })
     }
 

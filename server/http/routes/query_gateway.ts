@@ -26,10 +26,9 @@ export default function handler(req: Request, res: Response) {
 		server_cur_time: unixInSeconds,
 		server_cur_timezone: 7,
 		server_ext: {
-			cdkey_url: "https://sg-public-api.hoyoverse.com/common/",
+			cdkey_url: `https://${Config.GAMESERVER.HOST}/common/`,
 			mihoyo_sdk_env: "2",
-			use_account_web_url: 0,
-			is_official: 0,
+			use_account_web_url: 1
 		},
 	}));
 }

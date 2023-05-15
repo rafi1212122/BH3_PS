@@ -7,7 +7,7 @@ export default async (session: Session, packet: Packet) => {
 
     const rsp = Packet.encode(FinishPlotRsp, {
         retcode: FinishPlotRsp_Retcode.SUCC,
-        plotType: data.plotType,
+        plotType: data.plotType || 0,
         plotId: data.plotId,
         dialogId: data.dialogId
     }, FinishPlotRsp_CmdId.CMD_ID)

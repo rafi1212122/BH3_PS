@@ -28,13 +28,35 @@ export default async (session: Session, packet: Packet) => {
                 "weight": 0,
                 "titleButton": "",
                 "title": "6.5芯核空间投影3",
-                "bannerPath": "event/Immediately/6.5_xinheTY3",
+                "bannerPath": "event/Immediately/6.5_xinheTY4",
                 "eventDateStr": "",
                 "content": "142|0",
                 "mark": 0,
                 "beginTime": 0,
                 "endTime": 0,
                 "updateTime": 0,
+                "showConfigId": 0,
+                "clientReqType": 3
+            },
+            {
+                "id": 2023050855,
+                "type": 2,
+                "title": "6.5\u7248\u672c\u6ee1\u610f\u5ea6\u95ee\u5377TY",
+                "bannerPath": "event/Immediately/const_ques",
+                "eventDateStr": "",
+                "content": "1001|https://webstatic.hoyoverse.com/common/event/survey-user-v2/index.html?auth_appid=survey_ngd6mcszmgxzmy43jmduxgp3mo&game_biz=bh3_os&surveyId=13233&format=1&sign_type=2&authkey_ver=1",
+                "mark": 0,
+                "showConfigId": 0,
+                "clientReqType": 3
+            },
+            {
+                "id": 2023042058,
+                "type": 2,
+                "title": "6.5\u5d29\u8c46\u4eba\u590d\u523b\u6295\u5f71",
+                "bannerPath": "event/Immediately/6.5_bdrTY",
+                "eventDateStr": "",
+                "content": "81|2200",
+                "mark": 0,
                 "showConfigId": 0,
                 "clientReqType": 3
             }
