@@ -18,6 +18,7 @@ export default function App() {
 
     const getSessions = async () => {
         const sessionsRsp = await axios.get('//127.0.0.1/gm/sessions')
+        setSelectedSession(null)
         setSessions(sessionsRsp.data)
     }
 
