@@ -120,7 +120,7 @@ export class User {
 
     public static async playerFromUID(this: ReturnModelType<typeof User>, uid: number) {
         const user = await this.findOne({ uid })
-        if(!user) throw "Why is user not found!!!"
+        if(!user) throw "Failed to create player from uid!"
 
         const player = new Player(user)
         await player.populate()

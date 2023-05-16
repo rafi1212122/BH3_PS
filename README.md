@@ -22,7 +22,7 @@ mitmdump -k -s .\proxy.py
 - Login
 - Main Story!!!
 - Chatroom Commands
-- GM WebUI (WIP)
+- GM WebUI (WIP) Run `npm run gm`
 - others soon to be implemented!
 
 ## <b>Notes</b>
