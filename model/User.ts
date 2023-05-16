@@ -11,7 +11,6 @@ import Session from "../server/tcp/Session";
 import Packet from "../server/tcp/Packet";
 import { AvatarTeam, CustomAvatarTeam, GetAvatarDataRsp, GetAvatarDataRsp_CmdId, GetAvatarDataRsp_Retcode, PlayerLevelUpNotify, PlayerLevelUpNotify_CmdId, Stage } from "../resources/proto/BengHuai";
 import AvatarLevelData from "../utils/excel/AvatarLevelData";
-import dayjs from "dayjs";
 
 @ModelOptions({ schemaOptions: { timestamps: true, collection: "users" }, options: { customName: "User", allowMixed: Severity.ALLOW } })
 export class User {

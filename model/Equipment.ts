@@ -1,8 +1,10 @@
 import { DocumentType, ModelOptions, Prop, Severity, getModelForClass } from "@typegoose/typegoose";
-import { Material, Mecha, Stigmata, Weapon } from "../resources/proto/BengHuai";
+import { EquipmentItem, Material, Mecha, Stigmata, Weapon } from "../resources/proto/BengHuai";
 import WeaponData from "../utils/excel/WeaponData";
 import StigmataData from "../utils/excel/StigmataData";
 import AutoIncrement from "./AutoIncrement";
+import MaterialData from "../utils/excel/MaterialData";
+import EquipmentLevelData from "../utils/excel/EquipmentLevelData";
 
 @ModelOptions({ schemaOptions: { timestamps: true, collection: "equipments" }, options: { customName: "Equipment", allowMixed: Severity.ALLOW } })
 export class Equipment {
@@ -55,15 +57,64 @@ export class Equipment {
     }
 
     public addMaterial(this: DocumentType<Equipment>, materialId: number, num = 0) {
+        const materialData = MaterialData.fromId(materialId)
+        if(!materialData) throw "Invalid materialId!"
+        
         const index = this.materialList.findIndex(({ id }) => id === materialId);
         
         if (index === -1) {
             this.materialList.push({ id: materialId, num });
         } else {
-            this.materialList[index] = { ...this.materialList[index], num: (this.materialList[index].num || 0) + num };
+            const newNum = (this.materialList[index].num || 0) + num
+            this.materialList[index] = { ...this.materialList[index], num: newNum >= materialData.quantityLimit ? materialData.quantityLimit : newNum };
         }
 
         return this
+    }
+
+    public addWeaponExpFromItemList(this: DocumentType<Equipment>, weaponId: number, consumeItemList: EquipmentItem[]) {
+        const index = this.weaponList.findIndex(({ uniqueId }) => uniqueId === weaponId)
+
+        if (index === -1) {
+            throw "Please make a github issue, and describe how to reproduce."
+        } else {
+            for (const consumeItem of consumeItemList) {
+                const materialData = MaterialData.fromId(consumeItem.idOrUniqueId || -1)
+                this.weaponList[index] = this.addWeaponExp(this.weaponList[index], (materialData?.gearExpProvideBase || 0) * (consumeItem.num || 0))                
+                if(consumeItem.idOrUniqueId) this.addMaterial(consumeItem.idOrUniqueId, consumeItem.num)
+            }
+        }
+
+        return this.weaponList[index]
+    }
+
+    public addWeaponExp(this: DocumentType<Equipment>, weapon: Weapon, exp: number) {
+        const weaponData = WeaponData.fromId(weapon.id || -1)
+        if(!weaponData) throw "Invalid weaponId!"
+        
+        let expRemain = exp
+
+        while (expRemain) {
+            const equipmentLevelData = EquipmentLevelData.fromLevel(weapon.level || -1)
+            if(!equipmentLevelData) throw "Invalid level!"
+            
+            if(typeof weapon.exp === 'undefined') weapon.exp = 0
+
+            if (weapon.level && weapon.exp + expRemain >= equipmentLevelData.Type1[weaponData.expType]) {
+                if (weapon.level < weaponData.maxLv) {
+                    weapon.level++
+                    expRemain -= equipmentLevelData.Type1[weaponData.expType]
+                } else {
+                    weapon.exp = equipmentLevelData.Type1[weaponData.expType]
+                    expRemain = 0
+                }
+            }else {
+                weapon.exp += expRemain
+                expRemain = 0
+            }
+        }
+
+        return weapon
     }
 }
 
