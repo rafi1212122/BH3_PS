@@ -3,7 +3,7 @@
 ## <b>Getting Started</b>
 - `git clone` or download this repo
 - Run `npm install` in this project directory
-- Place your resources in the `resources` directory (read the [wiki](wiki) for more information)
+- Place your resources in the `resources` directory (read the [wiki](https://github.com/rafi1212122/BH3_PS/wiki) for more information)
 ```
 ├───resources
 │   └───ExcelOutputAsset
