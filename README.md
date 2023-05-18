@@ -3,7 +3,7 @@
 ## <b>Getting Started</b>
 - `git clone` or download this repo
 - Run `npm install` in this project directory
-- Place your [resources](https://anonfiles.com/g7Z4H9q7ze/resources_7z) in the `resources` directory
+- Place your resources in the `resources` directory (read the [wiki](wiki) for more information)
 ```
 ├───resources
 │   └───ExcelOutputAsset
