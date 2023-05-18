@@ -21,6 +21,7 @@ export default async (session: Session, packet: Packet) => {
             }
             break;
         default:
+            session.c.debug(data)
             throw "Function not yet implemented!, please make a github issue for what you trying to do."
     }
 

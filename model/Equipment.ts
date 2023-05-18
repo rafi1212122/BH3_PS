@@ -1,5 +1,5 @@
 import { DocumentType, ModelOptions, Prop, Severity, getModelForClass } from "@typegoose/typegoose";
-import { EquipmentItem, Material, Mecha, Stigmata, Weapon } from "../resources/proto/BengHuai";
+import { EquipmentItem, EquipmentType, Material, Mecha, Stigmata, Weapon } from "../resources/proto/BengHuai";
 import WeaponData from "../utils/excel/WeaponData";
 import StigmataData from "../utils/excel/StigmataData";
 import AutoIncrement from "./AutoIncrement";
@@ -115,6 +115,28 @@ export class Equipment {
         }
 
         return weapon
+    }
+
+    public disjoinEquipment(this: DocumentType<Equipment>, type: EquipmentType, uniqueIdList: number[]) {
+        switch (type) {
+            case EquipmentType.EQUIPMENT_STIGMATA:
+                for (const uniqueId of uniqueIdList) {
+                    const stigmata = this.stigmataList.find(stigmata => stigmata.uniqueId === uniqueId)
+                    if (!stigmata || !stigmata.id) continue;
+                    const stigmataData = StigmataData.fromId(stigmata.id)
+                    if(!stigmataData) throw "Invalid stigmataId!"
+                    
+                    this.addMaterial(100, -stigmataData.disjoinScoinCost)
+                    for (const addMaterial of stigmataData.disjoinAddMaterial) {
+                        this.addMaterial(addMaterial.ID, addMaterial.Num)
+                    }
+
+                }
+                this.stigmataList = this.stigmataList.filter(stig => !uniqueIdList.includes(stig.uniqueId || 0))
+                break;
+            default:
+                throw "Not yet implemented. Please make a github issue, and describe how to reproduce."
+        }
     }
 }
 

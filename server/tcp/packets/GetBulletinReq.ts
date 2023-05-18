@@ -46,7 +46,7 @@ export default async (session: Session, packet: Packet) => {
                 "title": "6.5\u5d29\u8c46\u4eba\u590d\u523b\u6295\u5f71",
                 "bannerPath": "event/Immediately/6.5_bdrTY",
                 "eventDateStr": "",
-                "content": "81|2200",
+                "content": "81|0",
                 "mark": 0,
                 "beginTime": 0,
                 "endTime": 0,
