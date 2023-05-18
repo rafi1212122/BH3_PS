@@ -48,19 +48,19 @@ export default function handler(req: Request, res: Response) {
             ],
             "force_update": null,
             "game": {
-                "diffs": [],
                 "latest": {
-                    "decompressed_path": "https://hk-bigfile-os-mihayo.akamaized.net/ptpublic/bh3_overseas/20230106184825_GxvxzQ7QuwRsfCpW/extract",
-                    "entry": "BH3.exe",
-                    "md5": "0a23274b8c4ba6f109e8951ff81da21d",
                     "name": "",
-                    "package_size": "10910000000",
-                    "path": "https://hk-bigfile-os-mihayo.akamaized.net/ptpublic/bh3_overseas/20230106184825_GxvxzQ7QuwRsfCpW/BH3_v6.3.0_f79a08e4749f.7z",
+                    "version": "6.6.0",
+                    "path": "https://hk-bigfile-os-mihayo.akamaized.net/ptpublic/bh3_overseas/20230512142327_G6kyVdzVWDuJ7iAG/BH3_v6.6.0_123423f2c8de.7z",
+                    "size": "24370485760",
+                    "md5": "242c7e38d98dee1d5f97593cb29d5bb3",
+                    "entry": "BH3.exe",
+                    "voice_packs": [],
+                    "decompressed_path": "https://hk-bigfile-os-mihayo.akamaized.net/ptpublic/bh3_overseas/20230512142327_G6kyVdzVWDuJ7iAG/extract",
                     "segments": [],
-                    "size": "21830485760",
-                    "version": "6.3.0",
-                    "voice_packs": []
-                }
+                    "package_size": "12180000000"
+                },
+                "diffs": []
             },
             "plugin": null,
             "pre_download_game": null,

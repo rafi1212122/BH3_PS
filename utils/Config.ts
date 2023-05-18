@@ -20,6 +20,8 @@ export default acfg({
         REGION_NAME: "overseas01"
     },
 
+    USE_LOCAL_CACHE: false,
+
     PROXY: {
         USE_PROXY: false,
         REMOTE_HOST: "127.0.0.1",

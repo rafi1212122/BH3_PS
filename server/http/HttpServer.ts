@@ -17,6 +17,7 @@ export default class HttpServer {
         this.app.use(express.json());
         this.app.use(cors());
         this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(express.static('resources/cache'))
 
         this.app.all('/admin/mi18n/plat*', (req: Request, res: Response) => {
             return res.json({

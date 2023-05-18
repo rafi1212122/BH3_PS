@@ -67,7 +67,7 @@ export const getGatewayExt = (version: string) => {
 	}
 }
 
-const getAssetUrl = (version: string) => {
+const getAssetUrl = (version: string): string[] => {
 	const regex = /^(.*?)_(os|gf)_(.*?)$/;
 	const matches = version.match(regex);
 
@@ -76,43 +76,61 @@ const getAssetUrl = (version: string) => {
 		
 		switch (type) {
 			case 'os':
-				return[
+				return Config.USE_LOCAL_CACHE ? [
+					`http://${Config.GAMESERVER.HOST}/asset_bundle/overseas01/1.1`,
+					`http://${Config.GAMESERVER.HOST}/asset_bundle/overseas01/1.1`,
+				] : [
 					"https://hk-bundle-os-mihayo.akamaized.net/asset_bundle/overseas01/1.1",
 					"https://bundle-aliyun-os.honkaiimpact3.com/asset_bundle/overseas01/1.1",
 				]
 			case 'gf':
 				if(version.includes("beta")){
-					return[
+					return Config.USE_LOCAL_CACHE ? [
+						`https://${Config.GAMESERVER.HOST}/asset_bundle/beta_release/1.0`,
+						`https://${Config.GAMESERVER.HOST}/asset_bundle/beta_release/1.0`,
+					] : [
 						"https://bh3rd-beta-qcloud.bh3.com/asset_bundle/beta_release/1.0",
 						"https://bh3rd-beta.bh3.com/asset_bundle/beta_release/1.0",
 					]
 				}
-				return[
+				return Config.USE_LOCAL_CACHE ? [
+					`https://${Config.GAMESERVER.HOST}/asset_bundle/android01/1.0`,
+					`https://${Config.GAMESERVER.HOST}/asset_bundle/android01/1.0`,
+				] : [
 					"https://bundle-qcloud.bh3.com/asset_bundle/android01/1.0",
 					"https://bundle.bh3.com/asset_bundle/android01/1.0",
 				]
 			default:
-				return[
+				return Config.USE_LOCAL_CACHE ? [
+					`http://${Config.GAMESERVER.HOST}/asset_bundle/overseas01/1.1`,
+					`http://${Config.GAMESERVER.HOST}/asset_bundle/overseas01/1.1`,
+				] : [
 					"https://hk-bundle-os-mihayo.akamaized.net/asset_bundle/overseas01/1.1",
 					"https://bundle-aliyun-os.honkaiimpact3.com/asset_bundle/overseas01/1.1",
 				]
 		}
-	} else return[
+	} else return Config.USE_LOCAL_CACHE ? [
+		`http://${Config.GAMESERVER.HOST}/asset_bundle/overseas01/1.1`,
+		`http://${Config.GAMESERVER.HOST}/asset_bundle/overseas01/1.1`,
+	] : [
 		"https://hk-bundle-os-mihayo.akamaized.net/asset_bundle/overseas01/1.1",
 		"https://bundle-aliyun-os.honkaiimpact3.com/asset_bundle/overseas01/1.1",
 	]
 }
 
-const getAVUrl = (version: string) => {
+const getAVUrl = (version: string): string[] | undefined => {
 	if (version.includes("gf")&&version.includes("beta")) {
-		return [
+		return Config.USE_LOCAL_CACHE ? [
+			`${Config.GAMESERVER.HOST}/tmp/CGAudio`,
+			`${Config.GAMESERVER.HOST}/tmp/CGAudio`,
+		] : [
 			"bh3rd-beta-qcloud.bh3.com/tmp/CGAudio",
 			"bh3rd-beta.bh3.com/tmp/CGAudio",
 		]
 	} else return undefined
 }
 
-const getResUrl = (version: string) => {
+const getResUrl = (version: string): string[] => {
 	const regex = /^(.*?)_(os|gf)_(.*?)$/;
 	const matches = version.match(regex);
 
@@ -121,28 +139,43 @@ const getResUrl = (version: string) => {
 		
 		switch (type) {
 			case 'os':
-				return[
+				return Config.USE_LOCAL_CACHE ? [
+					`${Config.GAMESERVER.HOST}/com.miHoYo.bh3oversea`,
+					`${Config.GAMESERVER.HOST}/com.miHoYo.bh3oversea`
+				] : [
 					"hk-bigfile-os-mihayo.akamaized.net/com.miHoYo.bh3oversea",
 					"bigfile-aliyun-os.honkaiimpact3.com/com.miHoYo.bh3oversea"
-				]			
+				]
 			case 'gf':
 				if(version.includes("beta")){
-					return[
+					return Config.USE_LOCAL_CACHE ? [
+						`${Config.GAMESERVER.HOST}/tmp/beta`,
+						`${Config.GAMESERVER.HOST}/tmp/beta`,
+					] : [
 						"bh3rd-beta-qcloud.bh3.com/tmp/beta",
 						"bh3rd-beta.bh3.com/tmp/beta",
 					]
 				}
-				return[
+				return Config.USE_LOCAL_CACHE ? [
+					`${Config.GAMESERVER.HOST}/tmp/Original`,
+					`${Config.GAMESERVER.HOST}/tmp/Original`,
+				] : [
 					"bundle-qcloud.bh3.com/tmp/Original",
 					"bundle.bh3.com/tmp/Original",
 				]
 			default:
-				return[
+				return Config.USE_LOCAL_CACHE ? [
+					`${Config.GAMESERVER.HOST}/com.miHoYo.bh3oversea`,
+					`${Config.GAMESERVER.HOST}/com.miHoYo.bh3oversea`
+				] : [
 					"hk-bigfile-os-mihayo.akamaized.net/com.miHoYo.bh3oversea",
 					"bigfile-aliyun-os.honkaiimpact3.com/com.miHoYo.bh3oversea"
 				]
 		}
-	} else return[
+	} else return Config.USE_LOCAL_CACHE ? [
+		`${Config.GAMESERVER.HOST}/com.miHoYo.bh3oversea`,
+		`${Config.GAMESERVER.HOST}/com.miHoYo.bh3oversea`
+	] : [
 		"hk-bigfile-os-mihayo.akamaized.net/com.miHoYo.bh3oversea",
 		"bigfile-aliyun-os.honkaiimpact3.com/com.miHoYo.bh3oversea"
 	]
