@@ -1,5 +1,9 @@
 # <b>BH3_PS (Not actually usable)</b>
 
+[Discord server invite](https://discord.gg/gAUVf3fJ)
+
+***
+
 ## <b>Getting Started</b>
 - `git clone` or download this repo
 - Run `npm install` in this project directory
