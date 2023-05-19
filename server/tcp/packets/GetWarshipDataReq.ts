@@ -15,21 +15,15 @@ export default async (session: Session, packet: Packet) => {
                 weatherIdx: 0
             },
             {
-                warshipId: 400001,
-                componentList: [
-                    {
-                        componentId: 101,
-                        type: 1
-                    },
-                    {
-                        componentId: 102,
-                        type: 1
-                    },
-                    {
-                        componentId: 401000,
-                        type: 2
-                    },
-                ],
+                warshipId: 400002,
+                componentList: [],
+                bgmPlayMode: 0,
+                isWeatherFixed: false,
+                weatherIdx: 0
+            },
+            {
+                warshipId: 400003,
+                componentList: [],
                 bgmPlayMode: 0,
                 isWeatherFixed: false,
                 weatherIdx: 0

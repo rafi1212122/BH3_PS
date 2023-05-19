@@ -16,7 +16,7 @@ export default async (session: Session, packet: Packet) => {
             beginTime: dayjs(user.get('createdAt')).unix(),
             endTime: 2073239999,
             priority: mission.Priority,
-            cycleId: 207323999
+            cycleId: 1
         })),
         isAll: true
     }, GetMissionDataRsp_CmdId.CMD_ID)
