@@ -81,11 +81,27 @@ export class Equipment {
             for (const consumeItem of consumeItemList) {
                 const materialData = MaterialData.fromId(consumeItem.idOrUniqueId || -1)
                 this.weaponList[index] = this.addWeaponExp(this.weaponList[index], (materialData?.gearExpProvideBase || 0) * (consumeItem.num || 0))                
-                if(consumeItem.idOrUniqueId) this.addMaterial(consumeItem.idOrUniqueId, consumeItem.num)
+                if(consumeItem.idOrUniqueId) this.addMaterial(consumeItem.idOrUniqueId, -(consumeItem.num || 0))
             }
         }
 
         return this.weaponList[index]
+    }
+
+    public addStigmataExpFromItemList(this: DocumentType<Equipment>, stigmataId: number, consumeItemList: EquipmentItem[]) {
+        const index = this.stigmataList.findIndex(({ uniqueId }) => uniqueId === stigmataId)
+
+        if (index === -1) {
+            throw "Please make a github issue, and describe how to reproduce."
+        } else {
+            for (const consumeItem of consumeItemList) {
+                const materialData = MaterialData.fromId(consumeItem.idOrUniqueId || -1)
+                this.stigmataList[index] = this.addStigmataExp(this.stigmataList[index], (materialData?.gearExpProvideBase || 0) * (consumeItem.num || 0))                
+                if(consumeItem.idOrUniqueId) this.addMaterial(consumeItem.idOrUniqueId, -(consumeItem.num || 0))
+            }
+        }
+
+        return this.stigmataList[index]
     }
 
     public addWeaponExp(this: DocumentType<Equipment>, weapon: Weapon, exp: number) {
@@ -115,6 +131,35 @@ export class Equipment {
         }
 
         return weapon
+    }
+
+    public addStigmataExp(this: DocumentType<Equipment>, stigmata: Stigmata, exp: number) {
+        const stigmataData = StigmataData.fromId(stigmata.id || -1)
+        if(!stigmataData) throw "Invalid stigmataId!"
+        
+        let expRemain = exp
+
+        while (expRemain) {
+            const equipmentLevelData = EquipmentLevelData.fromLevel(stigmata.level || -1)
+            if(!equipmentLevelData) throw "Invalid level!"
+            
+            if(typeof stigmata.exp === 'undefined') stigmata.exp = 0
+
+            if (stigmata.level && stigmata.exp + expRemain >= equipmentLevelData.Type1[stigmataData.expType]) {
+                if (stigmata.level < stigmataData.maxLv) {
+                    stigmata.level++
+                    expRemain -= equipmentLevelData.Type1[stigmataData.expType]
+                } else {
+                    stigmata.exp = equipmentLevelData.Type1[stigmataData.expType]
+                    expRemain = 0
+                }
+            }else {
+                stigmata.exp += expRemain
+                expRemain = 0
+            }
+        }
+
+        return stigmata
     }
 
     public disjoinEquipment(this: DocumentType<Equipment>, type: EquipmentType, uniqueIdList: number[]) {

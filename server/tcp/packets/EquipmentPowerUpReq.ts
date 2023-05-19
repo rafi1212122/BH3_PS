@@ -20,8 +20,20 @@ export default async (session: Session, packet: Packet) => {
                 await user.equipment.save()
             }
             break;
+        case EquipmentType.EQUIPMENT_STIGMATA:
+            if(isDocument(user.equipment)) {
+                if(data.mainItem.idOrUniqueId) {
+                    const updatedStigmata = user.equipment.addStigmataExpFromItemList(data.mainItem.idOrUniqueId, data.consumeItemList?.itemList || [])
+                    session.send(Packet.encode(GetEquipmentDataRsp, {
+                        retcode: GetEquipmentDataRsp_Retcode.SUCC,
+                        stigmataList: [updatedStigmata]
+                    }, GetEquipmentDataRsp_CmdId.CMD_ID))
+                }
+                await user.equipment.save()
+            }
+            break;
         default:
-            session.c.debug(data)
+            session.c.debug(JSON.stringify(data, undefined, '\t'))
             throw "Function not yet implemented!, please make a github issue for what you trying to do."
     }
 
