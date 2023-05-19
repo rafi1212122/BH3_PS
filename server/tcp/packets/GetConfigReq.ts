@@ -181,8 +181,6 @@ export default async (session: Session, packet: Packet) => {
         "weekDayActivityCoinItemId": 7034,
         "islandVisitMaxHelpNum": 5,
         "costSeniorEquipAfterCancelProtectMinTimeDiff": 86400,
-        "rogueStageCostItemId": 9008,
-        "rogueStageMaxProgress": 999,
         "bulletinActivityList": [
             {
                 "activityId": 4378,

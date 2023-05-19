@@ -68,7 +68,7 @@ export const getGatewayExt = (version: string) => {
 }
 
 const getAssetUrl = (version: string): string[] => {
-	const regex = /^(.*?)_(os|gf)_(.*?)$/;
+	const regex = /^(.*?)_(os|gf|global)_(.*?)$/;
 	const matches = version.match(regex);
 
 	if (matches) {
@@ -99,6 +99,14 @@ const getAssetUrl = (version: string): string[] => {
 				] : [
 					"https://bundle-qcloud.bh3.com/asset_bundle/android01/1.0",
 					"https://bundle.bh3.com/asset_bundle/android01/1.0",
+				]
+			case 'global':
+				return Config.USE_LOCAL_CACHE ? [
+					`https://${Config.GAMESERVER.HOST}/asset_bundle/usa01/1.1`,
+					`https://${Config.GAMESERVER.HOST}/asset_bundle/usa01/1.1`,
+				] : [
+					"http://hk-bundle-west-mihayo.akamaized.net/asset_bundle/usa01/1.1",
+					"http://bundle-aliyun-usa.honkaiimpact3.com/asset_bundle/usa01/1.1",
 				]
 			default:
 				return Config.USE_LOCAL_CACHE ? [
@@ -131,7 +139,7 @@ const getAVUrl = (version: string): string[] | undefined => {
 }
 
 const getResUrl = (version: string): string[] => {
-	const regex = /^(.*?)_(os|gf)_(.*?)$/;
+	const regex = /^(.*?)_(os|gf|global)_(.*?)$/;
 	const matches = version.match(regex);
 
 	if (matches) {
@@ -162,6 +170,14 @@ const getResUrl = (version: string): string[] => {
 				] : [
 					"bundle-qcloud.bh3.com/tmp/Original",
 					"bundle.bh3.com/tmp/Original",
+				]
+			case 'global':
+				return Config.USE_LOCAL_CACHE ? [
+					`${Config.GAMESERVER.HOST}/tmp/com.miHoYo.bh3global`,
+					`${Config.GAMESERVER.HOST}/tmp/com.miHoYo.bh3global`,
+				] : [
+					"hk-bundle-west-mihayo.akamaized.net/tmp/com.miHoYo.bh3global",
+					"bigfile-aliyun-usa.honkaiimpact3.com/tmp/com.miHoYo.bh3global",
 				]
 			default:
 				return Config.USE_LOCAL_CACHE ? [
