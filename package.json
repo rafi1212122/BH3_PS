@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ts-node": "^10.9.1",
     "@typegoose/typegoose": "^11.0.0",
     "acfg": "^1.2.3",
     "chalk": "^4.1.2",
@@ -43,7 +44,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "request": "^2.88.2",
-    "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.4",
     "vite": "^4.3.5",
