@@ -151,7 +151,7 @@ export class User {
             stigmataUniqueId1: avatarData.avatarID === 101 ? (await equipment.addStigmata(30007)).uniqueId : 0,
             stigmataUniqueId2: avatarData.avatarID === 101 ? (await equipment.addStigmata(30060)).uniqueId : 0,
             stigmataUniqueId3: avatarData.avatarID === 101 ? (await equipment.addStigmata(30113)).uniqueId : 0,
-            skillList: avatarData.skillList.map(skillId => ({ skillId })),
+            skillList: avatarData.skillList.map(skillId => ({ skillId, subSkillList: [] })),
             touchGoodfeel: 0,
             todayHasAddGoodfeel: 0,
             dressList: [avatarData.DefaultDressId],

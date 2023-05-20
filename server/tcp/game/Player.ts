@@ -1,7 +1,8 @@
 import { DocumentType, isDocument, isDocumentArray } from "@typegoose/typegoose";
 import { User } from "../../../model/User";
-import { Avatar, Material, StageInnerDataReportReq, Stigmata, Weapon } from "../../../resources/proto/BengHuai";
+import { Material, StageInnerDataReportReq, Stigmata, Weapon } from "../../../resources/proto/BengHuai";
 import { OWStory } from "../../../model/OWStory";
+import { Avatar } from "../../../model/Avatar";
 
 export default class Player {
     public readonly user: DocumentType<User>

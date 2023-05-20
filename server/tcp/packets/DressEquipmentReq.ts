@@ -6,12 +6,13 @@ import Session from "../Session"
 // TODO: Figure out how the game handles swapping pieces of gear between Valks
 export default async (session: Session, packet: Packet) => {
     const data = packet.data as DressEquipmentReq
-    const uid = data.uniqueId
+    const uid = data.uniqueId || 0
     const avatar = session.player.avatars.find(a => a.avatarId === data.avatarId)
     const slot = data.slot
 
-    if (Config.LOG_LEVEL > VerboseLevel.NORMAL)
+    if (Config.LOG_LEVEL > VerboseLevel.NORMAL) {
         session.c.log("DressEquipmentReq", `${data.uniqueId}, ${data.avatarId}, ${data.slot}`)
+    }
 
     if (avatar !== undefined) {
         switch (slot) {
