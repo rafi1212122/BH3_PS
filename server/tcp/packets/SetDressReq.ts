@@ -17,12 +17,8 @@ export default async (session: Session, packet: Packet) => {
             retcode: SetDressRsp_Retcode.DRESS_NOT_EXIST
         }, SetDressRsp_CmdId.CMD_ID))
     }
-
-    await avatar.updateOne({
-        $set: {
-            dressId: data.dressId
-        }
-    }).exec()
+    
+    await avatar.$set('dressId', data.dressId).save()
 
     const rsp = Packet.encode(SetDressRsp, {
         retcode: SetDressRsp_Retcode.SUCC
