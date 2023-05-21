@@ -31,4 +31,8 @@ export default class Gameserver {
         this.sessions.set(client, new Session(socket))
         c.log(`${client} connected!`)
     }
+
+    public sessionFromUid(uid: number) {
+        return Array.from(this.sessions.values()).find(session => session.player.user.uid === uid)
+    }
 }

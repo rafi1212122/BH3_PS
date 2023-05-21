@@ -14,7 +14,7 @@ export default async function handler(req: Request, res: Response) {
         uid = String(req.query.uid)
     }
 
-    const session = Gameserver.getInstance().sessions.get(Array.isArray(session_id) ? session_id.pop() as string : session_id as string)
+    let session = Gameserver.getInstance().sessions.get(Array.isArray(session_id) ? session_id.pop() as string : session_id as string)
     let player: Player | undefined
 
     // i know what im doing... i think
@@ -22,7 +22,8 @@ export default async function handler(req: Request, res: Response) {
     if(!cmd||!session) {
         if(req.query.uid||req.body.uid) {
             try {
-                player = await User.playerFromUID(parseInt(uid))
+                session = Gameserver.getInstance().sessionFromUid(parseInt(uid))
+                if(!session) player = await User.playerFromUID(parseInt(uid))
             } catch (error) {
                 return res.status(400).json({ retcode: 1, msg: error })
             }

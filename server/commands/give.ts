@@ -9,6 +9,7 @@ import MaterialData from "../../utils/excel/MaterialData";
 import StigmataData from "../../utils/excel/StigmataData";
 import AvatarData from "../../utils/excel/AvatarData";
 import WeaponData from "../../utils/excel/WeaponData";
+import DressData from "../../utils/excel/DressData";
 
 export default async (instance: Session | Player, ...args: string[]) => {
     let session: Session | undefined
@@ -75,6 +76,20 @@ export default async (instance: Session | Player, ...args: string[]) => {
             }
             else
                 throw "Server error!"
+            break;
+        case "dress":
+            for (let dress of DressData.all()) {
+                for (let avatarId of dress.avatarIDList) {
+                    const avatar = player.avatars.find(av => av.avatarId === avatarId)
+                    if (avatar) {
+                        const dressId = avatar.dressList?.find(id => id === dress.dressID)
+                        if (dressId === undefined) {
+                            avatar.dressList?.push(dress.dressID)
+                        }
+                        await avatar.save()
+                    }
+                }
+            }
             break;
         default:
             throw "Bad command!"

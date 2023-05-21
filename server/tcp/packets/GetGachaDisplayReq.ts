@@ -13,11 +13,11 @@ export default async (session: Session, packet: Packet) => {
                 "gachaType": GachaType.GACHA_CUSTOM_AVATAR,
                 "commonData": {
                     "titleImage": "SpriteOutput/Gacha/TitleKakin5",
-                    "supplyImage": "event/GachaPic/6.5_custom0512KV_truecolor2048",
+                    "supplyImage": "event/GachaPic/6.5_custom0512bg_truecolor2048",
                     "title": "5.12~5.18",
-                    "content": "Target Expansion Crate: Battlesuit Rank-S <color=#fedf4c>Jade Knight</color> & Battlesuit Rank-A <color=#fedf4c>Snowy Sniper</color>.",
+                    "content": "Some random gacha.",
                     "upAvatarList": [
-                        3101,
+                        713,
                         303,
                         302,
                         603,
@@ -26,19 +26,19 @@ export default async (session: Session, packet: Packet) => {
                     "contentUrl": "",
                     "btnImagePath": "",
                     "isEnablePrompt": true,
-                    "gachaId": 30112100,
+                    "gachaId": 1,
                     "dataBeginTime": 1683864000,
                     "dataEndTime": 1684353599*2,
                     "displayExt": "{\"web_intro_url\":\"https://honkaiimpact3.hoyoverse.com/strategy/character/detail/103076?game_biz=bh3_os&win_mode=fullscreen&fullscreen=1&sign_type=2&authkey_ver=1&auth_appid=e20220519gl\",\"web_intro_img\":\"\",\"web_intro_text\":\"OptionalGachaTipsLink_Desc\",\"common_btn_link_type\":\"17\",\"common_btn_link_params\":\"25\",\"common_btn_link_url\":\"\",\"common_btn_img\":\"SpriteOutput/Gacha/GaChaIcon/IconFragment\",\"common_btn_text\":\"Menu_Tab_Shoplist_2\",\"common_gacha_bg\":\"event/GachaPic/6.5_custom0512BG_truecolor2048\",\"banner_btn_img\":\"event/Immediately/GachaPic/const_GiftBanner_Custom\",\"banner_btn_link_type\":\"115\",\"banner_btn_link_params\":\"719909\",\"common_title_img\":\"event/Immediately/GachaPic/const_Custom_Title_truecolor2048\"}"
                 },
                 "customGachaData": {
                     "ticketHcoinCost": 280,
-                    "ticketMaterialId": 1103,
+                    "ticketMaterialId": 100,
                     "isEnableBaodi": true,
                     "gachaType": GachaType.GACHA_CUSTOM_AVATAR,
                     "gachaTimes": 0,
                     "displayMaxTimes": 100,
-                    "noProtectGachaTimes": 9,
+                    "noProtectGachaTimes": 0,
                     "displayVideoAvatar": 0,
                     "shiningType": 1,
                     "gachaPanelType": 0,
@@ -49,8 +49,8 @@ export default async (session: Session, packet: Packet) => {
                     "gachaExRewardInfo": {},
                     "protectDisplayInfo": {
                         "protectDisplayType": GachaProtectDisplayInfo_ProtectDisplayType.AVATAR_DISPLAY,
-                        "displayKeyAvatar": 3101,
-                        "noProtectGachaTimes": 9
+                        "displayKeyAvatar": 713,
+                        "noProtectGachaTimes": 0
                     }
                 }
             }
