@@ -14,7 +14,7 @@ import AvatarLevelData from "../utils/excel/AvatarLevelData";
 
 @ModelOptions({ schemaOptions: { timestamps: true, collection: "users" }, options: { customName: "User", allowMixed: Severity.ALLOW } })
 export class User {
-    @Prop({ unique: true, default: randomInt(10000000, 50000000) })
+    @Prop({ unique: true })
     public uid!: number;
 
     @Prop({ required: true, unique: true })
@@ -81,28 +81,34 @@ export class User {
     public openworldStories!: Ref<OWStory>[];
 
     public static async fromName(this: ReturnModelType<typeof User>, name: string) {
-        const user = await this.findOneAndUpdate({
-            name
-        }, {
-            $setOnInsert: {
-                equipment: await EquipmentModel.create({ materialList: [{ id: 100, num: 750 }, { id: 119107, num: 6 }], mechaList: [], stigmataList: [], weaponList: [] })
-            }
-        }, {
-            upsert: true,
-            returnDocument: 'after'
-        })
-        
-        if(!user.populated('equipment')) {
-            await user.populate('equipment')
-            if (!isDocument(user.equipment)) {
-                throw "Failed to populate user equipment!"
-            }
-            await user.addAvatar(101, user.equipment)
-        }
-        
-        await user.save()
+        const user = await this.findOne({ name })
+        if (user === null) {
+            const user = await this.findOneAndUpdate({
+                name
+            }, {
+                $setOnInsert: {
+                    uid: randomInt(10000000, 50000000),
+                    equipment: await EquipmentModel.create({ materialList: [{ id: 100, num: 750 }, { id: 119107, num: 6 }], mechaList: [], stigmataList: [], weaponList: [] })
+                }
+            }, {
+                upsert: true,
+                returnDocument: 'after'
+            })
 
-        return user
+            if (!user.populated('equipment')) {
+                await user.populate('equipment')
+                if (!isDocument(user.equipment)) {
+                    throw "Failed to populate user equipment!"
+                }
+                await user.addAvatar(101, user.equipment)
+            }
+
+            await user.save()
+
+            return user
+        } else {
+            return user
+        }
     }
     
     public static dbFromUid(this: ReturnModelType<typeof User>, uid: number) {
