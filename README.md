@@ -1,6 +1,6 @@
 # <b>BH3_PS (Not actually usable)</b>
 
-[Discord server invite](https://discord.gg/gAUVf3fJ)
+[Discord server invite!](https://discord.gg/fbsRYc7bBA)
 
 ***
 
