@@ -1,6 +1,6 @@
 # <b>BH3_PS (Not actually usable)</b>
 
-Checkout the new project [PemukulPaku](https://github.com/rafi1212122/PemukulPaku) a rewritten version of this project, i still recommend stick to this project while that still being work on
+Checkout the new project [PemukulPaku](https://github.com/rafi1212122/PemukulPaku) a rewritten version of this project, i recommend checking out that project because that's the one under active development
 ***
 [Discord server invite!](https://discord.gg/fbsRYc7bBA)
 ***
