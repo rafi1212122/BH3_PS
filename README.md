@@ -36,10 +36,3 @@ mitmdump -k -s .\proxy.py
 ## <b>Acknowledgement</b>
 - <b>Crepe-Inc</b> for:
     - <b>CrepeSR</b> that inspires the development project!
-
-
-## <b>Contact</b>
-Pleeeeease..., if you have exprience in developing PS or RE and intrested in contributing please feel free to contribute / contact me🙏🏻
-```
-rfi#2668
-```
